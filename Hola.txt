@@ -1,1 +1,5 @@
+<<<<<<< HEAD
 Hola micaela
+=======
+Hola asdsdfsd
+>>>>>>> 4dd51deaac82edb4a64c3ddaa194ef3882dce62c

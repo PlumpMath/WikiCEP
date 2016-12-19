@@ -2,7 +2,11 @@
 <#@ include file="EF6.Utility.CS.ttinclude"#><#@
  output extension=".cs"#><#
 
+<<<<<<< HEAD:Wikicep_Project/Wikicep_Project/Models/Wikicep_Project.Context.tt
 const string inputFile = @"Wikicep_Project.edmx";
+=======
+const string inputFile = @"Wikicep_Model.edmx";
+>>>>>>> b54419e317c1940e6ac0cf596711b62f38d418c8:Wikicep_Project/Wikicep_Project/Models/Wikicep_Model.Context.tt
 var textTransform = DynamicTextTransformation.Create(this);
 var code = new CodeGenerationTools(this);
 var ef = new MetadataTools(this);

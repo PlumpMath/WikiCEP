@@ -12,8 +12,13 @@ namespace Wikicep_Project.Controllers
 {
     public class ImagenesController : Controller
     {
+<<<<<<< HEAD
 		//Prueba
         private WikiCEPDBEntities1 db = new WikiCEPDBEntities1();
+=======
+		//Prueba 123
+        private WikiCEPDBEntities db = new WikiCEPDBEntities();
+>>>>>>> b54419e317c1940e6ac0cf596711b62f38d418c8
 
         // GET: Imagenes
         public ActionResult Index()

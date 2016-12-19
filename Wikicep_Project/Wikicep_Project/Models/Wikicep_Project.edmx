@@ -613,7 +613,11 @@
           <End Role="Definiciones" Type="Self.Definiciones" Multiplicity="*" />
           <End Role="TutorialesYouTube" Type="Self.TutorialesYouTube" Multiplicity="*" />
         </Association>
+<<<<<<< HEAD:Wikicep_Project/Wikicep_Project/Models/Wikicep_Project.edmx
         <EntityContainer Name="WikiCEPDBEntities1" annotation:LazyLoadingEnabled="true">
+=======
+        <EntityContainer Name="WikiCEPDBEntities" annotation:LazyLoadingEnabled="true">
+>>>>>>> b54419e317c1940e6ac0cf596711b62f38d418c8:Wikicep_Project/Wikicep_Project/Models/Wikicep_Model.edmx
           <EntitySet Name="C__MigrationHistory" EntityType="Self.C__MigrationHistory" />
           <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" />
           <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" />
@@ -670,7 +674,11 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+<<<<<<< HEAD:Wikicep_Project/Wikicep_Project/Models/Wikicep_Project.edmx
         <EntityContainerMapping StorageEntityContainer="WikiCEPDBModelStoreContainer" CdmEntityContainer="WikiCEPDBEntities1">
+=======
+        <EntityContainerMapping StorageEntityContainer="WikiCEPDBModelStoreContainer" CdmEntityContainer="WikiCEPDBEntities">
+>>>>>>> b54419e317c1940e6ac0cf596711b62f38d418c8:Wikicep_Project/Wikicep_Project/Models/Wikicep_Model.edmx
           <EntitySetMapping Name="C__MigrationHistory">
             <EntityTypeMapping TypeName="WikiCEPDBModel.C__MigrationHistory">
               <MappingFragment StoreEntitySet="__MigrationHistory">

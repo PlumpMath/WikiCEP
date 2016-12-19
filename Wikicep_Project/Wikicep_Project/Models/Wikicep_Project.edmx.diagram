@@ -4,7 +4,11 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
+<<<<<<< HEAD:Wikicep_Project/Wikicep_Project/Models/Wikicep_Project.edmx.diagram
       <Diagram DiagramId="9399a6470807483d8e99fe4e76e4d563" Name="Diagram1">
+=======
+      <Diagram DiagramId="3aec75792bda49caa48f35e6ac7c74c9" Name="Diagram1">
+>>>>>>> b54419e317c1940e6ac0cf596711b62f38d418c8:Wikicep_Project/Wikicep_Project/Models/Wikicep_Model.edmx.diagram
         <EntityTypeShape EntityType="WikiCEPDBModel.C__MigrationHistory" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="WikiCEPDBModel.AspNetRoles" Width="1.5" PointX="0.75" PointY="8.5" IsExpanded="true" />
         <EntityTypeShape EntityType="WikiCEPDBModel.AspNetUserClaims" Width="1.5" PointX="5.25" PointY="4.625" IsExpanded="true" />

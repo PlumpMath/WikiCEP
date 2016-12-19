@@ -1,0 +1,149 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="WikiCEPDBModelStoreContainer" CdmEntityContainer="WikiCEPDBEntities">
+    <EntitySetMapping Name="C__MigrationHistory">
+      <EntityTypeMapping TypeName="WikiCEPDBModel.C__MigrationHistory">
+        <MappingFragment StoreEntitySet="__MigrationHistory">
+          <ScalarProperty Name="MigrationId" ColumnName="MigrationId" />
+          <ScalarProperty Name="ContextKey" ColumnName="ContextKey" />
+          <ScalarProperty Name="Model" ColumnName="Model" />
+          <ScalarProperty Name="ProductVersion" ColumnName="ProductVersion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AspNetRoles">
+      <EntityTypeMapping TypeName="WikiCEPDBModel.AspNetRoles">
+        <MappingFragment StoreEntitySet="AspNetRoles">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AspNetUserClaims">
+      <EntityTypeMapping TypeName="WikiCEPDBModel.AspNetUserClaims">
+        <MappingFragment StoreEntitySet="AspNetUserClaims">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="ClaimType" ColumnName="ClaimType" />
+          <ScalarProperty Name="ClaimValue" ColumnName="ClaimValue" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AspNetUserLogins">
+      <EntityTypeMapping TypeName="WikiCEPDBModel.AspNetUserLogins">
+        <MappingFragment StoreEntitySet="AspNetUserLogins">
+          <ScalarProperty Name="LoginProvider" ColumnName="LoginProvider" />
+          <ScalarProperty Name="ProviderKey" ColumnName="ProviderKey" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AspNetUsers">
+      <EntityTypeMapping TypeName="WikiCEPDBModel.AspNetUsers">
+        <MappingFragment StoreEntitySet="AspNetUsers">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="EmailConfirmed" ColumnName="EmailConfirmed" />
+          <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+          <ScalarProperty Name="SecurityStamp" ColumnName="SecurityStamp" />
+          <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+          <ScalarProperty Name="PhoneNumberConfirmed" ColumnName="PhoneNumberConfirmed" />
+          <ScalarProperty Name="TwoFactorEnabled" ColumnName="TwoFactorEnabled" />
+          <ScalarProperty Name="LockoutEndDateUtc" ColumnName="LockoutEndDateUtc" />
+          <ScalarProperty Name="LockoutEnabled" ColumnName="LockoutEnabled" />
+          <ScalarProperty Name="AccessFailedCount" ColumnName="AccessFailedCount" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Definiciones">
+      <EntityTypeMapping TypeName="WikiCEPDBModel.Definiciones">
+        <MappingFragment StoreEntitySet="Definiciones">
+          <ScalarProperty Name="IDDefinicion" ColumnName="IDDefinicion" />
+          <ScalarProperty Name="Titulo" ColumnName="Titulo" />
+          <ScalarProperty Name="IDAutor" ColumnName="IDAutor" />
+          <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
+          <ScalarProperty Name="Texto" ColumnName="Texto" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Ejemplos">
+      <EntityTypeMapping TypeName="WikiCEPDBModel.Ejemplos">
+        <MappingFragment StoreEntitySet="Ejemplos">
+          <ScalarProperty Name="IDEjemplo" ColumnName="IDEjemplo" />
+          <ScalarProperty Name="Titulo" ColumnName="Titulo" />
+          <ScalarProperty Name="Texto" ColumnName="Texto" />
+          <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
+          <ScalarProperty Name="IDAutor" ColumnName="IDAutor" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Imagenes">
+      <EntityTypeMapping TypeName="WikiCEPDBModel.Imagenes">
+        <MappingFragment StoreEntitySet="Imagenes">
+          <ScalarProperty Name="IDImagen" ColumnName="IDImagen" />
+          <ScalarProperty Name="Titulo" ColumnName="Titulo" />
+          <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
+          <ScalarProperty Name="IDAutor" ColumnName="IDAutor" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Temas">
+      <EntityTypeMapping TypeName="WikiCEPDBModel.Temas">
+        <MappingFragment StoreEntitySet="Temas">
+          <ScalarProperty Name="IDTema" ColumnName="IDTema" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TutorialesYouTube">
+      <EntityTypeMapping TypeName="WikiCEPDBModel.TutorialesYouTube">
+        <MappingFragment StoreEntitySet="TutorialesYouTube">
+          <ScalarProperty Name="IDTutorial" ColumnName="IDTutorial" />
+          <ScalarProperty Name="Titulo" ColumnName="Titulo" />
+          <ScalarProperty Name="LinkYouTube" ColumnName="LinkYouTube" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="AspNetUserRoles" TypeName="WikiCEPDBModel.AspNetUserRoles" StoreEntitySet="AspNetUserRoles">
+      <EndProperty Name="AspNetRoles">
+        <ScalarProperty Name="Id" ColumnName="RoleId" />
+      </EndProperty>
+      <EndProperty Name="AspNetUsers">
+        <ScalarProperty Name="Id" ColumnName="UserId" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="Ejemplo_Definicion" TypeName="WikiCEPDBModel.Ejemplo_Definicion" StoreEntitySet="Ejemplo_Definicion">
+      <EndProperty Name="Definiciones">
+        <ScalarProperty Name="IDDefinicion" ColumnName="IDDefinicion" />
+      </EndProperty>
+      <EndProperty Name="Ejemplos">
+        <ScalarProperty Name="IDEjemplo" ColumnName="IDEjemplo" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="Imagen_Definicion" TypeName="WikiCEPDBModel.Imagen_Definicion" StoreEntitySet="Imagen_Definicion">
+      <EndProperty Name="Definiciones">
+        <ScalarProperty Name="IDDefinicion" ColumnName="IDDefinicion" />
+      </EndProperty>
+      <EndProperty Name="Imagenes">
+        <ScalarProperty Name="IDImagen" ColumnName="IDImagen" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="Tema_Definicion" TypeName="WikiCEPDBModel.Tema_Definicion" StoreEntitySet="Tema_Definicion">
+      <EndProperty Name="Definiciones">
+        <ScalarProperty Name="IDDefinicion" ColumnName="IDDefinicion" />
+      </EndProperty>
+      <EndProperty Name="Temas">
+        <ScalarProperty Name="IDTema" ColumnName="IDTema" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="Tutorial_Definicion" TypeName="WikiCEPDBModel.Tutorial_Definicion" StoreEntitySet="Tutorial_Definicion">
+      <EndProperty Name="Definiciones">
+        <ScalarProperty Name="IDDefinicion" ColumnName="IDDefinicion" />
+      </EndProperty>
+      <EndProperty Name="TutorialesYouTube">
+        <ScalarProperty Name="IDTutorial" ColumnName="IDTutorial" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping>

@@ -3,6 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Wikicep_Project.Models
 {
+    //Comentario de prueba
     public class ExternalLoginConfirmationViewModel
     {
         [Required]

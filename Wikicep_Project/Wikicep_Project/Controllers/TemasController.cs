@@ -12,7 +12,7 @@ namespace Wikicep_Project.Controllers
 {
     public class TemasController : Controller
     {
-        private WikiCEPDBEntities db = new WikiCEPDBEntities();
+        private WikiCEPDBEntities1 db = new WikiCEPDBEntities1();
 
         // GET: Temas
         public ActionResult Index()

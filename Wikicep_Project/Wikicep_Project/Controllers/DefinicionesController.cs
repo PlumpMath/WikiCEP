@@ -12,7 +12,7 @@ namespace Wikicep_Project.Controllers
 {
     public class DefinicionesController : Controller
     {
-        private WikiCEPDBEntities db = new WikiCEPDBEntities();
+        private WikiCEPDBEntities1 db = new WikiCEPDBEntities1();
 
         // GET: Definiciones
         public ActionResult Index()

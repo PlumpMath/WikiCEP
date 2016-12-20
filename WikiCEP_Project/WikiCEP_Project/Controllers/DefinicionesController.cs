@@ -2,10 +2,13 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.UI;
+using System.Web.UI.WebControls;
 using WikiCEP_Project.Models;
 
 namespace WikiCEP_Project.Controllers
@@ -16,11 +19,11 @@ namespace WikiCEP_Project.Controllers
 
         // GET: Definiciones
         public ActionResult Index()
-        { 
+        {
             //var definiciones = db.vDefiniciones.Include(d => d.AspNetUser);
             return View(db.vDefiniciones.ToList());
         }
-        // GET: Definiciones/Details/5
+        //GET: Definiciones/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -35,7 +38,7 @@ namespace WikiCEP_Project.Controllers
             return View(definicione);
         }
 
-		[Authorize]
+        [Authorize]
         // GET: Definiciones/Create
         public ActionResult Create()
         {
@@ -60,9 +63,9 @@ namespace WikiCEP_Project.Controllers
             return View(definicione);
         }
 
-		[Authorize]
-		// GET: Definiciones/Edit/5
-		public ActionResult Edit(int? id)
+        [Authorize]
+        // GET: Definiciones/Edit/5
+        public ActionResult Edit(int? id)
         {
             if (id == null)
             {
@@ -94,9 +97,9 @@ namespace WikiCEP_Project.Controllers
             return View(definicione);
         }
 
-		[Authorize]
-		// GET: Definiciones/Delete/5
-		public ActionResult Delete(int? id)
+        [Authorize]
+        // GET: Definiciones/Delete/5
+        public ActionResult Delete(int? id)
         {
             if (id == null)
             {
@@ -126,6 +129,70 @@ namespace WikiCEP_Project.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+    
+
+
+public JsonResult GetDefiniciones(string sidx, string sort, int page, int rows)
+        {
+
+            sort = (sort == null) ? "ASC" : sort;
+            int pageIndex = Convert.ToInt32(page) - 1;
+            int pageSize = rows;
+            var listaEscritores = db.Definiciones.Select(
+                    e => new
+                    {
+                        e.Titulo,
+                        e.FechaCreacion,
+                        e.AspNetUser.Email
+                        
+                        
+                    });
+            int totalRecords = listaEscritores.Count();
+            var totalPages = (int)Math.Ceiling((float)totalRecords / (float)rows);
+            if (sort.ToUpper() == "DESC")
+            {
+                listaEscritores = listaEscritores.OrderByDescending(e => e.Titulo);
+                listaEscritores = listaEscritores.Skip(pageIndex * pageSize).Take(pageSize);
+            }
+            else
+            {
+                listaEscritores = listaEscritores.OrderBy(e => e.Titulo);
+                listaEscritores = listaEscritores.Skip(pageIndex * pageSize).Take(pageSize);
+            }
+            var jsonData =
+            new
+            {
+                total = totalPages,
+                page,
+                records = totalRecords,
+                rows = listaEscritores
+            };
+            return Json(jsonData, JsonRequestBehavior.AllowGet);
+        }
+        public ActionResult ExportToExcel()
+        {
+            var grid = new GridView
+            {
+                DataSource = (from a in db.Definiciones select a).ToList()
+            };
+
+            grid.DataBind();
+            Response.ClearContent();
+            Response.AddHeader("content-disposition", "inline; filename=Autores.xls");
+
+            Response.ContentType = "application/excel";
+
+            StringWriter sw = new StringWriter();
+
+            HtmlTextWriter htw = new HtmlTextWriter(sw);
+
+            grid.RenderControl(htw);
+
+            Response.Write(sw.ToString());
+
+            Response.End();
+            return View("Index");
         }
     }
 }

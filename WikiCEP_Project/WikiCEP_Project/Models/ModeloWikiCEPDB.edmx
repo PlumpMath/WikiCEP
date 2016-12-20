@@ -147,11 +147,23 @@ advertencia 6002: La tabla o vista 'WikiCEPDB.dbo.vDefiniciones' no tiene defini
         <EntityType Name="vDefiniciones">
           <Key>
             <PropertyRef Name="IDDefinicion" />
+            
           </Key>
           <Property Name="IDDefinicion" Type="int" Nullable="false" />
           <Property Name="Definicion" Type="varchar" MaxLength="100" />
           <Property Name="Fecha de Creacion" Type="datetime" />
-          <Property Name="Autor" Type="nvarchar" MaxLength="256" />
+          <Property Name="Autor" Type="nvarchar" MaxLength="256" Nullable="false" />
+        </EntityType>
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'WikiCEPDB.dbo.vDefinicionesRecientes' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+        <EntityType Name="vDefinicionesRecientes">
+          <Key>
+            <PropertyRef Name="IDDefinicion" />
+          </Key>
+          <Property Name="IDDefinicion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Titulo" Type="varchar" MaxLength="100" />
+          <Property Name="Texto" Type="text" />
+          <Property Name="FechaCreacion" Type="datetime" />
         </EntityType>
         <Association Name="FK__Definicio__IDAut__49C3F6B7">
           <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="0..1" />
@@ -364,6 +376,14 @@ advertencia 6002: La tabla o vista 'WikiCEPDB.dbo.vDefiniciones' no tiene defini
     [vDefiniciones].[Fecha de Creacion] AS [Fecha de Creacion], 
     [vDefiniciones].[Autor] AS [Autor]
     FROM [dbo].[vDefiniciones] AS [vDefiniciones]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="vDefinicionesRecientes" EntityType="Self.vDefinicionesRecientes" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [vDefinicionesRecientes].[IDDefinicion] AS [IDDefinicion], 
+    [vDefinicionesRecientes].[Titulo] AS [Titulo], 
+    [vDefinicionesRecientes].[Texto] AS [Texto], 
+    [vDefinicionesRecientes].[FechaCreacion] AS [FechaCreacion]
+    FROM [dbo].[vDefinicionesRecientes] AS [vDefinicionesRecientes]</DefiningQuery>
           </EntitySet>
           <AssociationSet Name="FK__Definicio__IDAut__49C3F6B7" Association="Self.FK__Definicio__IDAut__49C3F6B7">
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
@@ -683,6 +703,7 @@ advertencia 6002: La tabla o vista 'WikiCEPDB.dbo.vDefiniciones' no tiene defini
             <End Role="TutorialesYouTube" EntitySet="TutorialesYouTubes" />
           </AssociationSet>
           <EntitySet Name="vDefiniciones" EntityType="WikiCEPDBModel.vDefinicione" />
+          <EntitySet Name="vDefinicionesRecientes" EntityType="WikiCEPDBModel.vDefinicionesReciente" />
         </EntityContainer>
         <EntityType Name="vDefinicione">
           <Key>
@@ -691,7 +712,16 @@ advertencia 6002: La tabla o vista 'WikiCEPDB.dbo.vDefiniciones' no tiene defini
           <Property Name="IDDefinicion" Type="Int32" Nullable="false" />
           <Property Name="Definicion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="Fecha_de_Creacion" Type="DateTime" Precision="3" />
-          <Property Name="Autor" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="Autor" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="vDefinicionesReciente">
+          <Key>
+            <PropertyRef Name="IDDefinicion" />
+          </Key>
+          <Property Name="IDDefinicion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Titulo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Texto" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="FechaCreacion" Type="DateTime" Precision="3" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -849,6 +879,16 @@ advertencia 6002: La tabla o vista 'WikiCEPDB.dbo.vDefiniciones' no tiene defini
                 <ScalarProperty Name="Autor" ColumnName="Autor" />
                 <ScalarProperty Name="Fecha_de_Creacion" ColumnName="Fecha de Creacion" />
                 <ScalarProperty Name="Definicion" ColumnName="Definicion" />
+                <ScalarProperty Name="IDDefinicion" ColumnName="IDDefinicion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vDefinicionesRecientes">
+            <EntityTypeMapping TypeName="WikiCEPDBModel.vDefinicionesReciente">
+              <MappingFragment StoreEntitySet="vDefinicionesRecientes">
+                <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
+                <ScalarProperty Name="Texto" ColumnName="Texto" />
+                <ScalarProperty Name="Titulo" ColumnName="Titulo" />
                 <ScalarProperty Name="IDDefinicion" ColumnName="IDDefinicion" />
               </MappingFragment>
             </EntityTypeMapping>

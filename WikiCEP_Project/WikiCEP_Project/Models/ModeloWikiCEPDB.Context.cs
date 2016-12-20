@@ -36,5 +36,6 @@ namespace WikiCEP_Project.Models
         public virtual DbSet<Tema> Temas { get; set; }
         public virtual DbSet<TutorialesYouTube> TutorialesYouTubes { get; set; }
         public virtual DbSet<vDefinicione> vDefiniciones { get; set; }
+        public virtual DbSet<vDefinicionesReciente> vDefinicionesRecientes { get; set; }
     }
 }

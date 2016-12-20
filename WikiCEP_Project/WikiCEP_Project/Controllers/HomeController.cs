@@ -15,14 +15,14 @@ namespace WikiCEP_Project.Controllers
 
 		public ActionResult About()
 		{
-			ViewBag.Message = "Your application description page.";
+			ViewBag.Message = "Acerca de WikiCEP";
 
 			return View();
 		}
 
 		public ActionResult Contact()
 		{
-			ViewBag.Message = "Your contact page.";
+			ViewBag.Message = "Contacto";
 
 			return View();
 		}

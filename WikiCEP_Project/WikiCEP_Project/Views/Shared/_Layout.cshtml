@@ -1,12 +1,36 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <title>@ViewBag.Title - WikiCep </title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+    <style>
+        .logo {
+            padding-top: 6px;
+            margin: 0px;
+            font-family: Helvetica, sans-serif;
+            display: inline-block;
+        }
 
+        .wiki {
+            color: #FFFFFF;
+        }
+
+        .c {
+            color: #AED520;
+        }
+
+        .e {
+            color: #11C1B8;
+        }
+
+        .p {
+            color: #FF6C0B;
+        }
+    </style>
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -17,18 +41,44 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                <h3 class="logo wiki">Wiki<div class="logo c">C</div><div class="logo e">E</div><div class="logo p">P</div></h3>
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Imagenes", "Index", "Imagenes")</li>
-                    <li>@Html.ActionLink("Ejemplos", "Index", "Ejemplos")</li>
-                    <li>@Html.ActionLink("Definiciones", "Index", "Definiciones")</li>
-                    
-
-
+                    <li>@Html.ActionLink("Inicio", "Index", "Home")</li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Definiciones<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li>@Html.ActionLink("Ver", "Index", "Definiciones")</li>
+                            <li role="separator" class="divider"></li>
+                            <li>@Html.ActionLink("Agregar", "Create", "Definiciones")</li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Imagenes<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li>@Html.ActionLink("Ver", "Index", "Imagenes")</li>
+                            <li role="separator" class="divider"></li>
+                            <li>@Html.ActionLink("Agregar", "Create", "Imagenes")</li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Tutoriales<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li>@Html.ActionLink("Ver", "Index", "Tutoriales")</li>
+                            <li role="separator" class="divider"></li>
+                            <li>@Html.ActionLink("Agregar", "Create", "Tutoriales")</li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Ejemplos<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li>@Html.ActionLink("Ver", "Index", "Ejemplos")</li>
+                            <li role="separator" class="divider"></li>
+                            <li>@Html.ActionLink("Agregar", "Create", "Ejemplos")</li>
+                        </ul>
+                    </li>
+                    <li>@Html.ActionLink("Nosotros", "About", "Home")</li>
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
@@ -38,7 +88,10 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+            <p>&copy; @DateTime.Now.Year - CEP 14</p>
+            <p>Sofrecom Argentina S.A</p>
+            <p>Reconquista 609, Piso 7</p>
+            <p>Ciudad Autonoma de Buenos Aires, Argentina</p>
         </footer>
     </div>
 

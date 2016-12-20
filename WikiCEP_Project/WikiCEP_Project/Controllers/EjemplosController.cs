@@ -48,10 +48,11 @@ namespace WikiCEP_Project.Controllers
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "IDEjemplo,Titulo,Texto,FechaCreacion,IDAutor")] Ejemplo ejemplo)
+        public ActionResult Create([Bind(Include = "IDEjemplo,Titulo,Texto,IDAutor")] Ejemplo ejemplo)
         {
             if (ModelState.IsValid)
             {
+                ejemplo.FechaCreacion = DateTime.Now;
                 db.Ejemplos.Add(ejemplo);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -82,10 +83,11 @@ namespace WikiCEP_Project.Controllers
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "IDEjemplo,Titulo,Texto,FechaCreacion,IDAutor")] Ejemplo ejemplo)
+        public ActionResult Edit([Bind(Include = "IDEjemplo,Titulo,Texto,IDAutor")] Ejemplo ejemplo)
         {
             if (ModelState.IsValid)
             {
+                ejemplo.FechaCreacion = DateTime.Now;
                 db.Entry(ejemplo).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");

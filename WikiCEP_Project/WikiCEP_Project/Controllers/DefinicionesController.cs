@@ -18,8 +18,8 @@ namespace WikiCEP_Project.Controllers
         public ActionResult Index()
         {
       
-            var definiciones = db.Definiciones.Include(d => d.AspNetUser);
-            return View(definiciones.ToList());
+            //var definiciones = db.vDefiniciones.Include(d => d.AspNetUser);
+            return View(db.vDefiniciones.ToList());
         }
 
         // GET: Definiciones/Details/5

@@ -3,14 +3,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using WikiCEP_Project.Models;
 
 namespace WikiCEP_Project.Controllers
 {
 	public class HomeController : Controller
 	{
+		private WikiCEPDBEntities db = new WikiCEPDBEntities();
+
 		public ActionResult Index()
 		{
-			return View();
+			var definicionesRecientes = db.vDefinicionesRecientes;
+			return View(definicionesRecientes.ToList());
 		}
 
 		public ActionResult About()

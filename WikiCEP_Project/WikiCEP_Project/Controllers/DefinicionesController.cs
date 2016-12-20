@@ -37,6 +37,7 @@ namespace WikiCEP_Project.Controllers
             return View(definicione);
         }
 
+		[Authorize]
         // GET: Definiciones/Create
         public ActionResult Create()
         {
@@ -63,8 +64,9 @@ namespace WikiCEP_Project.Controllers
             return View(definicione);
         }
 
-        // GET: Definiciones/Edit/5
-        public ActionResult Edit(int? id)
+		[Authorize]
+		// GET: Definiciones/Edit/5
+		public ActionResult Edit(int? id)
         {
             if (id == null)
             {
@@ -97,8 +99,9 @@ namespace WikiCEP_Project.Controllers
             return View(definicione);
         }
 
-        // GET: Definiciones/Delete/5
-        public ActionResult Delete(int? id)
+		[Authorize]
+		// GET: Definiciones/Delete/5
+		public ActionResult Delete(int? id)
         {
             if (id == null)
             {

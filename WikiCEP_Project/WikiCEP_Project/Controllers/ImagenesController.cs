@@ -35,7 +35,7 @@ namespace WikiCEP_Project.Controllers
             }
             return View(imagene);
         }
-
+        [Authorize]
         // GET: Imagenes/Create
         public ActionResult Create()
         {
@@ -61,7 +61,7 @@ namespace WikiCEP_Project.Controllers
             ViewBag.IDAutor = new SelectList(db.AspNetUsers, "Id", "Email", imagene.IDAutor);
             return View(imagene);
         }
-
+        [Authorize]
         // GET: Imagenes/Edit/5
         public ActionResult Edit(int? id)
         {
@@ -95,7 +95,7 @@ namespace WikiCEP_Project.Controllers
             ViewBag.IDAutor = new SelectList(db.AspNetUsers, "Id", "Email", imagene.IDAutor);
             return View(imagene);
         }
-
+        [Authorize]
         // GET: Imagenes/Delete/5
         public ActionResult Delete(int? id)
         {

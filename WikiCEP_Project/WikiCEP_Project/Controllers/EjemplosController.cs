@@ -10,6 +10,7 @@ using WikiCEP_Project.Models;
 
 namespace WikiCEP_Project.Controllers
 {
+
     public class EjemplosController : Controller
     {
         private WikiCEPDBEntities db = new WikiCEPDBEntities();
@@ -36,6 +37,7 @@ namespace WikiCEP_Project.Controllers
             return View(ejemplo);
         }
 
+        [Authorize]
         // GET: Ejemplos/Create
         public ActionResult Create()
         {
@@ -61,7 +63,7 @@ namespace WikiCEP_Project.Controllers
             ViewBag.IDAutor = new SelectList(db.AspNetUsers, "Id", "Email", ejemplo.IDAutor);
             return View(ejemplo);
         }
-
+        [Authorize]
         // GET: Ejemplos/Edit/5
         public ActionResult Edit(int? id)
         {
@@ -96,6 +98,7 @@ namespace WikiCEP_Project.Controllers
             return View(ejemplo);
         }
 
+        [Authorize]
         // GET: Ejemplos/Delete/5
         public ActionResult Delete(int? id)
         {

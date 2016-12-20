@@ -35,6 +35,7 @@ namespace WikiCEP_Project.Controllers
             return View(tutorialesYouTube);
         }
 
+        [Authorize]
         // GET: TutorialesYouTube/Create
         public ActionResult Create()
         {
@@ -57,7 +58,7 @@ namespace WikiCEP_Project.Controllers
 
             return View(tutorialesYouTube);
         }
-
+        [Authorize]
         // GET: TutorialesYouTube/Edit/5
         public ActionResult Edit(int? id)
         {
@@ -88,7 +89,7 @@ namespace WikiCEP_Project.Controllers
             }
             return View(tutorialesYouTube);
         }
-
+        [Authorize]
         // GET: TutorialesYouTube/Delete/5
         public ActionResult Delete(int? id)
         {

@@ -17,6 +17,7 @@ namespace WikiCEP_Project.Controllers
         // GET: Definiciones
         public ActionResult Index()
         {
+      
             var definiciones = db.Definiciones.Include(d => d.AspNetUser);
             return View(definiciones.ToList());
         }

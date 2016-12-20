@@ -16,12 +16,10 @@ namespace WikiCEP_Project.Controllers
 
         // GET: Definiciones
         public ActionResult Index()
-        {
-      
+        { 
             //var definiciones = db.vDefiniciones.Include(d => d.AspNetUser);
             return View(db.vDefiniciones.ToList());
         }
-
         // GET: Definiciones/Details/5
         public ActionResult Details(int? id)
         {
@@ -36,14 +34,12 @@ namespace WikiCEP_Project.Controllers
             }
             return View(definicione);
         }
-
         // GET: Definiciones/Create
         public ActionResult Create()
         {
             ViewBag.IDAutor = new SelectList(db.AspNetUsers, "Id", "Email");
             return View();
         }
-
         // POST: Definiciones/Create
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
@@ -58,11 +54,9 @@ namespace WikiCEP_Project.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-
             ViewBag.IDAutor = new SelectList(db.AspNetUsers, "Id", "Email", definicione.IDAutor);
             return View(definicione);
         }
-
         // GET: Definiciones/Edit/5
         public ActionResult Edit(int? id)
         {
@@ -78,7 +72,6 @@ namespace WikiCEP_Project.Controllers
             ViewBag.IDAutor = new SelectList(db.AspNetUsers, "Id", "Email", definicione.IDAutor);
             return View(definicione);
         }
-
         // POST: Definiciones/Edit/5
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
@@ -96,7 +89,6 @@ namespace WikiCEP_Project.Controllers
             ViewBag.IDAutor = new SelectList(db.AspNetUsers, "Id", "Email", definicione.IDAutor);
             return View(definicione);
         }
-
         // GET: Definiciones/Delete/5
         public ActionResult Delete(int? id)
         {
@@ -111,7 +103,6 @@ namespace WikiCEP_Project.Controllers
             }
             return View(definicione);
         }
-
         // POST: Definiciones/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
@@ -122,7 +113,6 @@ namespace WikiCEP_Project.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
-
         protected override void Dispose(bool disposing)
         {
             if (disposing)

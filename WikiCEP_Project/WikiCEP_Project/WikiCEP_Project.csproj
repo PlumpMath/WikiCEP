@@ -80,6 +80,8 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -202,8 +204,53 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\AspNetRole.cs">
+      <DependentUpon>ModeloWikiCEPDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AspNetUser.cs">
+      <DependentUpon>ModeloWikiCEPDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AspNetUserClaim.cs">
+      <DependentUpon>ModeloWikiCEPDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AspNetUserLogin.cs">
+      <DependentUpon>ModeloWikiCEPDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\C__MigrationHistory.cs">
+      <DependentUpon>ModeloWikiCEPDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Definicione.cs">
+      <DependentUpon>ModeloWikiCEPDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Ejemplo.cs">
+      <DependentUpon>ModeloWikiCEPDB.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\Imagene.cs">
+      <DependentUpon>ModeloWikiCEPDB.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\ModeloWikiCEPDB.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModeloWikiCEPDB.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ModeloWikiCEPDB.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModeloWikiCEPDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ModeloWikiCEPDB.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModeloWikiCEPDB.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Tema.cs">
+      <DependentUpon>ModeloWikiCEPDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TutorialesYouTube.cs">
+      <DependentUpon>ModeloWikiCEPDB.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -216,6 +263,16 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Models\ModeloWikiCEPDB.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ModeloWikiCEPDB.edmx</DependentUpon>
+      <LastGenOutput>ModeloWikiCEPDB.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\ModeloWikiCEPDB.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ModeloWikiCEPDB.edmx</DependentUpon>
+      <LastGenOutput>ModeloWikiCEPDB.cs</LastGenOutput>
+    </Content>
     <Content Include="Scripts\ai.0.15.0-build58334.js" />
     <Content Include="Scripts\ai.0.15.0-build58334.min.js" />
     <Content Include="ApplicationInsights.config">
@@ -231,6 +288,13 @@
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <EntityDeploy Include="Models\ModeloWikiCEPDB.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>ModeloWikiCEPDB.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\ModeloWikiCEPDB.edmx.diagram">
+      <DependentUpon>ModeloWikiCEPDB.edmx</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-3.1.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.1.1.js" />
     <Content Include="Scripts\jquery-3.1.1.min.js" />
@@ -288,6 +352,9 @@
   <ItemGroup>
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -26,7 +26,7 @@
         <AssociationConnector Association="WikiCEPDBModel.Tema_Definicion" ManuallyRouted="false" />
         <AssociationConnector Association="WikiCEPDBModel.Tutorial_Definicion" ManuallyRouted="false" />
         <EntityTypeShape EntityType="WikiCEPDBModel.vDefinicione" Width="1.5" PointX="3.375" PointY="0.75" />
-        <EntityTypeShape EntityType="WikiCEPDBModel.vDefinicionesReciente" Width="2.75" PointX="0.75" PointY="3.75" />
+        <EntityTypeShape EntityType="WikiCEPDBModel.vDefinicionesReciente" Width="1.5" PointX="0.75" PointY="3.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -256,6 +256,9 @@
     <Compile Include="Models\TutorialesYouTube.cs">
       <DependentUpon>ModeloWikiCEPDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\vDefinicione.cs">
+      <DependentUpon>ModeloWikiCEPDB.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>

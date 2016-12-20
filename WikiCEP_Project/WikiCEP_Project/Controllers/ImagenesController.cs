@@ -48,10 +48,11 @@ namespace WikiCEP_Project.Controllers
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "IDImagen,Titulo,FechaCreacion,IDAutor")] Imagene imagene)
+        public ActionResult Create([Bind(Include = "IDImagen,Titulo,IDAutor")] Imagene imagene)
         {
             if (ModelState.IsValid)
             {
+                imagene.FechaCreacion = DateTime.Now;
                 db.Imagenes.Add(imagene);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -82,10 +83,11 @@ namespace WikiCEP_Project.Controllers
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "IDImagen,Titulo,FechaCreacion,IDAutor")] Imagene imagene)
+        public ActionResult Edit([Bind(Include = "IDImagen,Titulo,IDAutor")] Imagene imagene)
         {
             if (ModelState.IsValid)
             {
+                imagene.FechaCreacion = DateTime.Now;
                 db.Entry(imagene).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");

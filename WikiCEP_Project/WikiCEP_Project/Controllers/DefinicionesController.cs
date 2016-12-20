@@ -17,6 +17,7 @@ namespace WikiCEP_Project.Controllers
         // GET: Definiciones
         public ActionResult Index()
         {
+      
             var definiciones = db.Definiciones.Include(d => d.AspNetUser);
             return View(definiciones.ToList());
         }
@@ -48,10 +49,11 @@ namespace WikiCEP_Project.Controllers
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "IDDefinicion,Titulo,IDAutor,FechaCreacion,Texto")] Definicione definicione)
+        public ActionResult Create([Bind(Include = "IDDefinicion,Titulo,IDAutor,Texto")] Definicione definicione)
         {
             if (ModelState.IsValid)
             {
+                definicione.FechaCreacion = DateTime.Now;
                 db.Definiciones.Add(definicione);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -82,10 +84,11 @@ namespace WikiCEP_Project.Controllers
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "IDDefinicion,Titulo,IDAutor,FechaCreacion,Texto")] Definicione definicione)
+        public ActionResult Edit([Bind(Include = "IDDefinicion,Titulo,IDAutor,Texto")] Definicione definicione)
         {
             if (ModelState.IsValid)
             {
+                definicione.FechaCreacion = DateTime.Now;
                 db.Entry(definicione).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");

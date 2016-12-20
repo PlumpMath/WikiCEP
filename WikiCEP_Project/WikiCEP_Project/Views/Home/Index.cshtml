@@ -15,7 +15,18 @@
         <div class="col-md-4">
             <h2>@Html.DisplayFor(modelItem => definicion.Titulo)</h2>
             <p>
-                @Html.DisplayFor(modelItem => definicion.Texto)
+                @{  string texto = definicion.Texto.ToString();
+                    texto = definicion.Texto.ToString();
+                }
+                @if (definicion.Texto.Length < 100)
+                {
+                     
+                    <p>@texto.Substring(0, texto.Length)</p>
+                }
+                else
+                {
+                    <p>@texto.Substring(0, 100)...</p>
+                }
             </p>
             <p class="btn btn-default">@Html.ActionLink("Detalles", "../Definiciones/Details", new { id = definicion.IDDefinicion })</p>
         </div>

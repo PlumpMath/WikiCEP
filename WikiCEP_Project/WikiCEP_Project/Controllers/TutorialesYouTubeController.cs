@@ -51,6 +51,9 @@ namespace WikiCEP_Project.Controllers
         {
             if (ModelState.IsValid)
             {
+                int intIndice = tutorialesYouTube.LinkYouTube.IndexOf('?') + 1;
+                string strQuery = tutorialesYouTube.LinkYouTube.Substring(intIndice, tutorialesYouTube.LinkYouTube.Length - intIndice);
+                tutorialesYouTube.LinkYouTube = HttpUtility.ParseQueryString(strQuery).Get("v");
                 db.TutorialesYouTubes.Add(tutorialesYouTube);
                 db.SaveChanges();
                 return RedirectToAction("Index");

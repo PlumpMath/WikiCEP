@@ -5,12 +5,18 @@
         url: "/Definiciones/GetDefiniciones",
         datatype: 'json',
         mtype: 'Get',
-        colNames: ['Titulo', 'FechaCreacion', 'Email'],
+        colNames: ['IDDefinicion','Titulo', 'IDAutor', 'FechaCreacion', 'Texto'],
         colModel: [
-        { key: true, hidden: true, name: 'Titulo', index: 'Titulo', editable: true },
-            { key: false, name: 'FechaCreacion', index: 'FechaCreacion', editable: true },
-            { key: false, name: 'Email', index: 'Email', editable: true },
-
+            { key: true, hidden: true, name: 'IDDefinicion', index: 'IDDefinicion', editable: true },
+            { key: false, hidden: false, name: 'Titulo', index: 'Titulo', editable: true },
+            { key: false, hidden: false, name: 'IDAutor', index: 'IDAutor', editable: true },
+            {
+                key: false, name: 'FechaCreacion', index: 'FechaCreacion', editable: true, formatter: 'date',
+                formatoptions: {
+                newformat: 'd/m/Y h:m:s'
+                }
+            },
+            { key: false, hidden: true, name: 'Texto', index: 'Texto', editable: true },
         ],
 
         pager: jQuery('#grid'),
@@ -18,7 +24,7 @@
         rowList: [10, 20, 30, 40],
         height: '100%',
         viewrecords: true,
-        caption: 'LISTA DE AUTORES',
+        caption: 'Lista de Definiciones',
         emptyrecords: 'SIN REGISTROS',
 
         jsonReader:
@@ -46,7 +52,7 @@
     }, {
         // edit options  
         zIndex: 100,
-        url: '/Autor/Edit',
+        url: '/Definiciones/Edit',
         closeOnEscape: true,
         closeAfterEdit: true,
         recreateForm: true,

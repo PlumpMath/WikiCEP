@@ -1,0 +1,30 @@
+﻿@model WikiCEP_Project.Models.Definicione
+
+@{
+    ViewBag.Title = "Detalles";
+}
+
+<h2>@Html.DisplayFor(model => model.Titulo)</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.AspNetUser.Email)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.AspNetUser.Email)
+        </dd>
+    </dl>
+    <dl class="dl-horizontal">
+        <dd>
+            @Html.DisplayFor(model => model.Texto)
+        </dd>
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Editar", "Edit", new { id = Model.IDDefinicion }) |
+    @Html.ActionLink("Eliminar", "Delete", new { id = Model.IDDefinicion }) |
+    @Html.ActionLink("Volver al Inicio", "Index", "Home") |
+    @Html.ActionLink("Ir a la Lista", "Index")
+</p>

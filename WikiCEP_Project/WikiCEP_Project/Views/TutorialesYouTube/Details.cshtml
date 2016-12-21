@@ -1,0 +1,34 @@
+﻿@model WikiCEP_Project.Models.TutorialesYouTube
+
+@{
+    ViewBag.Title = "Detalles";
+}
+
+<h2>Detalles</h2>
+
+<div>
+    <h4>Tutoriales</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Titulo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Titulo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LinkYouTube)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LinkYouTube)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Editar", "Edit", new { id = Model.IDTutorial }) |
+    @Html.ActionLink("Volver a la Lista", "Index")
+</p>

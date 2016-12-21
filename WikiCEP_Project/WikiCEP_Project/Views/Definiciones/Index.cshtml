@@ -1,0 +1,33 @@
+﻿@model IEnumerable<WikiCEP_Project.Models.vDefinicione>
+
+@{
+    ViewBag.Title = "Definiciones";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Crear Nueva Definicion", "Create")
+</p>
+
+
+<div>
+    <table id="jqGrid"></table>
+    <div id="grid"></div>
+</div>
+
+@* comprobar versiones de librerias *@
+@section scripts{
+    <link href="~/Content/themes/base/jquery-ui.css" rel="stylesheet" />
+    <link href="~/Content/jquery.jqGrid/ui.jqgrid.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-ui-1.10.0.js"></script>
+    <script src="~/Scripts/i18n/grid.locale-en.js"></script>
+    <script src="~/Scripts/jquery.jqGrid.min.js"></script>
+    <script src="~/Scripts/definiciones.js"></script>
+}
+
+
+
+
+
+

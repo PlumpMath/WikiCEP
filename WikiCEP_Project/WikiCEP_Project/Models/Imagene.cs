@@ -11,7 +11,8 @@ namespace WikiCEP_Project.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Imagene
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -20,10 +21,15 @@ namespace WikiCEP_Project.Models
             this.Definiciones = new HashSet<Definicione>();
         }
     
+
         public int IDImagen { get; set; }
+        [Required]
         public string Titulo { get; set; }
         public Nullable<System.DateTime> FechaCreacion { get; set; }
         public string IDAutor { get; set; }
+
+        [Required]
+        public byte[] Imagen { get; set; }
     
         public virtual AspNetUser AspNetUser { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

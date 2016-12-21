@@ -48,10 +48,12 @@ namespace WikiCEP_Project.Controllers
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "IDImagen,Titulo,IDAutor")] Imagene imagene)
+        public ActionResult Create([Bind(Include = "IDImagen,Titulo,IDAutor")] Imagene imagene,HttpPostedFile imagen)
         {
+           
             if (ModelState.IsValid)
             {
+                imagene.Imagen = new byte[imagen.ContentLength]; 
                 imagene.FechaCreacion = DateTime.Now;
                 db.Imagenes.Add(imagene);
                 db.SaveChanges();

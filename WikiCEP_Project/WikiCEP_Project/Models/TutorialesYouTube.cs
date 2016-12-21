@@ -11,7 +11,8 @@ namespace WikiCEP_Project.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class TutorialesYouTube
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -22,6 +23,8 @@ namespace WikiCEP_Project.Models
     
         public int IDTutorial { get; set; }
         public string Titulo { get; set; }
+
+        [RegularExpression(@"http://(www\.)?youtube\.com/watch\?.*v=([a-zA-Z0-9]+)")]
         public string LinkYouTube { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

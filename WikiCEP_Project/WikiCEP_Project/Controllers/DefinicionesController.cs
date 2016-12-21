@@ -130,35 +130,25 @@ namespace WikiCEP_Project.Controllers
             }
             base.Dispose(disposing);
         }
-    
 
-
-public JsonResult GetDefiniciones(string sidx, string sort, int page, int rows)
+        public JsonResult GetDefiniciones(string sidx, string sort, int page, int rows)
         {
 
             sort = (sort == null) ? "ASC" : sort;
             int pageIndex = Convert.ToInt32(page) - 1;
             int pageSize = rows;
-            var listaEscritores = db.Definiciones.Select(
-                    e => new
-                    {
-                        e.Titulo,
-                        e.FechaCreacion,
-                        e.AspNetUser.Email
-                        
-                        
-                    });
-            int totalRecords = listaEscritores.Count();
+            var listaDefiniciones = db.Definiciones.Select(d => new { d.IDDefinicion, d.Titulo, d.IDAutor, d.FechaCreacion, d.Texto });
+            int totalRecords = listaDefiniciones.Count();
             var totalPages = (int)Math.Ceiling((float)totalRecords / (float)rows);
             if (sort.ToUpper() == "DESC")
             {
-                listaEscritores = listaEscritores.OrderByDescending(e => e.Titulo);
-                listaEscritores = listaEscritores.Skip(pageIndex * pageSize).Take(pageSize);
+                listaDefiniciones = listaDefiniciones.OrderByDescending(e => e.Titulo);
+                listaDefiniciones = listaDefiniciones.Skip(pageIndex * pageSize).Take(pageSize);
             }
             else
             {
-                listaEscritores = listaEscritores.OrderBy(e => e.Titulo);
-                listaEscritores = listaEscritores.Skip(pageIndex * pageSize).Take(pageSize);
+                listaDefiniciones = listaDefiniciones.OrderBy(e => e.Titulo);
+                listaDefiniciones = listaDefiniciones.Skip(pageIndex * pageSize).Take(pageSize);
             }
             var jsonData =
             new
@@ -166,10 +156,11 @@ public JsonResult GetDefiniciones(string sidx, string sort, int page, int rows)
                 total = totalPages,
                 page,
                 records = totalRecords,
-                rows = listaEscritores
+                rows = listaDefiniciones
             };
             return Json(jsonData, JsonRequestBehavior.AllowGet);
         }
+
         public ActionResult ExportToExcel()
         {
             var grid = new GridView

@@ -43,7 +43,7 @@ namespace WikiCEP_Project.Controllers
         public ActionResult Create()
         {
             ViewBag.IDAutor = new SelectList(db.AspNetUsers, "Id", "Email");
-            return View();
+			return View();
         }
         // POST: Definiciones/Create
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
@@ -54,12 +54,15 @@ namespace WikiCEP_Project.Controllers
         {
             if (ModelState.IsValid)
             {
-                definicione.FechaCreacion = DateTime.Now;
-                db.Definiciones.Add(definicione);
+				definicione.FechaCreacion = DateTime.Now;
+				definicione.IDAutor = (from a in db.AspNetUsers
+									   where a.Email == User.Identity.Name
+									   select a.Id).Single();
+				db.Definiciones.Add(definicione);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.IDAutor = new SelectList(db.AspNetUsers, "Id", "Email", definicione.IDAutor);
+            //ViewBag.IDAutor = new SelectList(db.AspNetUsers, "Id", "Email", definicione.IDAutor);
             return View(definicione);
         }
 

@@ -4,47 +4,27 @@
     ViewBag.Title = "Detalles";
 }
 
-<h2>Detalles</h2>
+<h2>@Html.DisplayFor(model => model.Titulo)</h2>
 
 <div>
-    <h4>Definiciones</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.Titulo)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Titulo)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.FechaCreacion)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.FechaCreacion)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Texto)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Texto)
-        </dd>
-
-        <dt>
             @Html.DisplayNameFor(model => model.AspNetUser.Email)
         </dt>
-
         <dd>
             @Html.DisplayFor(model => model.AspNetUser.Email)
         </dd>
-
+    </dl>
+    <dl class="dl-horizontal">
+        <dd>
+            @Html.DisplayFor(model => model.Texto)
+        </dd>
     </dl>
 </div>
 <p>
     @Html.ActionLink("Editar", "Edit", new { id = Model.IDDefinicion }) |
-    @Html.ActionLink("Volver a la Lista", "Index")
+    @Html.ActionLink("Eliminar", "Delete", new { id = Model.IDDefinicion }) |
+    @Html.ActionLink("Volver al Inicio", "Index", "Home") |
+    @Html.ActionLink("Ir a la Lista", "Index")
 </p>

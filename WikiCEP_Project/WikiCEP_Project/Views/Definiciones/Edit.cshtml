@@ -56,11 +56,11 @@
         </div>
     </div>
 }
-
 <div>
-    @Html.ActionLink("Back to List", "Index")
+   @Html.ActionLink("Eliminar", "Delete", new { id = Model.IDDefinicion }) |
+   @Html.ActionLink("Volver al Inicio", "Index", "Home") |    
+   @Html.ActionLink("Ir a la Lista", "Index")
 </div>
-
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }

@@ -18,7 +18,15 @@ namespace WikiCEP_Project.Controllers
         public ActionResult Index()
         {
             var imagenes = db.Imagenes.Include(i => i.AspNetUser);
-            return View(imagenes.ToList());
+            if (imagenes.Count()==0)
+            {
+                return View();
+            }
+            else
+            {
+                return View(imagenes.ToList());
+            }
+            
         }
 
         // GET: Imagenes/Details/5

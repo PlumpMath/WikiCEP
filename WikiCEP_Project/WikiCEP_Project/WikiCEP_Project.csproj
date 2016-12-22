@@ -275,7 +275,7 @@
     <Content Include="Models\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="Imagenes\Sofrecom.png" />
+    <Content Include="Img\Sofrecom.png" />
     <Content Include="Models\ModeloWikiCEPDB.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>ModeloWikiCEPDB.edmx</DependentUpon>
@@ -376,8 +376,8 @@
     <Content Include="Views\Imagenes\Delete.cshtml" />
     <Content Include="Views\Imagenes\Details.cshtml" />
     <Content Include="Views\Imagenes\Edit.cshtml" />
-    <Content Include="Views\Imagenes\Index.cshtml" />
     <Content Include="Web.config" />
+    <Content Include="Views\Imagenes\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

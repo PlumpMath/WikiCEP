@@ -18,14 +18,6 @@
     
 </p>
 
-@using (Html.BeginForm())
-{
-    <p>
-        Buscar por Titulo: @Html.TextBox("Buscar")
-        <input type="submit" value="Buscar" class="btn btn-primary" />
-    </p>
-}
-
 @grid.GetHtml(
     fillEmptyRows: false,
     tableStyle: "webgrid-table",

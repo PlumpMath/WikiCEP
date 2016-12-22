@@ -25,6 +25,17 @@
             <span style="white-space: pre-line">@Html.DisplayFor(model => model.Texto)</span>
         </dd>
     </dl>
+    <dl>
+        <dt>
+            Temas
+        </dt>
+        <dd>
+            @foreach (var tema in Model.Temas.ToList())
+            {
+                <span class="label label-primary">@tema.Descripcion</span>
+            }
+        </dd>
+    </dl>
     <hr />
 </div>
 <p>

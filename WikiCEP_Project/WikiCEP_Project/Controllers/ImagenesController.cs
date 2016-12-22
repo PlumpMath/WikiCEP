@@ -44,6 +44,7 @@ namespace WikiCEP_Project.Controllers
             return View(imagene);
         }
 
+		[Authorize]
         // GET: Imagenes/Create
         public ActionResult Create()
         {
@@ -55,19 +56,25 @@ namespace WikiCEP_Project.Controllers
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "IDImagen,Titulo,FechaCreacion,IDAutor,Imagen")] Imagene imagene)
+        [Authorize]
+        public ActionResult Create(Imagene imagene, HttpPostedFileBase image)
         {
-            if (ModelState.IsValid)
-            {
-                db.Imagenes.Add(imagene);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
+			if (ModelState.IsValid && image != null)
+			{
+				imagene.FechaCreacion = DateTime.Today;
+				imagene.IDAutor = (from a in db.AspNetUsers
+								   where a.Email == User.Identity.Name
+								   select a.Id).Single();
+				imagene.ImageMimeType = image.ContentType;
+				imagene.Imagen = new byte[image.ContentLength];
+				image.InputStream.Read(imagene.Imagen, 0, image.ContentLength);
+				db.Imagenes.Add(imagene);
+				db.SaveChanges();
+				return RedirectToAction("Index");
+			}
 
-            ViewBag.IDAutor = new SelectList(db.AspNetUsers, "Id", "Email", imagene.IDAutor);
-            return View(imagene);
-        }
+			return View(imagene);
+		}
 
         // GET: Imagenes/Edit/5
         public ActionResult Edit(int? id)

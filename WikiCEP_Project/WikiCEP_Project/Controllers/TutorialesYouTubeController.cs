@@ -51,6 +51,7 @@ namespace WikiCEP_Project.Controllers
         {
             if (ModelState.IsValid)
             {
+
                 int intIndice = tutorialesYouTube.LinkYouTube.IndexOf('?') + 1;
                 string strQuery = tutorialesYouTube.LinkYouTube.Substring(intIndice, tutorialesYouTube.LinkYouTube.Length - intIndice);
                 tutorialesYouTube.LinkYouTube = HttpUtility.ParseQueryString(strQuery).Get("v");
@@ -118,6 +119,7 @@ namespace WikiCEP_Project.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
+
 
         protected override void Dispose(bool disposing)
         {

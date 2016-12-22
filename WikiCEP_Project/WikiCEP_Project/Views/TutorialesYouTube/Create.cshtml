@@ -33,7 +33,7 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Crear" class="btn btn-default" />
+                <input type="submit" value="Crear" class="btn btn-default" onclick="ValidarLink()"/>
             </div>
         </div>
     </div>
@@ -45,4 +45,14 @@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+
+   <script type="text/javascript">
+
+       function ValidarLink(@Html.EditorFor(model => model.LinkYouTube) link)
+       {
+           var strURL = link;
+           var blValido = strURL.Contains("youtube.com");
+           return blValido;
+       }
+</script>	
 }

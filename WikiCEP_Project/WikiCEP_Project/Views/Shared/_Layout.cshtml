@@ -83,11 +83,10 @@
                     <li>@Html.ActionLink("Nosotros", "About", "Home")</li>
                     <li>
                         @using (Html.BeginForm()){
-                            @Html.TextBox("SearchString","" ,new { @style = "margin-top:14px;"  })
+                            @Html.TextBox("strBusqueda", "", new { @style = "margin-top:14px;"  })
+                            @Html.ActionLink("Buscar", "Index", "Definiciones")
                         }
                     </li>
-                    <li>@Html.ActionLink("Buscar", "Index", "Definiciones")</li>
-
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>

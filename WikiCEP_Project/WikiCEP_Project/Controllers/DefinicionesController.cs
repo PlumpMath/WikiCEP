@@ -22,12 +22,9 @@ namespace WikiCEP_Project.Controllers
         {
             var definiciones = from d in db.vDefiniciones
                                select d;
-
             if (!String.IsNullOrEmpty(strBusqueda)) {
                 definiciones = definiciones.Where(s => s.Definicion.Contains(strBusqueda));
             }
-
-            //var definiciones = db.vDefiniciones.Include(d => d.AspNetUser);
             return View(definiciones.ToList());
         }
 

@@ -1,13 +1,13 @@
 ﻿@model WikiCEP_Project.Models.Imagene
 
 @{
-    ViewBag.Title = "Detalles";
+    ViewBag.Title = "Details";
 }
 
-<h2>Detalles</h2>
+<h2>Details</h2>
 
 <div>
-    <h4>Imagenes</h4>
+    <h4>Imagene</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -27,6 +27,14 @@
         </dd>
 
         <dt>
+            @Html.DisplayNameFor(model => model.Imagen)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Imagen)
+        </dd>
+
+        <dt>
             @Html.DisplayNameFor(model => model.AspNetUser.Email)
         </dt>
 
@@ -37,6 +45,6 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Editar", "Edit", new { id = Model.IDImagen }) |
-    @Html.ActionLink("Volver a la Lista", "Index")
+    @Html.ActionLink("Edit", "Edit", new { id = Model.IDImagen }) |
+    @Html.ActionLink("Back to List", "Index")
 </p>

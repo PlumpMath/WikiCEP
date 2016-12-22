@@ -55,7 +55,10 @@ namespace WikiCEP_Project.Controllers
             if (ModelState.IsValid)
             {
                 ejemplo.FechaCreacion = DateTime.Now;
-                db.Ejemplos.Add(ejemplo);
+				ejemplo.IDAutor = (from a in db.AspNetUsers
+									   where a.Email == User.Identity.Name
+									   select a.Id).Single();
+				db.Ejemplos.Add(ejemplo);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }

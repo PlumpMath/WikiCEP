@@ -1,5 +1,4 @@
 ﻿$(function () {
-    debugger;
     $("#jqGrid").jqGrid
     ({
         url: "/Definiciones/GetDefiniciones",

@@ -18,12 +18,21 @@ namespace WikiCEP_Project.Controllers
         private WikiCEPDBEntities db = new WikiCEPDBEntities();
 
         // GET: Definiciones
-        public ActionResult Index()
+        public ViewResult Index(string buscar)
         {
-            //var definiciones = db.vDefiniciones.Include(d => d.AspNetUser);
-            return View(db.vDefiniciones.ToList());
+            var definiciones = from a in db.Definiciones
+                          select a;
+
+            if (!String.IsNullOrEmpty(buscar))
+            {
+                definiciones = definiciones.Where(p => p.Titulo.StartsWith(buscar));
+
+            }
+
+
+            return View(definiciones.ToList());
         }
-        //GET: Definiciones/Details/5
+
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -125,6 +134,28 @@ namespace WikiCEP_Project.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
+
+
+        public ActionResult ExportExcel()
+        {
+            GridView gv = new GridView();
+            gv.DataSource = db.Definiciones.ToList();
+            gv.DataBind();
+            Response.ClearContent();
+            Response.Buffer = true;
+            Response.AddHeader("content-disposition", "attachment; filename=Libro1.xls");
+            Response.ContentType = "application/ms-excel";
+            Response.Charset = "";
+            StringWriter sw = new StringWriter();
+            HtmlTextWriter htw = new HtmlTextWriter(sw);
+            gv.RenderControl(htw);
+            Response.Output.Write(sw.ToString());
+            Response.Flush();
+            Response.End();
+
+            return RedirectToAction("Index");
+        }
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)
@@ -134,59 +165,6 @@ namespace WikiCEP_Project.Controllers
             base.Dispose(disposing);
         }
 
-        public JsonResult GetDefiniciones(string sidx, string sort, int page, int rows)
-        {
 
-            sort = (sort == null) ? "ASC" : sort;
-            int pageIndex = Convert.ToInt32(page) - 1;
-            int pageSize = rows;
-            var listaDefiniciones = db.Definiciones.Select(d => new { d.IDDefinicion, d.Titulo, d.IDAutor, d.FechaCreacion, d.Texto });
-            int totalRecords = listaDefiniciones.Count();
-            var totalPages = (int)Math.Ceiling((float)totalRecords / (float)rows);
-            if (sort.ToUpper() == "DESC")
-            {
-                listaDefiniciones = listaDefiniciones.OrderByDescending(e => e.Titulo);
-                listaDefiniciones = listaDefiniciones.Skip(pageIndex * pageSize).Take(pageSize);
-            }
-            else
-            {
-                listaDefiniciones = listaDefiniciones.OrderBy(e => e.Titulo);
-                listaDefiniciones = listaDefiniciones.Skip(pageIndex * pageSize).Take(pageSize);
-            }
-            var jsonData =
-            new
-            {
-                total = totalPages,
-                page,
-                records = totalRecords,
-                rows = listaDefiniciones
-            };
-            return Json(jsonData, JsonRequestBehavior.AllowGet);
-        }
-
-        public ActionResult ExportToExcel()
-        {
-            var grid = new GridView
-            {
-                DataSource = (from a in db.Definiciones select a).ToList()
-            };
-
-            grid.DataBind();
-            Response.ClearContent();
-            Response.AddHeader("content-disposition", "inline; filename=Autores.xls");
-
-            Response.ContentType = "application/excel";
-
-            StringWriter sw = new StringWriter();
-
-            HtmlTextWriter htw = new HtmlTextWriter(sw);
-
-            grid.RenderControl(htw);
-
-            Response.Write(sw.ToString());
-
-            Response.End();
-            return View("Index");
-        }
     }
 }

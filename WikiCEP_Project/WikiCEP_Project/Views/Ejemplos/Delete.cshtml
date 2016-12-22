@@ -1,28 +1,39 @@
 ﻿@model WikiCEP_Project.Models.Ejemplo
 
 @{
-    ViewBag.Title = "Borrar";
+    ViewBag.Title = "Borrar Ejemplo";
 }
 
-<h2>Borrar</h2>
-
-<h3>Estas seguro que quieres eliminar?</h3>
 <div>
-    <h4>Ejemplos</h4>
-    <hr />
+    <h2>
+        <span class="label label-primary">@ViewBag.Title</span>
+    </h2>
+</div>
+<hr />
+<div class="alert alert-danger" role="alert">
+   <h2>
+       <strong>Atencion:</strong> Estas seguro que quieres eliminar?
+   </h2>
+</div>
+<hr />
+<div>
     <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Titulo)
+        </dt>
+
         <dd>
             @Html.DisplayFor(model => model.Titulo)
         </dd>
+
         <dd>
             @Html.DisplayFor(model => model.Texto)
         </dd>
 
     </dl>
-
     @using (Html.BeginForm()) {
         @Html.AntiForgeryToken()
-
+<hr />
         <div class="form-actions no-color">
             <input type="submit" value="Borrar" class="btn btn-default" /> |
             @Html.ActionLink("Volver a los Ejemplos", "Index") |

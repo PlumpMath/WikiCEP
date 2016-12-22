@@ -4,12 +4,19 @@
     ViewBag.Title = "Borrar Definicion";
 }
 
-<h2>Delete</h2>
-
-<h3>Estas seguro que quieres eliminar?</h3>
 <div>
-    <h4>Definiciones</h4>
-    <hr />
+    <h2>
+        <span class="label label-primary">@ViewBag.Title</span>
+    </h2>
+</div>
+<hr />
+<div class="alert alert-danger" role="alert">
+    <h2>
+        <strong>Atencion:</strong> Estas seguro que quieres eliminar?
+    </h2>
+</div>
+<hr />
+<div>
     <dl class="dl-horizontal">
         <dt>
             @Html.DisplayNameFor(model => model.Titulo)
@@ -19,35 +26,14 @@
             @Html.DisplayFor(model => model.Titulo)
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.FechaCreacion)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.FechaCreacion)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Texto)
-        </dt>
-
         <dd>
             @Html.DisplayFor(model => model.Texto)
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.AspNetUser.Email)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.AspNetUser.Email)
-        </dd>
-
     </dl>
-
     @using (Html.BeginForm()) {
         @Html.AntiForgeryToken()
-
+<hr />
         <div class="form-actions no-color">
             <input type="submit" value="Borrar" class="btn btn-default" /> |
             @Html.ActionLink("Volver al Inicio", "Index", "Home") |

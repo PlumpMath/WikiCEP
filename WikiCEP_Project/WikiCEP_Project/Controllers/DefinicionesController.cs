@@ -18,10 +18,17 @@ namespace WikiCEP_Project.Controllers
         private WikiCEPDBEntities db = new WikiCEPDBEntities();
 
         // GET: Definiciones
-        public ActionResult Index()
+        public ActionResult Index(string strBusqueda)
         {
+            var definiciones = from d in db.vDefiniciones
+                               select d;
+
+            if (!String.IsNullOrEmpty(strBusqueda)) {
+                definiciones = definiciones.Where(s => s.Definicion.Contains(strBusqueda));
+            }
+
             //var definiciones = db.vDefiniciones.Include(d => d.AspNetUser);
-            return View(db.vDefiniciones.ToList());
+            return View(definiciones);
         }
         //GET: Definiciones/Details/5
         public ActionResult Details(int? id)

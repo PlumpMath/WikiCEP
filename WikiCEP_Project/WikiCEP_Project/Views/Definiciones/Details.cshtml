@@ -3,11 +3,14 @@
 @{
     ViewBag.Title = "Detalles";
 }
+
 <div>
-    <span class="label label-primary">@Html.DisplayFor(model => model.Titulo)</span>
+    <h2>
+        <span class="label label-primary">@Html.DisplayFor(model => model.Titulo)</span>        
+    </h2>
 </div>
+<hr />
 <div>
-    <hr />
     <dl class="dl-horizontal">
         <dt>
             @Html.DisplayNameFor(model => model.AspNetUser.Email)
@@ -16,11 +19,13 @@
             @Html.DisplayFor(model => model.AspNetUser.Email)
         </dd>
     </dl>
+    <hr />
     <dl class="dl-horizontal">
         <dd>
-            @Html.DisplayFor(model => model.Texto)
+            <span style="white-space: pre-line">@Html.DisplayFor(model => model.Texto)</span>
         </dd>
     </dl>
+    <hr />
 </div>
 <p>
     @Html.ActionLink("Editar", "Edit", new { id = Model.IDDefinicion }) |

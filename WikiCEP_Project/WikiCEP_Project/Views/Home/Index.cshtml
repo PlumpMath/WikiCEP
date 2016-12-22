@@ -8,6 +8,7 @@
     <h1>Bienvenidos a WikiCEP</h1>
     <p class="lead"> Brindamos informacion de las tecnologias .NET y SQL server</p>
 </div>
+<hr />
 <div class="row">
     @foreach (var definicion in Model)
     {
@@ -31,5 +32,6 @@
             </p>
             <p class="btn btn-default">@Html.ActionLink("Detalles", "../Definiciones/Details", new { id = definicion.IDDefinicion })</p>
         </div>
+
     }
 </div>

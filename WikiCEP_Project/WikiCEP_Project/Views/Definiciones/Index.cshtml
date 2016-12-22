@@ -4,14 +4,17 @@
     ViewBag.Title = "Definiciones";
 }
 
-<h2>Index</h2>
-
+<div>
+    <h2>
+        <span class="label label-primary">@ViewBag.Title</span>
+    </h2>
+</div>
+<hr />
 <p>
     @Html.ActionLink("Crear Nueva Definicion", "Create")
     
 </p>
-
-
+<hr />
 <div>
     <table id="jqGrid"></table>
     <div id="grid"></div>

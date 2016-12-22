@@ -4,16 +4,16 @@
     ViewBag.Title = "Crear Nueva Definicion";
 }
 
-<h2>Create</h2>
-
-
+<div>
+    <h2>
+        <span class="label label-primary">@ViewBag.Title</span>
+    </h2>
+</div>
+<hr />
 @using (Html.BeginForm()) 
 {
-    @Html.AntiForgeryToken()
-    
+    @Html.AntiForgeryToken()   
     <div class="form-horizontal">
-        <h4>Definiciones</h4>
-        <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
             @Html.LabelFor(model => model.Titulo, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -38,7 +38,7 @@
         </div>
     </div>
 }
-
+<hr />
 <div>
     @Html.ActionLink("Volver al Inicio", "Index", "Home") |
     @Html.ActionLink("Ir a la Lista", "Index")

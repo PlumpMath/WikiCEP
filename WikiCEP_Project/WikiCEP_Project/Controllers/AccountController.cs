@@ -12,6 +12,7 @@ using WikiCEP_Project.Models;
 
 namespace WikiCEP_Project.Controllers
 {
+    
     [Authorize]
     public class AccountController : Controller
     {

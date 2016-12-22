@@ -83,7 +83,7 @@
                     <li>@Html.ActionLink("Nosotros", "About", "Home")</li>
                     <li>
                         @using (Html.BeginForm()){
-                            @Html.TextBox("strBusqueda", "", new { @style = "margin-top:14px;"  })
+                            @Html.TextBox("strBusqueda", "", new { @style = "margin-top:14px;", placeholder="Definicion"  })
                             @Html.ActionLink("Buscar", "Index", "Definiciones")
                         }
                     </li>

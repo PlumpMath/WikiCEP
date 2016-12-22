@@ -12,17 +12,17 @@
         <EntityTypeShape EntityType="WikiCEPDBModel.AspNetUser" Width="1.5" PointX="3" PointY="7.125" IsExpanded="true" />
         <EntityTypeShape EntityType="WikiCEPDBModel.Definicione" Width="1.5" PointX="5.25" PointY="10.5" IsExpanded="true" />
         <EntityTypeShape EntityType="WikiCEPDBModel.Ejemplo" Width="1.5" PointX="7.5" PointY="9.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="WikiCEPDBModel.Imagene" Width="1.5" PointX="7.5" PointY="12.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="WikiCEPDBModel.Imagene" PointX="10.5" PointY="9" Width="1.5" IsExpanded="true" />
         <EntityTypeShape EntityType="WikiCEPDBModel.Tema" Width="1.5" PointX="7.5" PointY="15.875" IsExpanded="true" />
         <EntityTypeShape EntityType="WikiCEPDBModel.TutorialesYouTube" Width="1.5" PointX="7.5" PointY="18.25" IsExpanded="true" />
         <AssociationConnector Association="WikiCEPDBModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
         <AssociationConnector Association="WikiCEPDBModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
         <AssociationConnector Association="WikiCEPDBModel.FK__Definicio__IDAut__49C3F6B7" ManuallyRouted="false" />
         <AssociationConnector Association="WikiCEPDBModel.FK__Ejemplos__IDAuto__59063A47" ManuallyRouted="false" />
-        <AssociationConnector Association="WikiCEPDBModel.FK__Imagenes__IDAuto__5FB337D6" ManuallyRouted="false" />
+        <AssociationConnector ManuallyRouted="false" Association="WikiCEPDBModel.FK__Imagenes__IDAuto__5FB337D6" />
         <AssociationConnector Association="WikiCEPDBModel.AspNetUserRoles" ManuallyRouted="false" />
         <AssociationConnector Association="WikiCEPDBModel.Ejemplo_Definicion" ManuallyRouted="false" />
-        <AssociationConnector Association="WikiCEPDBModel.Imagen_Definicion" ManuallyRouted="false" />
+        <AssociationConnector ManuallyRouted="false" Association="WikiCEPDBModel.Imagen_Definicion" />
         <AssociationConnector Association="WikiCEPDBModel.Tema_Definicion" ManuallyRouted="false" />
         <AssociationConnector Association="WikiCEPDBModel.Tutorial_Definicion" ManuallyRouted="false" />
         <EntityTypeShape EntityType="WikiCEPDBModel.vDefinicione" Width="1.5" PointX="3.375" PointY="0.75" />

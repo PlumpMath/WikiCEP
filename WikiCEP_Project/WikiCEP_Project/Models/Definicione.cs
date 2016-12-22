@@ -11,8 +11,7 @@ namespace WikiCEP_Project.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-
+    
     public partial class Definicione
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -25,13 +24,9 @@ namespace WikiCEP_Project.Models
         }
     
         public int IDDefinicion { get; set; }
-
-        [Required]
         public string Titulo { get; set; }
         public string IDAutor { get; set; }
         public Nullable<System.DateTime> FechaCreacion { get; set; }
-
-        [Required]
         public string Texto { get; set; }
     
         public virtual AspNetUser AspNetUser { get; set; }

@@ -35,7 +35,7 @@ namespace WikiCEP_Project.Controllers
             }
             return View(imagene);
         }
-        [Authorize]
+
         // GET: Imagenes/Create
         public ActionResult Create()
         {
@@ -48,13 +48,10 @@ namespace WikiCEP_Project.Controllers
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "IDImagen,Titulo,IDAutor")] Imagene imagene,HttpPostedFile imagen)
+        public ActionResult Create([Bind(Include = "IDImagen,Titulo,FechaCreacion,IDAutor,Imagen")] Imagene imagene)
         {
-           
             if (ModelState.IsValid)
             {
-                imagene.Imagen = new byte[imagen.ContentLength]; 
-                imagene.FechaCreacion = DateTime.Now;
                 db.Imagenes.Add(imagene);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -63,7 +60,7 @@ namespace WikiCEP_Project.Controllers
             ViewBag.IDAutor = new SelectList(db.AspNetUsers, "Id", "Email", imagene.IDAutor);
             return View(imagene);
         }
-        [Authorize]
+
         // GET: Imagenes/Edit/5
         public ActionResult Edit(int? id)
         {
@@ -85,11 +82,10 @@ namespace WikiCEP_Project.Controllers
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "IDImagen,Titulo,IDAutor")] Imagene imagene)
+        public ActionResult Edit([Bind(Include = "IDImagen,Titulo,FechaCreacion,IDAutor,Imagen")] Imagene imagene)
         {
             if (ModelState.IsValid)
             {
-                imagene.FechaCreacion = DateTime.Now;
                 db.Entry(imagene).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -97,7 +93,7 @@ namespace WikiCEP_Project.Controllers
             ViewBag.IDAutor = new SelectList(db.AspNetUsers, "Id", "Email", imagene.IDAutor);
             return View(imagene);
         }
-        [Authorize]
+
         // GET: Imagenes/Delete/5
         public ActionResult Delete(int? id)
         {

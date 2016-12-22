@@ -1,14 +1,14 @@
 ﻿@model WikiCEP_Project.Models.Imagene
 
 @{
-    ViewBag.Title = "Borrar";
+    ViewBag.Title = "Delete";
 }
 
-<h2>Borrar</h2>
+<h2>Delete</h2>
 
-<h3>Estas seguro que quieres eliminar?</h3>
+<h3>Are you sure you want to delete this?</h3>
 <div>
-    <h4>Imagenes</h4>
+    <h4>Imagene</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -28,6 +28,14 @@
         </dd>
 
         <dt>
+            @Html.DisplayNameFor(model => model.Imagen)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Imagen)
+        </dd>
+
+        <dt>
             @Html.DisplayNameFor(model => model.AspNetUser.Email)
         </dt>
 
@@ -41,8 +49,8 @@
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
-            <input type="submit" value="Borrar" class="btn btn-default" /> |
-            @Html.ActionLink("Volver a la Lista", "Index")
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
         </div>
     }
 </div>

@@ -7,7 +7,7 @@
 <h2>Index</h2>
 
 <p>
-    @Html.ActionLink("Crear Nuevo", "Create")
+    @Html.ActionLink("Create New", "Create")
 </p>
 <table class="table">
     <tr>
@@ -16,6 +16,9 @@
         </th>
         <th>
             @Html.DisplayNameFor(model => model.FechaCreacion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Imagen)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.AspNetUser.Email)
@@ -32,12 +35,15 @@
             @Html.DisplayFor(modelItem => item.FechaCreacion)
         </td>
         <td>
+            @Html.DisplayFor(modelItem => item.Imagen)
+        </td>
+        <td>
             @Html.DisplayFor(modelItem => item.AspNetUser.Email)
         </td>
         <td>
-            @Html.ActionLink("Editar", "Edit", new { id=item.IDImagen }) |
-            @Html.ActionLink("Detalles", "Details", new { id=item.IDImagen }) |
-            @Html.ActionLink("Borrar", "Delete", new { id=item.IDImagen })
+            @Html.ActionLink("Edit", "Edit", new { id=item.IDImagen }) |
+            @Html.ActionLink("Details", "Details", new { id=item.IDImagen }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.IDImagen })
         </td>
     </tr>
 }

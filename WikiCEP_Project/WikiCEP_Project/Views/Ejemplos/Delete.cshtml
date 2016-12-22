@@ -11,36 +11,11 @@
     <h4>Ejemplos</h4>
     <hr />
     <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Titulo)
-        </dt>
-
         <dd>
             @Html.DisplayFor(model => model.Titulo)
         </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Texto)
-        </dt>
-
         <dd>
             @Html.DisplayFor(model => model.Texto)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.FechaCreacion)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.FechaCreacion)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.AspNetUser.Email)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.AspNetUser.Email)
         </dd>
 
     </dl>
@@ -50,7 +25,8 @@
 
         <div class="form-actions no-color">
             <input type="submit" value="Borrar" class="btn btn-default" /> |
-            @Html.ActionLink("Volver a la Lista", "Index")
+            @Html.ActionLink("Volver a los Ejemplos", "Index") |
+            @Html.ActionLink("Volver al Inicio", "Index", "Home")
         </div>
     }
 </div>

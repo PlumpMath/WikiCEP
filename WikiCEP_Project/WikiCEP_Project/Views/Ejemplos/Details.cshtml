@@ -3,48 +3,22 @@
 @{
     ViewBag.Title = "Detalles";
 }
-
-<h2>Detalles</h2>
-
 <div>
     <h4>Ejemplos</h4>
     <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Titulo)
-        </dt>
+    <div class="dl-horizontal">
+        <h2>
+            <span class="label label-primary">@Html.DisplayFor(model => model.Titulo)</span>            
+        </h2>
 
-        <dd>
-            @Html.DisplayFor(model => model.Titulo)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Texto)
-        </dt>
-
-        <dd>
+        <dl>
             @Html.DisplayFor(model => model.Texto)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.FechaCreacion)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.FechaCreacion)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.AspNetUser.Email)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.AspNetUser.Email)
-        </dd>
-
-    </dl>
+        </dl>
+    </div>
 </div>
 <p>
     @Html.ActionLink("Editar", "Edit", new { id = Model.IDEjemplo }) |
-    @Html.ActionLink("Volver a la Lista", "Index")
+    @Html.ActionLink("Agregar Nuevo Ejemplo", "Create") |
+    @Html.ActionLink("Volver a los Ejemplos", "Index") |
+    @Html.ActionLink("Volver al Inicio", "Index", "Home")
 </p>

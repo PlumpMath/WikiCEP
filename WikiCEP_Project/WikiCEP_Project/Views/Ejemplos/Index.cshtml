@@ -1,13 +1,11 @@
 ﻿@model IEnumerable<WikiCEP_Project.Models.Ejemplo>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Nuevo Ejemplo";
 }
-
-<h2>Index</h2>
-
+<br />
 <p>
-    @Html.ActionLink("Crear Nuevo", "Create")
+    @Html.ActionLink("Agregar Nuevo Ejemplo", "Create")
 </p>
 <table class="table">
     <tr>
@@ -18,12 +16,8 @@
             @Html.DisplayNameFor(model => model.Texto)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.FechaCreacion)
+            Autor
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.AspNetUser.Email)
-        </th>
-        <th></th>
     </tr>
 
 @foreach (var item in Model) {
@@ -35,9 +29,6 @@
             @Html.DisplayFor(modelItem => item.Texto)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.FechaCreacion)
-        </td>
-        <td>
             @Html.DisplayFor(modelItem => item.AspNetUser.Email)
         </td>
         <td>
@@ -47,5 +38,8 @@
         </td>
     </tr>
 }
-
 </table>
+<div>
+    @Html.ActionLink("Volver a los Ejemplos", "Index") |
+    @Html.ActionLink("Volver al Inicio", "Index", "Home")
+</div>

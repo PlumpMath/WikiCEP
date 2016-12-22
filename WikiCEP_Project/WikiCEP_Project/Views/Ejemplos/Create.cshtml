@@ -1,11 +1,8 @@
 ﻿@model WikiCEP_Project.Models.Ejemplo
 
 @{
-    ViewBag.Title = "Crear";
+    ViewBag.Title = "Agregar Nuevo Ejemplo";
 }
-
-<h2>Crear</h2>
-
 
 @using (Html.BeginForm()) 
 {
@@ -56,7 +53,8 @@
 }
 
 <div>
-    @Html.ActionLink("Volver a la Lista", "Index")
+    @Html.ActionLink("Volver a los Ejemplos", "Index") |
+    @Html.ActionLink("Volver al Inicio", "Index", "Home")
 </div>
 
 @section Scripts {

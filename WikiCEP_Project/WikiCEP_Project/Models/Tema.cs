@@ -17,6 +17,7 @@ namespace WikiCEP_Project.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Tema()
         {
+            
             this.Definiciones = new HashSet<Definicione>();
         }
     

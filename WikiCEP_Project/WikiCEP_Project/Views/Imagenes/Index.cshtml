@@ -4,11 +4,15 @@
     ViewBag.Title = "Imagenes";
 }
 
-<h2 class="label label-primary">@ViewBag.Title</h2>
+<div>
+    <h2>
+        <span class="label label-primary">@ViewBag.Title</span>
+    </h2>
+</div>
+<hr />
 
 <p>
     @Html.ActionLink("Crear Nueva Foto", "Create")
 </p>
-
 
 @Html.Action("_CargarImagenes", "Imagenes")

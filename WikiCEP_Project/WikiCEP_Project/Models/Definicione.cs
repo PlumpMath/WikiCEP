@@ -18,11 +18,13 @@ namespace WikiCEP_Project.Models
         public Definicione()
         {
             this.Ejemplos = new HashSet<Ejemplo>();
-            this.Imagenes = new HashSet<Imagene>();
             this.Temas = new HashSet<Tema>();
             this.TutorialesYouTubes = new HashSet<TutorialesYouTube>();
+            this.Imagenes = new HashSet<Imagene>();
         }
-    
+
+      
+
         public int IDDefinicion { get; set; }
         public string Titulo { get; set; }
         public string IDAutor { get; set; }
@@ -33,10 +35,10 @@ namespace WikiCEP_Project.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Ejemplo> Ejemplos { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Imagene> Imagenes { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Tema> Temas { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TutorialesYouTube> TutorialesYouTubes { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Imagene> Imagenes { get; set; }
     }
 }

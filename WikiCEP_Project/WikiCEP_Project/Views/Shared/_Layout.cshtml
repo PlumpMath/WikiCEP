@@ -11,14 +11,13 @@
     <link href="~/Content/EstiloGrid.css" rel="stylesheet" />
     <style>
         .logo {
-            padding-top: 6px;
             margin: 0px;
             font-family: Helvetica, sans-serif;
             display: inline-block;
         }
 
         .wiki {
-            color: #FFFFFF;
+            color: #354D53;
         }
 
         .c {
@@ -32,68 +31,91 @@
         .p {
             color: #FF6C0B;
         }
+        .navbar-collapse{
+            padding-right: 0px;
+            padding-left: 0px;
+        }
+        body {
+            padding-top: 0px;
+            padding-bottom: 20px;
+        }
     </style>
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <h3 class="logo wiki">Wiki<div class="logo c">C</div><div class="logo e">E</div><div class="logo p">P</div></h3>
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Inicio", "Index", "Home")</li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Definiciones<span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li>@Html.ActionLink("Ver", "Index", "Definiciones")</li>
-                            <li role="separator" class="divider"></li>
-                            <li>@Html.ActionLink("Agregar", "Create", "Definiciones")</li>
-                        </ul>
-                    </li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Imagenes<span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li>@Html.ActionLink("Ver", "Index", "Imagenes")</li>
-                            <li role="separator" class="divider"></li>
-                            <li>@Html.ActionLink("Agregar", "Create", "Imagenes")</li>
-                        </ul>
-                    </li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Tutoriales<span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li>@Html.ActionLink("Ver", "Index", "TutorialesYoutube")</li>
-                            <li role="separator" class="divider"></li>
-                            <li>@Html.ActionLink("Agregar", "Create", "TutorialesYoutube")</li>
-                        </ul>
-                    </li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Ejemplos<span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li>@Html.ActionLink("Ver", "Index", "Ejemplos")</li>
-                            <li role="separator" class="divider"></li>
-                            <li>@Html.ActionLink("Agregar", "Create", "Ejemplos")</li>
-                        </ul>
-                    </li>
-                    <li>@Html.ActionLink("Nosotros", "About", "Home")</li>
 
-                    <li>
-                        @using (Html.BeginForm("Index", "Definiciones", FormMethod.Post)) {
-                            @Html.TextBox("strBusqueda", "", new { @style = "margin-top:13px", placeholder = "Buscar definicion" });
-                            <input type="submit" class="btn btn-primary" value="Buscar">
-                        }
-                    </li>
-                   
-                </ul>
+    <div class="container-fluid">
+        <div class="row" style="background-color:#cbcbcb" >
+            <div class="col-md-3" style="margin-top:7px">
+                <h2 class="logo wiki com-md-3" href="home/index">Wiki<span class="logo c">C</span><span class="logo e">E</span><span class="logo p">P</span></h2>
+            </div>
+            <div class="col-md-6" style="text-align:center">
                 @Html.Partial("_LoginPartial")
+            </div>
+            <div class="col-md-3" style="text-align:center; margin-top:11px">
+                @using (Html.BeginForm("Index", "Definiciones", FormMethod.Post)) {
+                    @Html.TextBox("strBusqueda", "", new { placeholder = "Buscar definicion" });
+                    <input type="submit" class="btn btn-default btn-sm" value="Buscar">
+                }
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="navbar-inverse">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                </div>
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li>@Html.ActionLink("Inicio", "Index", "Home")</li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Definiciones<span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li>@Html.ActionLink("Ver", "Index", "Definiciones")</li>
+                                <li role="separator" class="divider"></li>
+                                <li>@Html.ActionLink("Agregar", "Create", "Definiciones")</li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Imagenes<span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li>@Html.ActionLink("Ver", "Index", "Imagenes")</li>
+                                <li role="separator" class="divider"></li>
+                                <li>@Html.ActionLink("Agregar", "Create", "Imagenes")</li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Tutoriales<span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li>@Html.ActionLink("Ver", "Index", "TutorialesYoutube")</li>
+                                <li role="separator" class="divider"></li>
+                                <li>@Html.ActionLink("Agregar", "Create", "TutorialesYoutube")</li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Ejemplos<span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li>@Html.ActionLink("Ver", "Index", "Ejemplos")</li>
+                                <li role="separator" class="divider"></li>
+                                <li>@Html.ActionLink("Agregar", "Create", "Ejemplos")</li>
+                            </ul>
+                        </li>
+                        <li>@Html.ActionLink("Nosotros", "About", "Home")</li>
+                        <li>@Html.ActionLink("Sala de chat", "Index", "Chat")</li>
+                    </ul>
+                </div>
             </div>
         </div>
     </div>
+
+    <br />
+    <br />
+    <br />
+    
+    <br />
     <div class="container body-content">
         @RenderBody()
         <hr />

@@ -9,7 +9,7 @@
 
 <div>
     <h2>
-        <span class="label label-primary">@ViewBag.Title</span>
+        <span class="label label-default">@ViewBag.Title</span>
     </h2>
 </div>
 <hr />
@@ -54,7 +54,7 @@ columns: new[]
 {
     definiciones = (WikiCEP_Project.Models.vDefinicione)grid.Rows[grid.SelectedIndex].Value;
     <br />
-    <b>Texto: </b> @Html.ActionLink("Ver Mas", "../Definiciones/Details", new { id = definiciones.IDDefinicion }) <br />
+    <b>@definiciones.Definicion: </b> @Html.ActionLink("Ver Mas", "../Definiciones/Details", new { id = definiciones.IDDefinicion }) <br />
 
 }
 

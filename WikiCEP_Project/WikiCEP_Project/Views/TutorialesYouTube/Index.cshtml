@@ -26,7 +26,7 @@
             @Html.DisplayFor(modelItem => item.Titulo)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.LinkYouTube)
+            <a href="@Html.DisplayFor(modelItem => item.LinkYouTube)" >@Html.DisplayFor(modelItem => item.LinkYouTube)</a>
         </td>
         <td>
             @Html.ActionLink("Editar", "Edit", new { id=item.IDTutorial }) |

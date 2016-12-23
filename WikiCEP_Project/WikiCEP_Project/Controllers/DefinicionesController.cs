@@ -45,15 +45,24 @@ namespace WikiCEP_Project.Controllers
         // GET: Definiciones/Create
         public ActionResult Create()
         {
+            var TemaLst = new List<string>();
+
+            var TemaQuery = from d in db.Temas
+                            orderby d.Descripcion
+                            select d.Descripcion;
+            TemaLst.AddRange(TemaQuery.Distinct());
+         
+            ViewBag.TemasList = new SelectList(TemaLst);
+            ViewBag.Temas = db.Temas.ToList();
             ViewBag.IDAutor = new SelectList(db.AspNetUsers, "Id", "Email");
-			return View();
+            return View();
         }
         // POST: Definiciones/Create
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "IDDefinicion,Titulo,IDAutor,Texto")] Definicione definicione)
+        public ActionResult Create(Definicione definicione)
         {
             if (ModelState.IsValid)
             {
@@ -90,7 +99,7 @@ namespace WikiCEP_Project.Controllers
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "IDDefinicion,Titulo,IDAutor,Texto")] Definicione definicione)
+        public ActionResult Edit(Definicione definicione)
         {
             if (ModelState.IsValid)
             {

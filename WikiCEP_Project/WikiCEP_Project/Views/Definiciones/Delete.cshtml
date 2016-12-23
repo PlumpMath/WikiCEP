@@ -31,11 +31,13 @@
         </dd>
 
     </dl>
-    @using (Html.BeginForm()) {
-        @Html.AntiForgeryToken()
-<hr />
+
+    <input type="submit" value="Borrar" class="btn btn-danger" />
+
+    <br />
+
+    <<hr />
         <div class="form-actions no-color">
-            <input type="submit" value="Borrar" class="btn btn-danger" /> |
             @Html.ActionLink("Volver al Inicio", "Index", "Home") |
             @Html.ActionLink("Ir a la Lista", "Index")
         </div>

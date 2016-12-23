@@ -221,6 +221,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Hubs\ChatHub.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AspNetRole.cs">
       <DependentUpon>ModeloWikiCEPDB.tt</DependentUpon>
@@ -398,6 +399,7 @@
     </Content>
     <Content Include="Views\Imagenes\Index.cshtml" />
     <Content Include="Views\Shared\_CargarImagenes.cshtml" />
+    <Content Include="Views\Chat\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

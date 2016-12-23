@@ -31,9 +31,18 @@
         .p {
             color: #FF6C0B;
         }
+        a{
+            color: black;
+        }
         .navbar-collapse{
             padding-right: 0px;
             padding-left: 0px;
+        }
+        .navbar-inverse .navbar-nav > li > a {
+            color: #AED520;
+        }
+        .navbar-inverse .navbar-nav > li > a:hover {
+            color: #11C1B8;
         }
         body {
             padding-top: 0px;
@@ -110,14 +119,11 @@
             </div>
         </div>
     </div>
-
     <br />
-    <br />
-    <br />
-    
-    <br />
-    <div class="container body-content">
-        @RenderBody()
+    <div class="container">
+        <div>
+            @RenderBody()
+        </div>
         <hr />
         <footer>
             <p>&copy; @DateTime.Now.Year - CEP 14</p>

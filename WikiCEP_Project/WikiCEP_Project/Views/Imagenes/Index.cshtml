@@ -10,52 +10,9 @@
     </h2>
 </div>
 <hr />
+
 <p>
-    @Html.ActionLink("Agregar Nueva Imagen", "Create")
+    @Html.ActionLink("Crear Nueva Foto", "Create")
 </p>
-<hr />
 
-
-
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<link href="~/Content/StyleSheet1.css" rel="stylesheet" />
-<script src="~/Scripts/BoostrapImagenes.js"></script>
-<div style="padding:120px 0;">
-    <div id="thumbnail-slider">
-        <div class="inner">
-            <ul>
-                <li>
-                    <a class="thumb" href="http://dissenyaweb.com/blog/diseno_web/wp-content/uploads/background2-1024x640.jpg" />
-                </li>
-                <li>
-                    <a class="thumb" href="http://3.bp.blogspot.com/_rgO8m__aY7g/SwnPJjzFZCI/AAAAAAAABmg/kd7QY8z-t_8/s1600/wallpaper_1024x768_256colores.png"></a>
-                </li>
-                <li>
-                    <a class="thumb" href="https://s-media-cache-ak0.pinimg.com/736x/3f/e3/39/3fe339c35fd4da802cac507cd43342de.jpg"></a>
-                </li>
-                <li>
-                    <a class="thumb" href="http://cdn2.plantilla.org/wp-content/uploads/2012/01/metal-fondo-468x346.jpg"></a>
-                </li>
-                <li>
-                    <a class="thumb" href="http://2.bp.blogspot.com/-H6MAoWN-UIE/TuRwLbHRSWI/AAAAAAAABBk/89iiEulVsyg/s400/Free%2BNature%2BPhoto.jpg"></a>
-                </li>
-                <li>
-                    <a class="thumb" href="http://2.bp.blogspot.com/-H6MAoWN-UIE/TuRwLbHRSWI/AAAAAAAABBk/89iiEulVsyg/s400/Free%2BNature%2BPhoto.jpg"></a>
-                </li>
-                <li>
-                    <a class="thumb" href="http://2.bp.blogspot.com/-H6MAoWN-UIE/TuRwLbHRSWI/AAAAAAAABBk/89iiEulVsyg/s400/Free%2BNature%2BPhoto.jpg"></a>
-                </li>
-                <li>
-                    <a class="thumb" href="http://2.bp.blogspot.com/-H6MAoWN-UIE/TuRwLbHRSWI/AAAAAAAABBk/89iiEulVsyg/s400/Free%2BNature%2BPhoto.jpg"></a>
-                </li>
-                <li>
-                    <a class="thumb" href="http://2.bp.blogspot.com/-H6MAoWN-UIE/TuRwLbHRSWI/AAAAAAAABBk/89iiEulVsyg/s400/Free%2BNature%2BPhoto.jpg"></a>
-                </li>
-                <li>
-                    <a class="thumb" href="http://2.bp.blogspot.com/-H6MAoWN-UIE/TuRwLbHRSWI/AAAAAAAABBk/89iiEulVsyg/s400/Free%2BNature%2BPhoto.jpg"></a>
-                </li>
-
-            </ul>
-        </div>
-    </div>
-</div>
+@Html.Action("_CargarImagenes", "Imagenes")

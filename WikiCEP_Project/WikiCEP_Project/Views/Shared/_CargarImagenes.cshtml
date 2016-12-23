@@ -1,0 +1,42 @@
+﻿@model IEnumerable<WikiCEP_Project.Models.Imagene>
+
+@foreach (var item in Model)
+{
+
+    <div class="photo-index-card">
+
+        <h3>
+            "@Html.DisplayFor(modelItem => item.Titulo)"
+        </h3>
+
+        @if (item.Imagen != null)
+        {
+            <div class="photo-display">
+                <img class="photo-display-img" src="@Url.Action("GetImage", "Imagenes", new { idImagen = item.IDImagen })" />
+            </div>
+        }
+
+        <div class="photo-metadata">
+            <div>
+                <span class="display-label">
+                    Created By:
+                </span>
+                <span class="display-field">
+                    @Html.DisplayFor(model => item.AspNetUser.Email)
+                </span>
+            </div>
+
+            <div>
+                <span class="display-label">
+                    @Html.DisplayNameFor(model => model.FechaCreacion):
+                </span>
+                <span class="display-field">
+                    @Html.DisplayFor(model => item.FechaCreacion)
+                </span>
+            </div>
+        </div>
+
+        @Html.ActionLink("Details", "Details", new { id = item.IDImagen }) |
+        @Html.ActionLink("Delete", "Delete", new { id = item.IDImagen })
+    </div>
+}

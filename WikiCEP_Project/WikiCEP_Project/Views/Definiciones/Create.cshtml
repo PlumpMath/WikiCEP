@@ -32,6 +32,24 @@
         </div>
 
         <div class="form-group">
+            <div class="col-md-10">
+                <h1>Seleccione Temas:</h1>
+                <br />
+                @foreach (WikiCEP_Project.Models.Tema Tema in (List<WikiCEP_Project.Models.Tema>)ViewBag.Temas)
+                {
+                    
+                       
+                    <input type="checkbox" class="" id=Tema.IDTema name="TemasCb" value=@Tema.IDTema />
+                    <label for="optionId">@Tema.Descripcion</label>
+                    <br />
+  
+                    }
+
+            </div>
+        </div>
+
+
+        <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Crear" class="btn btn-default" />
             </div>

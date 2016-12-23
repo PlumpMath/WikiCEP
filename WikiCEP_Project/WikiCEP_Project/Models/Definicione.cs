@@ -22,7 +22,9 @@ namespace WikiCEP_Project.Models
             this.TutorialesYouTubes = new HashSet<TutorialesYouTube>();
             this.Imagenes = new HashSet<Imagene>();
         }
-    
+
+      
+
         public int IDDefinicion { get; set; }
         public string Titulo { get; set; }
         public string IDAutor { get; set; }

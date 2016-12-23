@@ -53,7 +53,7 @@ namespace WikiCEP_Project.Controllers
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "IDDefinicion,Titulo,IDAutor,Texto")] Definicione definicione)
+        public ActionResult Create(Definicione definicione)
         {
             if (ModelState.IsValid)
             {
@@ -90,7 +90,7 @@ namespace WikiCEP_Project.Controllers
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "IDDefinicion,Titulo,IDAutor,Texto")] Definicione definicione)
+        public ActionResult Edit(Definicione definicione)
         {
             if (ModelState.IsValid)
             {

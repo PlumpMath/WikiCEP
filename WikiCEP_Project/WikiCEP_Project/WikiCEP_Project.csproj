@@ -394,6 +394,7 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Views\Imagenes\Index.cshtml" />
+    <Content Include="Views\Shared\_CargarImagenes.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

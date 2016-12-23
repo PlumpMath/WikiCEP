@@ -7,6 +7,7 @@ using WikiCEP_Project.Models;
 
 namespace WikiCEP_Project.Controllers
 {
+
 	public class HomeController : Controller
 	{
 		private WikiCEPDBEntities db = new WikiCEPDBEntities();

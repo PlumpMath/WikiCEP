@@ -9,6 +9,7 @@ namespace WikiCEP_Project
         public void Configuration(IAppBuilder app)
         {
             ConfigureAuth(app);
+            app.MapSignalR();
         }
     }
 }

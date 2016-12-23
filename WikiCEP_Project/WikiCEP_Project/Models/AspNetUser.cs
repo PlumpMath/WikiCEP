@@ -21,8 +21,8 @@ namespace WikiCEP_Project.Models
             this.AspNetUserLogins = new HashSet<AspNetUserLogin>();
             this.Definiciones = new HashSet<Definicione>();
             this.Ejemplos = new HashSet<Ejemplo>();
-            this.Imagenes = new HashSet<Imagene>();
             this.AspNetRoles = new HashSet<AspNetRole>();
+            this.Imagenes = new HashSet<Imagene>();
         }
     
         public string Id { get; set; }
@@ -47,8 +47,8 @@ namespace WikiCEP_Project.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Ejemplo> Ejemplos { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Imagene> Imagenes { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AspNetRole> AspNetRoles { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Imagene> Imagenes { get; set; }
     }
 }

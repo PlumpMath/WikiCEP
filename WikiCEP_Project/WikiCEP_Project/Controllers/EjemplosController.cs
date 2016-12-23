@@ -50,7 +50,7 @@ namespace WikiCEP_Project.Controllers
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "IDEjemplo,Titulo,Texto,IDAutor")] Ejemplo ejemplo)
+        public ActionResult Create(Ejemplo ejemplo)
         {
             if (ModelState.IsValid)
             {
@@ -88,7 +88,7 @@ namespace WikiCEP_Project.Controllers
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "IDEjemplo,Titulo,Texto,IDAutor")] Ejemplo ejemplo)
+        public ActionResult Edit(Ejemplo ejemplo)
         {
             if (ModelState.IsValid)
             {

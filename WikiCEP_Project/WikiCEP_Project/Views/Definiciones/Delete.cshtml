@@ -32,14 +32,25 @@
 
     </dl>
 
-    <input type="submit" value="Borrar" class="btn btn-danger" />
 
     <br />
 
-    <<hr />
-        <div class="form-actions no-color">
-            @Html.ActionLink("Volver al Inicio", "Index", "Home") |
-            @Html.ActionLink("Ir a la Lista", "Index")
+    <hr />
+    <div>
+@using (Html.BeginForm())
+{
+        @Html.AntiForgeryToken()
+        <hr />
+        <div>
+            <input type="submit" value="Borrar" class="btn btn-danger" />
         </div>
-    }
+        <br />
+
+        <div class="form-actions no-color">
+
+            @Html.ActionLink("Volver a la lista", "Index") 
+            @Html.ActionLink("Volver al Inicio", "Index", "Home")
+        </div>
+        }
+    
 </div>

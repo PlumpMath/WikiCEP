@@ -47,7 +47,7 @@ namespace WikiCEP_Project.Controllers
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "IDTutorial,Titulo,LinkYouTube")] TutorialesYouTube tutorialesYouTube)
+        public ActionResult Create(TutorialesYouTube tutorialesYouTube)
         {
             if (ModelState.IsValid)
             { 

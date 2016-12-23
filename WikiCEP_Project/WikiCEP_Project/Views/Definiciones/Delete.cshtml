@@ -6,13 +6,13 @@
 
 <div>
     <h2>
-        <span class="label label-primary">@ViewBag.Title</span>
+      @ViewBag.Title
     </h2>
 </div>
 <hr />
 <div class="alert alert-danger" role="alert">
     <h2>
-        <strong>Atencion:</strong> Estas seguro que quieres eliminar?
+        <strong>Atencion:</strong>¿Estas seguro que quieres eliminar?
     </h2>
 </div>
 <hr />
@@ -35,7 +35,7 @@
         @Html.AntiForgeryToken()
 <hr />
         <div class="form-actions no-color">
-            <input type="submit" value="Borrar" class="btn btn-default" /> |
+            <input type="submit" value="Borrar" class="btn btn-danger" /> |
             @Html.ActionLink("Volver al Inicio", "Index", "Home") |
             @Html.ActionLink("Ir a la Lista", "Index")
         </div>

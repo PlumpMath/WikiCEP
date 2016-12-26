@@ -72,11 +72,59 @@ namespace WikiCEP_Project.Controllers
 									   select a.Id).Single();
 				db.Definiciones.Add(definicione);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("AgregarEjemplo", definicione.IDDefinicion);
             }
             //ViewBag.IDAutor = new SelectList(db.AspNetUsers, "Id", "Email", definicione.IDAutor);
             return View(definicione);
         }
+
+        public ActionResult AgregarEjemplo(int? id)
+         {
+            Ejemplo ejemplo = new Ejemplo();
+            ViewBag.Temas = db.Temas.ToList();
+            ViewBag.IDAutor = new SelectList(db.AspNetUsers, "Id", "Email");
+            return View(id);
+        }
+        // POST: Definiciones/Create
+        // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
+        // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult AgregarEjemplo(Ejemplo ejemplo, int? id)
+        {
+            if (ModelState.IsValid)
+            {
+
+                return RedirectToAction("AgregarImagen");
+            }
+            //ViewBag.IDAutor = new SelectList(db.AspNetUsers, "Id", "Email", definicione.IDAutor);
+            return View();
+        }
+
+
+        public ActionResult AgregarImagen(int? id)
+        {
+            Imagene ejemplo = new Imagene();
+            ViewBag.Temas = db.Temas.ToList();
+            ViewBag.IDAutor = new SelectList(db.AspNetUsers, "Id", "Email");
+            return View(id);
+        }
+        // POST: Definiciones/Create
+        // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
+        // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult AgregarImagen(Imagene imagen, int? id)
+        {
+            if (ModelState.IsValid)
+            {
+
+                return RedirectToAction("Index");
+            }
+            //ViewBag.IDAutor = new SelectList(db.AspNetUsers, "Id", "Email", definicione.IDAutor);
+            return View();
+        }
+
 
         [Authorize]
         // GET: Definiciones/Edit/5

@@ -81,6 +81,8 @@ namespace WikiCEP_Project.Controllers
         public ActionResult AgregarEjemplo(int id)
          {
             Ejemplo ejemplo = new Ejemplo();
+            
+            
             ViewBag.Temas = db.Temas.ToList();
             ViewBag.IDAutor = new SelectList(db.AspNetUsers, "Id", "Email");
             return View();
@@ -94,32 +96,36 @@ namespace WikiCEP_Project.Controllers
         {
             if (ModelState.IsValid)
             {
+                Definicione definicione = db.Definiciones.Find(id);
+                ejemplo.IDAutor = definicione.IDAutor;
                 db.insertarEjemplo(ejemplo.Titulo, ejemplo.Texto, DateTime.Now, ejemplo.IDAutor, id);
-                return RedirectToAction("AgregarImagen", new { id = id });
+                return RedirectToAction("AgregarEjemplo", new { id = id });
             }
             //ViewBag.IDAutor = new SelectList(db.AspNetUsers, "Id", "Email", definicione.IDAutor);
             return View();
         }
 
 
-        public ActionResult AgregarImagen(int? id)
+        public ActionResult AgregarImagen(int id)
         {
             Imagene imagen = new Imagene();
-            ViewBag.Temas = db.Temas.ToList();
+
             ViewBag.IDAutor = new SelectList(db.AspNetUsers, "Id", "Email");
-            return View(id);
+            return View();
         }
         // POST: Definiciones/Create
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult AgregarImagen(Imagene imagen, int? id)
+        public ActionResult AgregarImagen(Imagene imagen, int id)
         {
             if (ModelState.IsValid)
             {
+                Definicione definicione = db.Definiciones.Find(id);
+                imagen.IDAutor = definicione.IDAutor;
                 db.insertarImagen(imagen.Titulo, DateTime.Now, imagen.IDAutor, imagen.Imagen, imagen.ImageMimeType, id);
-                return RedirectToAction("AgregarTutorial",new { id = id });
+                return RedirectToAction("AgregarImagen",new { id = id });
             }
             //ViewBag.IDAutor = new SelectList(db.AspNetUsers, "Id", "Email", definicione.IDAutor);
             return View();
@@ -127,24 +133,25 @@ namespace WikiCEP_Project.Controllers
 
 
 
-        public ActionResult agregarTutorial(int? id)
+        public ActionResult agregarTutorial(int id)
         {
             TutorialesYouTube Tutorial = new TutorialesYouTube();
             ViewBag.Temas = db.Temas.ToList();
             ViewBag.IDAutor = new SelectList(db.AspNetUsers, "Id", "Email");
-            return View(id);
+            return View();
         }
         // POST: Definiciones/Create
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult agregarTutorial(TutorialesYouTube tutorial, int? id)
+        public ActionResult agregarTutorial(TutorialesYouTube tutorial, int id)
         {
             if (ModelState.IsValid)
             {
+                Definicione definicione = db.Definiciones.Find(id);
                 db.insertarTutorial(tutorial.Titulo, tutorial.LinkYouTube, id);
-                return RedirectToAction("Index");
+                return RedirectToAction("agregarTutorial");
             }
             //ViewBag.IDAutor = new SelectList(db.AspNetUsers, "Id", "Email", definicione.IDAutor);
             return View();

@@ -52,12 +52,11 @@
                                 <div class="col-md-12">
                                     <button class="btn btn-lg btn-primary btn-block " type="submit">Ingresar</button>
                                 </div>
-
-                                <div class="col-md-12">
-                                    <div class="checkbox">
+                                <br />
+                                    <div class="checkbox, col-md-12" style="margin-top:10px">
                                         @Html.CheckBoxFor(m => m.RememberMe)
                                         @Html.LabelFor(m => m.RememberMe)
-                                    </div>
+                                    
                                 </div>
                             </div>
                         </form><!-- /form -->
@@ -76,11 +75,7 @@
             }
         </section>
     </div>
-    <div class="col-md-4">
-        <section id="socialLoginForm">
-            @Html.Partial("_ExternalLoginsListPartial", new ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })
-        </section>
-    </div>
+   
 </div>
 
 @section Scripts {

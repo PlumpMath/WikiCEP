@@ -72,18 +72,20 @@ namespace WikiCEP_Project.Controllers
 									   select a.Id).Single();
 				db.Definiciones.Add(definicione);
                 db.SaveChanges();
-                return RedirectToAction("AgregarEjemplo", definicione.IDDefinicion);
+                return RedirectToAction("AgregarEjemplo", new { id = definicione.IDDefinicion });
             }
             //ViewBag.IDAutor = new SelectList(db.AspNetUsers, "Id", "Email", definicione.IDAutor);
             return View(definicione);
         }
 
-        public ActionResult AgregarEjemplo(int? id)
+        public ActionResult AgregarEjemplo(int id)
          {
             Ejemplo ejemplo = new Ejemplo();
+            
+            
             ViewBag.Temas = db.Temas.ToList();
             ViewBag.IDAutor = new SelectList(db.AspNetUsers, "Id", "Email");
-            return View(id);
+            return View();
         }
         // POST: Definiciones/Create
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
@@ -94,32 +96,62 @@ namespace WikiCEP_Project.Controllers
         {
             if (ModelState.IsValid)
             {
+                Definicione definicione = db.Definiciones.Find(id);
+                ejemplo.IDAutor = definicione.IDAutor;
                 db.insertarEjemplo(ejemplo.Titulo, ejemplo.Texto, DateTime.Now, ejemplo.IDAutor, id);
-                return RedirectToAction("AgregarImagen");
+                return RedirectToAction("AgregarEjemplo", new { id = id });
             }
             //ViewBag.IDAutor = new SelectList(db.AspNetUsers, "Id", "Email", definicione.IDAutor);
             return View();
         }
 
 
-        public ActionResult AgregarImagen(int? id)
+        public ActionResult AgregarImagen(int id)
         {
-            Imagene ejemplo = new Imagene();
-            ViewBag.Temas = db.Temas.ToList();
+            Imagene imagen = new Imagene();
+
             ViewBag.IDAutor = new SelectList(db.AspNetUsers, "Id", "Email");
-            return View(id);
+            return View();
         }
         // POST: Definiciones/Create
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult AgregarImagen(Imagene imagen, int? id)
+        public ActionResult AgregarImagen(Imagene imagen, int id)
         {
             if (ModelState.IsValid)
             {
+                Definicione definicione = db.Definiciones.Find(id);
+                imagen.IDAutor = definicione.IDAutor;
+                db.insertarImagen(imagen.Titulo, DateTime.Now, imagen.IDAutor, imagen.Imagen, imagen.ImageMimeType, id);
+                return RedirectToAction("AgregarImagen",new { id = id });
+            }
+            //ViewBag.IDAutor = new SelectList(db.AspNetUsers, "Id", "Email", definicione.IDAutor);
+            return View();
+        }
 
-                return RedirectToAction("Index");
+
+
+        public ActionResult agregarTutorial(int id)
+        {
+            TutorialesYouTube Tutorial = new TutorialesYouTube();
+            ViewBag.Temas = db.Temas.ToList();
+            ViewBag.IDAutor = new SelectList(db.AspNetUsers, "Id", "Email");
+            return View();
+        }
+        // POST: Definiciones/Create
+        // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
+        // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult agregarTutorial(TutorialesYouTube tutorial, int id)
+        {
+            if (ModelState.IsValid)
+            {
+                Definicione definicione = db.Definiciones.Find(id);
+                db.insertarTutorial(tutorial.Titulo, tutorial.LinkYouTube, id);
+                return RedirectToAction("agregarTutorial");
             }
             //ViewBag.IDAutor = new SelectList(db.AspNetUsers, "Id", "Email", definicione.IDAutor);
             return View();

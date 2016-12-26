@@ -1,13 +1,7 @@
-﻿/*
- * Specific styles of signin component
- */
-/*
- * General styles
- */
+﻿
 body, html {
     height: 90%;
     background-repeat: no-repeat ;
-    /*background-image: linear-gradient(rgb(104, 145, 162), rgb(12, 97, 33));*/
 }
 
 .card-container.card {
@@ -16,7 +10,6 @@ body, html {
 }
 
 .btn {
-    
     font-weight: 700;
     height: 36px;
     -moz-user-select: none;
@@ -141,4 +134,11 @@ body, html {
 .forgot-password:active,
 .forgot-password:focus{
     color: rgb(12, 97, 33);
+}
+
+.btn-lg, .btn-group-lg > .btn {
+    padding: 10px 16px;
+    font-size: 18px;
+    line-height: 0.3333333;
+    border-radius: 6px;
 }

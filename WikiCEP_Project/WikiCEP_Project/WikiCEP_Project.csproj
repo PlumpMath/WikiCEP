@@ -505,7 +505,6 @@
     <Content Include="Views\Imagenes\Create.cshtml" />
     <Content Include="Views\Imagenes\Delete.cshtml" />
     <Content Include="Views\Imagenes\Details.cshtml" />
-    <Content Include="Views\Imagenes\Edit.cshtml" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>

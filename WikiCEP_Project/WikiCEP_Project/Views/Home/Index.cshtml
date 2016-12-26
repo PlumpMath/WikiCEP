@@ -14,28 +14,28 @@
 <div class="row">
     @foreach (var definicion in Model)
     {
-        <div class="col-md-4">
-            <h2>
-                <span><b>@Html.DisplayFor(modelItem => definicion.Titulo)</b></span>                
-            </h2>
-            <p>
+        <div class="col-sm-4">
+            <div class="panel panel-default">
+                <div class="panel-heading text-center">
+                    <h2 class="panel-title">
+                        @Html.DisplayFor(modelItem => definicion.Titulo)
+                    </h2>
+                </div>
                 @{  string texto = definicion.Texto.ToString();
-                    texto = definicion.Texto.ToString();
                 }
                 @if (definicion.Texto.Length < 100)
                 {
-                     
-                    <p>@texto</p>
+                    <div class="panel-body text-justify">@texto</div>
                 }
                 else
                 {
-                    <p>@texto.Substring(0, 100)...</p>
+                    <div class="panel-body text-justify">@texto.Substring(0, 100)...</div>
                 }
-            </p>
-            <p class="btn btn-default">@Html.ActionLink("Detalles", "../Definiciones/Details", new { id = definicion.IDDefinicion })</p>
+                <div class="panel-heading text-center"><h2 class="panel-title">@Html.ActionLink("Detalles", "../Definiciones/Details", new { id = definicion.IDDefinicion })</h2></div>
+            </div>
         </div>
 
-                    }
+    }
 </div>
 <br />
 <br />

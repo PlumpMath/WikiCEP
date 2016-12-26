@@ -32,17 +32,12 @@ namespace WikiCEP_Project.Models
 
     public class YouTubeValid : ValidationAttribute
     {
-
-
         public override bool IsValid(object value)
         {
 
             string strURL = (string)value;
-            bool blValido = strURL.Contains("youtube.com");
-            if (blValido == false)
-            { return false; }
-            else
-            { return true; }
+            bool blValido = strURL.Contains("youtube.com") && strURL.StartsWith("https://");
+			return blValido;
         }
     }
 }

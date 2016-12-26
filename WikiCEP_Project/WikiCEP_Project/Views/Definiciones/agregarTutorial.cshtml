@@ -5,6 +5,7 @@
 }
 
 <h2>@ViewBag.Title</h2>
+<link href="~/Content/EstiloLogin.css" rel="stylesheet" />
 
 @using (Html.BeginForm()) 
 {
@@ -35,7 +36,8 @@
                 <input type="submit" value="Crear" class="btn btn-success" onclick="ValidarLink()" />
             </div>
         </div>
-        <div><input type="button" class="btn btn-info" value="Skip" onclick="location.href='@Url.Action("Index","Home")'" />
+        <div>
+            @Html.ActionLink("SKIP", "Index")
         </div>
     </div>
 }

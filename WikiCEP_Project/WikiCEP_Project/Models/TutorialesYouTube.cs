@@ -22,6 +22,7 @@ namespace WikiCEP_Project.Models
         }
     
         public int IDTutorial { get; set; }
+        [Required]
         public string Titulo { get; set; }
         [YouTubeValid]
         public string LinkYouTube { get; set; }

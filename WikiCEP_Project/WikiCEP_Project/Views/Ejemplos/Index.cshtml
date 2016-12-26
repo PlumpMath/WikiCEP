@@ -4,12 +4,15 @@
     ViewBag.Title = "Ejemplos de Codigos";
 }
 
-<div>
-    <h2>
-        <span class="label label-primary">@ViewBag.Title</span>
+<div class="container">
+    <h2 class="row">
+        <div class="col-md-3"></div>
+        <span class="col-md-6" style="text-align:center">@ViewBag.Title</span>
+        <div class="col-md-3"></div>
     </h2>
 </div>
 <hr />
+        
 <p>
     @Html.ActionLink("Agregar Nuevo Ejemplo", "Create")
 </p>

@@ -4,6 +4,7 @@
     ViewBag.Title = "agregarTutorial";
 }
 
+<link href="~/Content/EstiloLogin.css" rel="stylesheet" />
 <h2>agregarTutorial</h2>
 
 @using (Html.BeginForm()) 
@@ -35,7 +36,8 @@
                 <input type="submit" value="Crear" class="btn btn-success" onclick="ValidarLink()" />
             </div>
         </div>
-        <div><input type="button" class="btn btn-info" value="Skip" onclick="location.href='@Url.Action("Index","Home")'" />
+        <div>
+            @Html.ActionLink("SKIP", "Index")
         </div>
     </div>
 }

@@ -4,6 +4,8 @@
 @{
     ViewBag.Title = "Agregar Imagen";
 }
+<link href="~/Content/EstiloLogin.css" rel="stylesheet" />
+
 <h2>Agregar Nueva Imagen</h2>
 <style>
     .editor-field {
@@ -47,6 +49,6 @@
         </div>
     </div>
     <div>
-        <input type="button" class="btn btn-info" value="Skip" onclick="location.href='@Url.Action("agregarImagen","Definiciones")'" />
+        @Html.ActionLink("SKIP", "agregarTutorial", new { pIdDefinicion = ViewBag.IdDefinicion })
     </div>
 }

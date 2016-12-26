@@ -4,6 +4,8 @@
     ViewBag.Title = "Agregar Ejemplo";
 }
 
+<link href="~/Content/EstiloLogin.css" rel="stylesheet" />
+
 <h2>Agregar Ejemplo</h2>
 
 @using (Html.BeginForm()) 
@@ -37,8 +39,7 @@
         </div>
     </div>
     <div>
-        <input type="button" class="btn btn-info" value="Skip" onclick="location.href='@Url.Action("agregarImagen","Definiciones")'" />
-     
+        @Html.ActionLink("SKIP", "AgregarImagen", new { pIdDefinicion = @ViewBag.IdDefinicion })
     </div>
 }
 

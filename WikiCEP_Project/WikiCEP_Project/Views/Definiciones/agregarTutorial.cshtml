@@ -1,16 +1,18 @@
-﻿@model WikiCEP_Project.Models.Ejemplo
+﻿@model WikiCEP_Project.Models.TutorialesYouTube
 
 @{
-    ViewBag.Title = "Agregar Ejemplo";
+    ViewBag.Title = "agregarTutorial";
 }
 
-<h2>Agregar Ejemplo</h2>
+<h2>agregarTutorial</h2>
 
 @using (Html.BeginForm()) 
 {
     @Html.AntiForgeryToken()
 
     <div class="form-horizontal">
+        <h4>Tutoriales</h4>
+        <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
             @Html.LabelFor(model => model.Titulo, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -21,28 +23,22 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Texto, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.LinkYouTube, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.TextAreaFor(model => model.Texto, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Texto, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.LinkYouTube, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.LinkYouTube, "", new { @class = "text-danger" })
             </div>
         </div>
-
-        <br />
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Crear" class="btn btn-success" />
+                <input type="submit" value="Crear" class="btn btn-success" onclick="ValidarLink()" />
             </div>
         </div>
-    </div>
-    <div>
-        <input type="button" class="btn btn-info" value="Skip" onclick="location.href='@Url.Action("agregarImagen","Definiciones")'" />
-     
+        <div><input type="button" class="btn btn-info" value="Skip" onclick="location.href='@Url.Action("Index","Home")'" />
+        </div>
     </div>
 }
-
-
 
 <div>
     @Html.ActionLink("Back to List", "Index")

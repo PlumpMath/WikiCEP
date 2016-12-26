@@ -16,11 +16,16 @@ namespace WikiCEP_Project.Controllers
         private WikiCEPDBEntities db = new WikiCEPDBEntities();
 
         // GET: Ejemplos
-        public ActionResult Index()
+        public ActionResult Index(string strBusqueda)
         {
-            var ejemplos = db.Ejemplos.Include(e => e.AspNetUser);
-            return View(ejemplos.ToList());
-        }
+			var ejemplos = from e in db.vEjemplos
+							   select e;
+			if (!String.IsNullOrEmpty(strBusqueda))
+			{
+				ejemplos = ejemplos.Where(e => e.Titulo.Contains(strBusqueda));
+			}
+			return View(ejemplos.ToList());
+		}
 
         // GET: Ejemplos/Details/5
         public ActionResult Details(int? id)

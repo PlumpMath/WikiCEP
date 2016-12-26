@@ -1,39 +1,67 @@
 ﻿@model IEnumerable<WikiCEP_Project.Models.TutorialesYouTube>
 
 @{
-    ViewBag.Title = "Tutoriales";
+    ViewBag.Title = "Tutoriales de YouTube";
+    WebGrid grid = new WebGrid(Model, rowsPerPage: 8);
+    WikiCEP_Project.Models.TutorialesYouTube tutorial = new WikiCEP_Project.Models.TutorialesYouTube();
 }
 
-<h2>Tutoriales</h2>
-
+<h2>@ViewBag.Title</h2>
+<hr />
 <p>
     @Html.ActionLink("Crear Nuevo", "Create")
 </p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Titulo)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.LinkYouTube)
-        </th>
-        <th></th>
-    </tr>
+<br />
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Titulo)
-        </td>
-        <td>
-            <a href="https://@Html.DisplayFor(modelItem => item.LinkYouTube)" >@Html.DisplayFor(modelItem => item.LinkYouTube)</a>
-        </td>
-        <td>
-            @Html.ActionLink("Editar", "Edit", new { id=item.IDTutorial }) |
-            @Html.ActionLink("Detalles", "Details", new { id=item.IDTutorial }) |
-            @Html.ActionLink("Borrar", "Delete", new { id=item.IDTutorial })
-        </td>
-    </tr>
+@using (Html.BeginForm())
+{
+    <p>
+        Buscar por Titulo: @Html.TextBox("strBusqueda")
+        <input type="submit" value="Buscar" class="btn btn-default" />
+    </p>
+}
+<hr />
+
+@grid.GetHtml(
+    fillEmptyRows: false,
+    tableStyle: "webgrid-table",
+    headerStyle: "webgrid-header",
+    footerStyle: "webgrid-footer",
+    alternatingRowStyle: "webgrid-alternating-row",
+    rowStyle: "webgrid-row-style",
+    mode: WebGridPagerModes.All,
+    firstText: "<< Primera",
+    previousText: "< Anterior",
+    nextText: "Siguiente >",
+    lastText: "Última >>",
+
+columns: new[]
+{
+    grid.Column("Titulo",header:"Titulo", format: (item) =>item.GetSelectLink(item.Titulo)),
+    grid.Column("",
+          header: "Acciones",
+          format:
+        @<text>
+            @Html.ActionLink("Editar",   "Edit",   new { id=item.IDTutorial } )
+            @Html.ActionLink("Eliminar", "Delete", new { id=item.IDTutorial } )
+        </text>
+    )
+
+ })
+
+@if (grid.HasSelection)
+{
+    tutorial = (WikiCEP_Project.Models.TutorialesYouTube)grid.Rows[grid.SelectedIndex].Value;
+    <br />
+    <div>
+        <b>@tutorial.Titulo: </b> @Html.ActionLink("Detalles", "../TutorialesYouTube/Details", new { id = tutorial.IDTutorial }) |
+                                  <a href="@Html.Raw(tutorial.LinkYouTube).ToString()">Ir al Link</a>
+    </div>
+    <br />
+
 }
 
-</table>
+<hr />
+<div>
+    @Html.ActionLink("Volver al Inicio", "Index", "Home")
+</div>

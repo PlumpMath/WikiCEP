@@ -276,6 +276,9 @@
     <Compile Include="Models\vDefinicionesReciente.cs">
       <DependentUpon>ModeloWikiCEPDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\vEjemplo.cs">
+      <DependentUpon>ModeloWikiCEPDB.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>

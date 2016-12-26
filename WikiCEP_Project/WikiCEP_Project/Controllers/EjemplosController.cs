@@ -2,10 +2,13 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.UI;
+using System.Web.UI.WebControls;
 using WikiCEP_Project.Models;
 
 namespace WikiCEP_Project.Controllers
@@ -147,5 +150,24 @@ namespace WikiCEP_Project.Controllers
             }
             base.Dispose(disposing);
         }
-    }
+
+		public ActionResult ExportExcel()
+		{
+			GridView gv = new GridView();
+			gv.DataSource = db.Ejemplos.ToList();
+			gv.DataBind();
+			Response.ClearContent();
+			Response.Buffer = true;
+			Response.AddHeader("content-disposition", "attachment; filename=Ejemplos.xls");
+			Response.ContentType = "application/ms-excel";
+			Response.Charset = "";
+			StringWriter sw = new StringWriter();
+			HtmlTextWriter htw = new HtmlTextWriter(sw);
+			gv.RenderControl(htw);
+			Response.Output.Write(sw.ToString());
+			Response.Flush();
+			Response.End();
+			return RedirectToAction("Index");
+		}
+	}
 }

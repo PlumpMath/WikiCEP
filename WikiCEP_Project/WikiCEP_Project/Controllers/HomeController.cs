@@ -14,8 +14,9 @@ namespace WikiCEP_Project.Controllers
 
 		public ActionResult Index()
 		{
-			var definicionesRecientes = db.vDefinicionesRecientes;
-			return View(definicionesRecientes.ToList());
+			List<vDefinicionesReciente> definicionesRecientes = db.vDefinicionesRecientes.ToList();
+			CortarTextos(definicionesRecientes);
+			return View(definicionesRecientes);
 		}
 
 		public ActionResult About()
@@ -30,6 +31,15 @@ namespace WikiCEP_Project.Controllers
 			ViewBag.Message = "Contacto";
 
 			return View();
+		}
+
+		private void CortarTextos(List<vDefinicionesReciente> definiciones)
+		{
+			foreach (vDefinicionesReciente definicion in definiciones)
+			{
+				if (definicion.Texto.Length > 100)
+					definicion.Texto = definicion.Texto.Substring(0, 100) + "...";
+			}
 		}
 	}
 }

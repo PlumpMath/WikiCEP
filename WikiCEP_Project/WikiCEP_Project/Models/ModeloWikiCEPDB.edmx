@@ -167,7 +167,18 @@ advertencia 6002: La tabla o vista 'WikiCEPDB.dbo.vDefinicionesRecientes' no tie
           <Property Name="Texto" Type="text" />
           <Property Name="FechaCreacion" Type="datetime" />
         </EntityType>
-        <Association Name="FK__Definicio__IDAut__31EC6D26">
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'WikiCEPDB.dbo.vEjemplos' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+        <EntityType Name="vEjemplos">
+          <Key>
+            <PropertyRef Name="IDEjemplo" />
+          </Key>
+          <Property Name="IDEjemplo" Type="int" Nullable="false" />
+          <Property Name="Titulo" Type="varchar" MaxLength="100" />
+          <Property Name="FechaCreacion" Type="datetime" />
+          <Property Name="Autor" Type="nvarchar" MaxLength="256" />
+        </EntityType>
+        <Association Name="FK__Definicio__IDAut__49C3F6B7">
           <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="0..1" />
           <End Role="Definiciones" Type="Self.Definiciones" Multiplicity="*" />
           <ReferentialConstraint>
@@ -179,7 +190,7 @@ advertencia 6002: La tabla o vista 'WikiCEPDB.dbo.vDefinicionesRecientes' no tie
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Ejemplo_D__IDDef__32E0915F">
+        <Association Name="FK__Ejemplo_D__IDDef__5CD6CB2B">
           <End Role="Definiciones" Type="Self.Definiciones" Multiplicity="1" />
           <End Role="Ejemplo_Definicion" Type="Self.Ejemplo_Definicion" Multiplicity="*" />
           <ReferentialConstraint>
@@ -191,7 +202,7 @@ advertencia 6002: La tabla o vista 'WikiCEPDB.dbo.vDefinicionesRecientes' no tie
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Ejemplo_D__IDEje__33D4B598">
+        <Association Name="FK__Ejemplo_D__IDEje__5BE2A6F2">
           <End Role="Ejemplos" Type="Self.Ejemplos" Multiplicity="1" />
           <End Role="Ejemplo_Definicion" Type="Self.Ejemplo_Definicion" Multiplicity="*" />
           <ReferentialConstraint>
@@ -203,7 +214,7 @@ advertencia 6002: La tabla o vista 'WikiCEPDB.dbo.vDefinicionesRecientes' no tie
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Ejemplos__IDAuto__34C8D9D1">
+        <Association Name="FK__Ejemplos__IDAuto__59063A47">
           <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="0..1" />
           <End Role="Ejemplos" Type="Self.Ejemplos" Multiplicity="*" />
           <ReferentialConstraint>
@@ -215,7 +226,7 @@ advertencia 6002: La tabla o vista 'WikiCEPDB.dbo.vDefinicionesRecientes' no tie
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Imagen_De__IDDef__35BCFE0A">
+        <Association Name="FK__Imagen_De__IDDef__6383C8BA">
           <End Role="Definiciones" Type="Self.Definiciones" Multiplicity="1" />
           <End Role="Imagen_Definicion" Type="Self.Imagen_Definicion" Multiplicity="*" />
           <ReferentialConstraint>
@@ -227,7 +238,7 @@ advertencia 6002: La tabla o vista 'WikiCEPDB.dbo.vDefinicionesRecientes' no tie
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Imagen_De__IDIma__36B12243">
+        <Association Name="FK__Imagen_De__IDIma__628FA481">
           <End Role="Imagenes" Type="Self.Imagenes" Multiplicity="1" />
           <End Role="Imagen_Definicion" Type="Self.Imagen_Definicion" Multiplicity="*" />
           <ReferentialConstraint>
@@ -239,7 +250,7 @@ advertencia 6002: La tabla o vista 'WikiCEPDB.dbo.vDefinicionesRecientes' no tie
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Imagenes__IDAuto__37A5467C">
+        <Association Name="FK__Imagenes__IDAuto__5FB337D6">
           <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="0..1" />
           <End Role="Imagenes" Type="Self.Imagenes" Multiplicity="*" />
           <ReferentialConstraint>
@@ -251,7 +262,7 @@ advertencia 6002: La tabla o vista 'WikiCEPDB.dbo.vDefinicionesRecientes' no tie
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Tema_Defi__IDDef__38996AB5">
+        <Association Name="FK__Tema_Defi__IDDef__5070F446">
           <End Role="Definiciones" Type="Self.Definiciones" Multiplicity="1" />
           <End Role="Tema_Definicion" Type="Self.Tema_Definicion" Multiplicity="*" />
           <ReferentialConstraint>
@@ -263,7 +274,7 @@ advertencia 6002: La tabla o vista 'WikiCEPDB.dbo.vDefinicionesRecientes' no tie
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Tema_Defi__IDTem__398D8EEE">
+        <Association Name="FK__Tema_Defi__IDTem__4F7CD00D">
           <End Role="Temas" Type="Self.Temas" Multiplicity="1" />
           <End Role="Tema_Definicion" Type="Self.Tema_Definicion" Multiplicity="*" />
           <ReferentialConstraint>
@@ -275,7 +286,7 @@ advertencia 6002: La tabla o vista 'WikiCEPDB.dbo.vDefinicionesRecientes' no tie
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Tutorial___IDDef__3A81B327">
+        <Association Name="FK__Tutorial___IDDef__5629CD9C">
           <End Role="Definiciones" Type="Self.Definiciones" Multiplicity="1" />
           <End Role="Tutorial_Definicion" Type="Self.Tutorial_Definicion" Multiplicity="*" />
           <ReferentialConstraint>
@@ -287,7 +298,7 @@ advertencia 6002: La tabla o vista 'WikiCEPDB.dbo.vDefinicionesRecientes' no tie
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Tutorial___IDTut__3B75D760">
+        <Association Name="FK__Tutorial___IDTut__5535A963">
           <End Role="TutorialesYouTube" Type="Self.TutorialesYouTube" Multiplicity="1" />
           <End Role="Tutorial_Definicion" Type="Self.Tutorial_Definicion" Multiplicity="*" />
           <ReferentialConstraint>
@@ -407,47 +418,55 @@ advertencia 6002: La tabla o vista 'WikiCEPDB.dbo.vDefinicionesRecientes' no tie
     [vDefinicionesRecientes].[FechaCreacion] AS [FechaCreacion]
     FROM [dbo].[vDefinicionesRecientes] AS [vDefinicionesRecientes]</DefiningQuery>
           </EntitySet>
-          <AssociationSet Name="FK__Definicio__IDAut__31EC6D26" Association="Self.FK__Definicio__IDAut__31EC6D26">
+          <EntitySet Name="vEjemplos" EntityType="Self.vEjemplos" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [vEjemplos].[IDEjemplo] AS [IDEjemplo], 
+    [vEjemplos].[Titulo] AS [Titulo], 
+    [vEjemplos].[FechaCreacion] AS [FechaCreacion], 
+    [vEjemplos].[Autor] AS [Autor]
+    FROM [dbo].[vEjemplos] AS [vEjemplos]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK__Definicio__IDAut__49C3F6B7" Association="Self.FK__Definicio__IDAut__49C3F6B7">
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
             <End Role="Definiciones" EntitySet="Definiciones" />
           </AssociationSet>
-          <AssociationSet Name="FK__Ejemplo_D__IDDef__32E0915F" Association="Self.FK__Ejemplo_D__IDDef__32E0915F">
+          <AssociationSet Name="FK__Ejemplo_D__IDDef__5CD6CB2B" Association="Self.FK__Ejemplo_D__IDDef__5CD6CB2B">
             <End Role="Definiciones" EntitySet="Definiciones" />
             <End Role="Ejemplo_Definicion" EntitySet="Ejemplo_Definicion" />
           </AssociationSet>
-          <AssociationSet Name="FK__Ejemplo_D__IDEje__33D4B598" Association="Self.FK__Ejemplo_D__IDEje__33D4B598">
+          <AssociationSet Name="FK__Ejemplo_D__IDEje__5BE2A6F2" Association="Self.FK__Ejemplo_D__IDEje__5BE2A6F2">
             <End Role="Ejemplos" EntitySet="Ejemplos" />
             <End Role="Ejemplo_Definicion" EntitySet="Ejemplo_Definicion" />
           </AssociationSet>
-          <AssociationSet Name="FK__Ejemplos__IDAuto__34C8D9D1" Association="Self.FK__Ejemplos__IDAuto__34C8D9D1">
+          <AssociationSet Name="FK__Ejemplos__IDAuto__59063A47" Association="Self.FK__Ejemplos__IDAuto__59063A47">
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
             <End Role="Ejemplos" EntitySet="Ejemplos" />
           </AssociationSet>
-          <AssociationSet Name="FK__Imagen_De__IDDef__35BCFE0A" Association="Self.FK__Imagen_De__IDDef__35BCFE0A">
+          <AssociationSet Name="FK__Imagen_De__IDDef__6383C8BA" Association="Self.FK__Imagen_De__IDDef__6383C8BA">
             <End Role="Definiciones" EntitySet="Definiciones" />
             <End Role="Imagen_Definicion" EntitySet="Imagen_Definicion" />
           </AssociationSet>
-          <AssociationSet Name="FK__Imagen_De__IDIma__36B12243" Association="Self.FK__Imagen_De__IDIma__36B12243">
+          <AssociationSet Name="FK__Imagen_De__IDIma__628FA481" Association="Self.FK__Imagen_De__IDIma__628FA481">
             <End Role="Imagenes" EntitySet="Imagenes" />
             <End Role="Imagen_Definicion" EntitySet="Imagen_Definicion" />
           </AssociationSet>
-          <AssociationSet Name="FK__Imagenes__IDAuto__37A5467C" Association="Self.FK__Imagenes__IDAuto__37A5467C">
+          <AssociationSet Name="FK__Imagenes__IDAuto__5FB337D6" Association="Self.FK__Imagenes__IDAuto__5FB337D6">
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
             <End Role="Imagenes" EntitySet="Imagenes" />
           </AssociationSet>
-          <AssociationSet Name="FK__Tema_Defi__IDDef__38996AB5" Association="Self.FK__Tema_Defi__IDDef__38996AB5">
+          <AssociationSet Name="FK__Tema_Defi__IDDef__5070F446" Association="Self.FK__Tema_Defi__IDDef__5070F446">
             <End Role="Definiciones" EntitySet="Definiciones" />
             <End Role="Tema_Definicion" EntitySet="Tema_Definicion" />
           </AssociationSet>
-          <AssociationSet Name="FK__Tema_Defi__IDTem__398D8EEE" Association="Self.FK__Tema_Defi__IDTem__398D8EEE">
+          <AssociationSet Name="FK__Tema_Defi__IDTem__4F7CD00D" Association="Self.FK__Tema_Defi__IDTem__4F7CD00D">
             <End Role="Temas" EntitySet="Temas" />
             <End Role="Tema_Definicion" EntitySet="Tema_Definicion" />
           </AssociationSet>
-          <AssociationSet Name="FK__Tutorial___IDDef__3A81B327" Association="Self.FK__Tutorial___IDDef__3A81B327">
+          <AssociationSet Name="FK__Tutorial___IDDef__5629CD9C" Association="Self.FK__Tutorial___IDDef__5629CD9C">
             <End Role="Definiciones" EntitySet="Definiciones" />
             <End Role="Tutorial_Definicion" EntitySet="Tutorial_Definicion" />
           </AssociationSet>
-          <AssociationSet Name="FK__Tutorial___IDTut__3B75D760" Association="Self.FK__Tutorial___IDTut__3B75D760">
+          <AssociationSet Name="FK__Tutorial___IDTut__5535A963" Association="Self.FK__Tutorial___IDTut__5535A963">
             <End Role="TutorialesYouTube" EntitySet="TutorialesYouTube" />
             <End Role="Tutorial_Definicion" EntitySet="Tutorial_Definicion" />
           </AssociationSet>
@@ -719,6 +738,7 @@ advertencia 6002: La tabla o vista 'WikiCEPDB.dbo.vDefinicionesRecientes' no tie
             <Parameter Name="LinkYouTube" Mode="In" Type="String" />
             <Parameter Name="IDDefinicion" Mode="In" Type="Int32" />
           </FunctionImport>
+          <EntitySet Name="vEjemplos" EntityType="WikiCEPDBModel.vEjemplo" />
         </EntityContainer>
         <EntityType Name="vDefinicione">
           <Key>
@@ -767,6 +787,15 @@ advertencia 6002: La tabla o vista 'WikiCEPDB.dbo.vDefinicionesRecientes' no tie
           <End Type="WikiCEPDBModel.Definicione" Role="Definicione" Multiplicity="*" />
           <End Type="WikiCEPDBModel.Imagene" Role="Imagene" Multiplicity="*" />
         </Association>
+        <EntityType Name="vEjemplo">
+          <Key>
+            <PropertyRef Name="IDEjemplo" />
+          </Key>
+          <Property Name="IDEjemplo" Type="Int32" Nullable="false" />
+          <Property Name="Titulo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="FechaCreacion" Type="DateTime" Precision="3" />
+          <Property Name="Autor" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -942,6 +971,16 @@ advertencia 6002: La tabla o vista 'WikiCEPDB.dbo.vDefinicionesRecientes' no tie
           <FunctionImportMapping FunctionImportName="insertarEjemplo" FunctionName="WikiCEPDBModel.Store.insertarEjemplo" />
           <FunctionImportMapping FunctionImportName="insertarImagen" FunctionName="WikiCEPDBModel.Store.insertarImagen" />
           <FunctionImportMapping FunctionImportName="insertarTutorial" FunctionName="WikiCEPDBModel.Store.insertarTutorial" />
+          <EntitySetMapping Name="vEjemplos">
+            <EntityTypeMapping TypeName="WikiCEPDBModel.vEjemplo">
+              <MappingFragment StoreEntitySet="vEjemplos">
+                <ScalarProperty Name="Autor" ColumnName="Autor" />
+                <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
+                <ScalarProperty Name="Titulo" ColumnName="Titulo" />
+                <ScalarProperty Name="IDEjemplo" ColumnName="IDEjemplo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

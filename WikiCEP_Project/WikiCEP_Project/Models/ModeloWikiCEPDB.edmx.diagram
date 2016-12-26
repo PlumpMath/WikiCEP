@@ -27,6 +27,7 @@
         <EntityTypeShape EntityType="WikiCEPDBModel.Imagene" Width="1.5" PointX="10.5" PointY="9" />
         <AssociationConnector Association="WikiCEPDBModel.FK__Imagenes__IDAuto__37A5467C" />
         <AssociationConnector Association="WikiCEPDBModel.Imagen_Definicion" />
+        <EntityTypeShape EntityType="WikiCEPDBModel.vEjemplo" Width="1.5" PointX="5.375" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

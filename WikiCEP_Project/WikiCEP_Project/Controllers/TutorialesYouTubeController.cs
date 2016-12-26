@@ -15,10 +15,16 @@ namespace WikiCEP_Project.Controllers
         private WikiCEPDBEntities db = new WikiCEPDBEntities();
 
         // GET: TutorialesYouTube
-        public ActionResult Index()
+        public ActionResult Index(string strBusqueda)
         {
-            return View(db.TutorialesYouTubes.ToList());
-        }
+			var tutoriales = from t in db.TutorialesYouTubes
+							   select t;
+			if (!String.IsNullOrEmpty(strBusqueda))
+			{
+				tutoriales = tutoriales.Where(t => t.Titulo.Contains(strBusqueda));
+			}
+			return View(tutoriales.ToList());
+		}
 
         // GET: TutorialesYouTube/Details/5
         public ActionResult Details(int? id)

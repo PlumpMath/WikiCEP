@@ -52,6 +52,19 @@
                 @Html.ValidationMessageFor(model => model.Texto, "", new { @class = "text-danger" })
             </div>
         </div>
+
+        <div class="form-group">
+            <p>Autores </p>
+            <select multiple="Multiple" style="width:100%" id="lista" name="lista">
+                @foreach (var a in (List<WikiCEP_Project.Models.Tema>)ViewBag.Autores)
+                {
+                    var sel = (Model.Temas.Where(la => la.IDTema == a.IDTema).Count() > 0) ? "selected" : "";
+                    <option value=@a.IDTema @sel>@a.Descripcion</option>
+                }
+            </select>
+
+        </div>
+
         <hr />
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">

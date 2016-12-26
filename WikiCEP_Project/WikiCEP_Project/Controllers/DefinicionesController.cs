@@ -45,15 +45,8 @@ namespace WikiCEP_Project.Controllers
         // GET: Definiciones/Create
         public ActionResult Create()
         {
-            var TemaLst = new List<string>();
-
-            var TemaQuery = from d in db.Temas
-                            orderby d.Descripcion
-                            select d.Descripcion;
-            TemaLst.AddRange(TemaQuery.Distinct());
-         
-            ViewBag.TemasList = new SelectList(TemaLst);
-            ViewBag.Temas = db.Temas.ToList();
+            List<Tema> lista = db.Temas.ToList();
+            ViewBag.Temas = lista;
             ViewBag.IDAutor = new SelectList(db.AspNetUsers, "Id", "Email");
             return View();
         }
@@ -62,10 +55,16 @@ namespace WikiCEP_Project.Controllers
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(Definicione definicione)
+        public ActionResult Create(Definicione definicione, List<int> lista)
         {
             if (ModelState.IsValid)
             {
+                 foreach (var item in lista)
+                {
+                    Tema tem = db.Temas.Find(item);
+                    definicione.Temas.Add(tem);
+                    
+                }
 				definicione.FechaCreacion = DateTime.Now;
 				definicione.IDAutor = (from a in db.AspNetUsers
 									   where a.Email == User.Identity.Name
@@ -171,6 +170,8 @@ namespace WikiCEP_Project.Controllers
             {
                 return HttpNotFound();
             }
+            List<Tema> lista = db.Temas.ToList();
+            ViewBag.Autores = lista;
             ViewBag.IDAutor = new SelectList(db.AspNetUsers, "Id", "Email", definicione.IDAutor);
             return View(definicione);
         }
@@ -179,12 +180,20 @@ namespace WikiCEP_Project.Controllers
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(Definicione definicione)
+        public ActionResult Edit(Definicione definicione, List<int> lista)
         {
             if (ModelState.IsValid)
             {
                 definicione.FechaCreacion = DateTime.Now;
                 db.Entry(definicione).State = EntityState.Modified;
+                db.SaveChanges();
+                Definicione def = db.Definiciones.Include(a => a.Temas).ToList().Find(l => l.IDDefinicion == definicione.IDDefinicion);
+                def.Temas.Clear();
+                foreach (var item in lista)
+                {
+                    Tema tem = db.Temas.Find(item);
+                    definicione.Temas.Add(tem);
+                }
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }

@@ -47,6 +47,10 @@ namespace WikiCEP_Project.Controllers
         public ActionResult Create()
         {
             ViewBag.IDAutor = new SelectList(db.AspNetUsers, "Id", "Email");
+            List<Tema> lista = db.Temas.ToList();
+            ViewBag.Autores = lista;
+
+
             return View();
         }
 

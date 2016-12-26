@@ -66,6 +66,7 @@ namespace WikiCEP_Project.Controllers
             ViewBag.IDAutor = new SelectList(db.AspNetUsers, "Id", "Email", ejemplo.IDAutor);
             return View(ejemplo);
         }
+
         [Authorize]
         // GET: Ejemplos/Edit/5
         public ActionResult Edit(int? id)
@@ -121,8 +122,9 @@ namespace WikiCEP_Project.Controllers
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
-        {
+        {  
             Ejemplo ejemplo = db.Ejemplos.Find(id);
+ 
             db.Ejemplos.Remove(ejemplo);
             db.SaveChanges();
             return RedirectToAction("Index");

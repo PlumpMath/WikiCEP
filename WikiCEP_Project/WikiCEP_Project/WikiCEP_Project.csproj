@@ -287,6 +287,7 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\EstiloChat.css" />
     <Content Include="Content\EstiloGrid.css" />
     <Content Include="Content\jquery.jqGrid\ellipsis-xbl.xml" />
     <Content Include="Content\jquery.jqGrid\ui.jqgrid.css" />
@@ -392,6 +393,7 @@
       <DependentUpon>ModeloWikiCEPDB.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-3.1.1.intellisense.js" />
+    <Content Include="Scripts\chat.js" />
     <Content Include="Scripts\definiciones.js" />
     <Content Include="Scripts\i18n\grid.locale-ar.js" />
     <Content Include="Scripts\i18n\grid.locale-bg.js" />

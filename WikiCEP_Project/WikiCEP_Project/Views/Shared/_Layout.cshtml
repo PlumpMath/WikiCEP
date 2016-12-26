@@ -41,9 +41,13 @@
         .navbar-inverse .navbar-nav > li > a {
             color: #AED520;
         }
+        .navbar-inverse .navbar-nav > li > a:focus {
+            color: #FF6C0B;
+        }
         .navbar-inverse .navbar-nav > li > a:hover {
             color: #11C1B8;
         }
+
         body {
             padding-top: 0px;
             padding-bottom: 20px;
@@ -53,9 +57,9 @@
 <body>
 
     <div class="container-fluid">
-        <div class="row" style="background-color:#cbcbcb" >
+        <div class="row" style="background-color:#ffffff" >
             <div class="col-md-3" style="margin-top:7px">
-                <h2 class="logo wiki com-md-3" href="home/index">Wiki<span class="logo c">C</span><span class="logo e">E</span><span class="logo p">P</span></h2>
+                <a href=@Url.Action("Index","Home")><h2 class="logo wiki com-md-3" href="home/index">Wiki<span class="logo c">C</span><span class="logo e">E</span><span class="logo p">P</span></h2></a>
             </div>
             <div class="col-md-6" style="text-align:center">
                 @Html.Partial("_LoginPartial")

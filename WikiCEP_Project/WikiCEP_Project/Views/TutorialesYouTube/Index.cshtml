@@ -55,7 +55,7 @@ columns: new[]
     <br />
     <div>
         <b>@tutorial.Titulo: </b> @Html.ActionLink("Detalles", "../TutorialesYouTube/Details", new { id = tutorial.IDTutorial }) |
-                                  <a href="@Html.Raw(tutorial.LinkYouTube).ToString()">Ir al Link</a>
+                                  <a href="@tutorial.LinkYouTube">Ir al Link</a>
     </div>
     <br />
 

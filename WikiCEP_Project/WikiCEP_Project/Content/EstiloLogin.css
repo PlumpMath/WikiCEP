@@ -22,7 +22,7 @@ body, html {
  * Card component
  */
 .card {
-    background-color: #F7F7F7;
+    background-color: rgba(184, 251, 193, 0.16);
     /* just in case there no content*/
     padding: 20px 25px 30px;
     margin: 0 auto 25px;
@@ -103,7 +103,7 @@ body, html {
 
 .btn.btn-signin {
     /*background-color: #4d90fe; */
-    background-color: rgb(104, 145, 162);
+    background-color: #11C1B8;
     /* background-color: linear-gradient(rgb(104, 145, 162), rgb(12, 97, 33));*/
     padding: 0px;
     font-weight: 700;
@@ -118,6 +118,12 @@ body, html {
     -webkit-transition: all 0.218s;
     transition: all 0.218s;
     width: 80%
+}
+
+.btn-primary {
+    color: #fff;
+    background-color: #AED520;
+    border-color: #2e6da4;
 }
 
 .btn.btn-signin:hover,

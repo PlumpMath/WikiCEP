@@ -76,39 +76,6 @@ namespace WikiCEP_Project.Controllers
 			return View(imagene);
 		}
 
-        // GET: Imagenes/Edit/5
-        public ActionResult Edit(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Imagene imagene = db.Imagenes.Find(id);
-            if (imagene == null)
-            {
-                return HttpNotFound();
-            }
-            ViewBag.IDAutor = new SelectList(db.AspNetUsers, "Id", "Email", imagene.IDAutor);
-            return View(imagene);
-        }
-
-        // POST: Imagenes/Edit/5
-        // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
-        // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "IDImagen,Titulo,FechaCreacion,IDAutor,Imagen")] Imagene imagene)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Entry(imagene).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            ViewBag.IDAutor = new SelectList(db.AspNetUsers, "Id", "Email", imagene.IDAutor);
-            return View(imagene);
-        }
-
         // GET: Imagenes/Delete/5
         public ActionResult Delete(int? id)
         {

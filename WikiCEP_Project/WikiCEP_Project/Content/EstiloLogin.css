@@ -22,7 +22,7 @@ body, html {
  * Card component
  */
 .card {
-    background-color: rgba(184, 251, 193, 0.16);
+    background-color: #F7F7F7;
     /* just in case there no content*/
     padding: 20px 25px 30px;
     margin: 0 auto 25px;
@@ -44,6 +44,7 @@ body, html {
     -moz-border-radius: 50%;
     -webkit-border-radius: 50%;
     border-radius: 50%;
+    
 }
 
 /*
@@ -122,14 +123,21 @@ body, html {
 
 .btn-primary {
     color: #fff;
-    background-color: #AED520;
+    background-color: #6dbf79;
     border-color: #2e6da4;
 }
+
+.btn-primary:hover {
+    color: #fff;
+    background-color: #50b760;
+    border-color: #2e6da4;
+}
+
 
 .btn.btn-signin:hover,
 .btn.btn-signin:active,
 .btn.btn-signin:focus {
-    background-color: rgb(12, 97, 33);
+    background-color: #50b760;
 }
 
 .forgot-password {

@@ -510,6 +510,7 @@
     <Content Include="Views\Shared\_CargarImagenes.cshtml" />
     <Content Include="Views\Definiciones\Create.cshtml" />
     <Content Include="Views\Chat\Index.cshtml" />
+    <Content Include="Views\Definiciones\AgregarEjemplo.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

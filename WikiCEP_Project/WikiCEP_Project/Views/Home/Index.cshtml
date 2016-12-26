@@ -1,15 +1,15 @@
-﻿@model IEnumerable<WikiCEP_Project.Models.vDefinicionesReciente>
+﻿@model List<WikiCEP_Project.Models.vDefinicionesReciente>
 
 @{
-    ViewBag.Title = "Home Page";
+    ViewBag.Title = "Inicio";
 }
 <br />
 <div class="jumbotron" style="background-image: url('/Img/Sofrecom.png');background-color:#F2F2F2;padding-bottom:40px; background-repeat: no-repeat; background-attachment:fixed; text-align:right;">
     <h1>Bienvenidos a WikiCEP</h1>
     <p class="lead"> Brindamos informacion de las tecnologias .NET y SQL server</p>
 </div>
-<hr />
 <br />
+<hr />
 <br />
 <div class="row">
     @foreach (var definicion in Model)
@@ -21,20 +21,16 @@
                         @Html.DisplayFor(modelItem => definicion.Titulo)
                     </h2>
                 </div>
-                @{  string texto = definicion.Texto.ToString();
-                }
-                @if (definicion.Texto.Length < 100)
-                {
-                    <div class="panel-body text-justify">@texto</div>
-                }
-                else
-                {
-                    <div class="panel-body text-justify">@texto.Substring(0, 100)...</div>
-                }
-                <div class="panel-heading text-center"><h2 class="panel-title">@Html.ActionLink("Detalles", "../Definiciones/Details", new { id = definicion.IDDefinicion })</h2></div>
+                <div class="panel-body text-justify" style="height: 6em;">
+                    @Html.DisplayFor(modelItem => definicion.Texto)
+                </div>
+                <div class="panel-heading text-center">
+                    <h2 class="panel-title">
+                        @Html.ActionLink("Detalles", "../Definiciones/Details", new { id = definicion.IDDefinicion })
+                    </h2>
+                </div>
             </div>
         </div>
-
     }
 </div>
 <br />

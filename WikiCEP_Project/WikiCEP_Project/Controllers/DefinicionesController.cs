@@ -102,7 +102,7 @@ namespace WikiCEP_Project.Controllers
         }
 
 
-        public ActionResult AgregarImagen(int id)
+        public ActionResult AgregarImagen(int? id)
         {
             Imagene imagen = new Imagene();
             ViewBag.Temas = db.Temas.ToList();

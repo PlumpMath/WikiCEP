@@ -511,6 +511,7 @@
     <Content Include="Views\Definiciones\Create.cshtml" />
     <Content Include="Views\Chat\Index.cshtml" />
     <Content Include="Views\Definiciones\AgregarEjemplo.cshtml" />
+    <Content Include="Views\Definiciones\AgregarImagen.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

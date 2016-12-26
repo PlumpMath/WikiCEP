@@ -90,11 +90,11 @@ namespace WikiCEP_Project.Controllers
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult AgregarEjemplo(Ejemplo ejemplo, int? id)
+        public ActionResult AgregarEjemplo(Ejemplo ejemplo, int id)
         {
             if (ModelState.IsValid)
             {
-
+                db.insertarEjemplo(ejemplo.Titulo, ejemplo.Texto, DateTime.Now, ejemplo.IDAutor, id);
                 return RedirectToAction("AgregarImagen");
             }
             //ViewBag.IDAutor = new SelectList(db.AspNetUsers, "Id", "Email", definicione.IDAutor);

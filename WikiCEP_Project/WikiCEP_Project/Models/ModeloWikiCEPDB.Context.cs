@@ -12,6 +12,8 @@ namespace WikiCEP_Project.Models
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
+    using System.Data.Entity.Core.Objects;
+    using System.Linq;
     
     public partial class WikiCEPDBEntities : DbContext
     {
@@ -37,5 +39,76 @@ namespace WikiCEP_Project.Models
         public virtual DbSet<vDefinicione> vDefiniciones { get; set; }
         public virtual DbSet<vDefinicionesReciente> vDefinicionesRecientes { get; set; }
         public virtual DbSet<Imagene> Imagenes { get; set; }
+    
+        public virtual int insertarEjemplo(string titulo, string texto, Nullable<System.DateTime> fechaCreacion, string iDAutor, Nullable<int> iDDefinicion)
+        {
+            var tituloParameter = titulo != null ?
+                new ObjectParameter("Titulo", titulo) :
+                new ObjectParameter("Titulo", typeof(string));
+    
+            var textoParameter = texto != null ?
+                new ObjectParameter("Texto", texto) :
+                new ObjectParameter("Texto", typeof(string));
+    
+            var fechaCreacionParameter = fechaCreacion.HasValue ?
+                new ObjectParameter("FechaCreacion", fechaCreacion) :
+                new ObjectParameter("FechaCreacion", typeof(System.DateTime));
+    
+            var iDAutorParameter = iDAutor != null ?
+                new ObjectParameter("IDAutor", iDAutor) :
+                new ObjectParameter("IDAutor", typeof(string));
+    
+            var iDDefinicionParameter = iDDefinicion.HasValue ?
+                new ObjectParameter("IDDefinicion", iDDefinicion) :
+                new ObjectParameter("IDDefinicion", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("insertarEjemplo", tituloParameter, textoParameter, fechaCreacionParameter, iDAutorParameter, iDDefinicionParameter);
+        }
+    
+        public virtual int insertarImagen(string titulo, Nullable<System.DateTime> fechaCreacion, string iDAutor, byte[] imagen, string imageMimeType, Nullable<int> iDDefinicion)
+        {
+            var tituloParameter = titulo != null ?
+                new ObjectParameter("Titulo", titulo) :
+                new ObjectParameter("Titulo", typeof(string));
+    
+            var fechaCreacionParameter = fechaCreacion.HasValue ?
+                new ObjectParameter("FechaCreacion", fechaCreacion) :
+                new ObjectParameter("FechaCreacion", typeof(System.DateTime));
+    
+            var iDAutorParameter = iDAutor != null ?
+                new ObjectParameter("IDAutor", iDAutor) :
+                new ObjectParameter("IDAutor", typeof(string));
+    
+            var imagenParameter = imagen != null ?
+                new ObjectParameter("Imagen", imagen) :
+                new ObjectParameter("Imagen", typeof(byte[]));
+    
+            var imageMimeTypeParameter = imageMimeType != null ?
+                new ObjectParameter("ImageMimeType", imageMimeType) :
+                new ObjectParameter("ImageMimeType", typeof(string));
+    
+            var iDDefinicionParameter = iDDefinicion.HasValue ?
+                new ObjectParameter("IDDefinicion", iDDefinicion) :
+                new ObjectParameter("IDDefinicion", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("insertarImagen", tituloParameter, fechaCreacionParameter, iDAutorParameter, imagenParameter, imageMimeTypeParameter, iDDefinicionParameter);
+        }
+    
+        public virtual int insertarTutorial(string titulo, string linkYouTube, Nullable<int> iDDefinicion)
+        {
+            var tituloParameter = titulo != null ?
+                new ObjectParameter("Titulo", titulo) :
+                new ObjectParameter("Titulo", typeof(string));
+    
+            var linkYouTubeParameter = linkYouTube != null ?
+                new ObjectParameter("LinkYouTube", linkYouTube) :
+                new ObjectParameter("LinkYouTube", typeof(string));
+    
+            var iDDefinicionParameter = iDDefinicion.HasValue ?
+                new ObjectParameter("IDDefinicion", iDDefinicion) :
+                new ObjectParameter("IDDefinicion", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("insertarTutorial", tituloParameter, linkYouTubeParameter, iDDefinicionParameter);
+        }
     }
 }

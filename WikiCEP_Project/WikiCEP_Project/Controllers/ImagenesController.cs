@@ -163,16 +163,16 @@ namespace WikiCEP_Project.Controllers
 			try
 			{
 				var imagenes = from i in db.Imagenes select i;
+				if (idDefinicion != null)
+				{
+					imagenes = imagenes.Where(i => i.Definiciones.Any(d => d.IDDefinicion == idDefinicion));
+				}
+				return PartialView("_CargarImagenes", imagenes.ToList());
 			}
 			catch(Exception)
 			{
 				return View("Error");
 			}
-			if (idDefinicion!=null)
-			{
-				imagenes = imagenes.Where(i => i.Definiciones.Any(d => d.IDDefinicion == idDefinicion));
-			}
-			return PartialView("_CargarImagenes", imagenes.ToList());
 		}
 
 		//This action gets the photo file for a given Photo ID

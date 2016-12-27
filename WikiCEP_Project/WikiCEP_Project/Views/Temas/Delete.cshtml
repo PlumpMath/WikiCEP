@@ -1,15 +1,21 @@
 ﻿@model WikiCEP_Project.Models.Tema
 
 @{
-    ViewBag.Title = "Delete";
+    ViewBag.Title = "Borrar Tema";
 }
 
-<h2>Delete</h2>
+<h2>
+    @ViewBag.Title
+</h2>
+<hr />
+<div class="alert alert-danger" role="alert">
+    <h2>
+        <strong>Atencion:</strong> Estas Seguro que Quieres Borrar?
+    </h2>
+</div>
+<hr />
 
-<h3>Are you sure you want to delete this?</h3>
 <div>
-    <h4>Tema</h4>
-    <hr />
     <dl class="dl-horizontal">
         <dt>
             @Html.DisplayNameFor(model => model.Descripcion)
@@ -24,9 +30,11 @@
     @using (Html.BeginForm()) {
         @Html.AntiForgeryToken()
 
+        <hr />
         <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
+            <input type="submit" value="Borrar Tema" class="btn btn-default" /> |
+            @Html.ActionLink("Vovler a la Lista", "Index") |
+            @Html.ActionLink("Ir al Inicio", "Index", "Home")
         </div>
     }
 </div>

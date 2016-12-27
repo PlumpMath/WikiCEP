@@ -181,6 +181,7 @@ namespace WikiCEP_Project.Controllers
 			}
 		}
 
+
 		//This action gets the photo file for a given Photo ID
 		public FileContentResult GetImage(int idImagen)
 		{

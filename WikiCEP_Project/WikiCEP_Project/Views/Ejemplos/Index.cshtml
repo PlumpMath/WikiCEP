@@ -12,8 +12,59 @@
 <p>
     @Html.ActionLink("Agregar Nuevo Ejemplo", "Create")
 </p>
+<<<<<<< HEAD
 <br />
 @Html.Action("CargarEjemplos", "Ejemplos")
+=======
+<hr />
+@using (Html.BeginForm())
+{
+    <p>
+        Buscar por Titulo: @Html.TextBox("strBusqueda")
+        <input type="submit" value="Buscar" class="btn btn-default" />
+    </p>
+}
+<hr />
+
+@grid.GetHtml(
+    fillEmptyRows: false,
+    tableStyle: "webgrid-table",
+    headerStyle: "webgrid-header",
+    footerStyle: "webgrid-footer",
+    alternatingRowStyle: "webgrid-alternating-row",
+    rowStyle: "webgrid-row-style",
+    mode: WebGridPagerModes.All,
+    firstText: "<< Primera",
+    previousText: "< Anterior",
+    nextText: "Siguiente >",
+    lastText: "Última >>",
+
+columns: new[]
+{
+    grid.Column("Titulo",header:"Titulo", format: (item) =>item.GetSelectLink(item.Titulo)),
+    grid.Column("FechaCreacion",header:"Fecha de Creacion",format: (item) => string.Format("{0:dd/MM/yyyy}",
+                                       item.FechaCreacion)),
+    grid.Column("Autor",header:"Autor"),
+
+    grid.Column("",
+          header: "Acciones",
+          format:
+        @<text>
+            @Html.ActionLink("Editar",   "Edit",   new { id=item.IDEjemplo } )
+            @Html.ActionLink("Eliminar", "Delete", new { id=item.IDEjemplo } )
+        </text>
+    )
+
+ })
+
+@if (grid.HasSelection)
+{
+    ejemplo = (WikiCEP_Project.Models.vEjemplo)grid.Rows[grid.SelectedIndex].Value;
+    <br />
+    <b>@ejemplo.Titulo: </b> @Html.ActionLink("Ver Mas", "../Ejemplos/Details", new { id = ejemplo.IDEjemplo }) <br />
+
+}
+>>>>>>> c7764185b20c3a39ae21083e10e668d24f99b276
 @Html.ActionLink("Exportar a Excel", "ExportExcel")
 <hr />
 <div>

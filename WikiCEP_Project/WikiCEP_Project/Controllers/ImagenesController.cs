@@ -82,6 +82,10 @@ namespace WikiCEP_Project.Controllers
                 if (ModelState.IsValid) {
                     Definicione definicione = db.Definiciones.Find(pIdDefinicion);
                     imagene.IDAutor = definicione.IDAutor;
+                    imagene.FechaCreacion = DateTime.Today;
+                    imagene.ImageMimeType = image.ContentType;
+                    imagene.Imagen = new byte[image.ContentLength];
+                    image.InputStream.Read(imagene.Imagen, 0, image.ContentLength);
                     db.insertarImagen(imagene.Titulo, DateTime.Now, imagene.IDAutor, imagene.Imagen, imagene.ImageMimeType, pIdDefinicion);
                     return RedirectToAction("Index");
                 }

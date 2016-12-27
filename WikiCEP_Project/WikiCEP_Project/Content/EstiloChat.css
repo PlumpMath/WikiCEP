@@ -41,7 +41,8 @@ body {
   position: relative;
 }
 .top_menu .buttons .button.close {
-  background-color: #f5886e;
+  background-color: #e50606;
+ 
 }
 .top_menu .buttons .button.minimize {
   background-color: #fdbf68;

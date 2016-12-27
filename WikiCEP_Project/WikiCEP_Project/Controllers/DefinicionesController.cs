@@ -19,36 +19,58 @@ namespace WikiCEP_Project.Controllers
 
         // GET: Definiciones
         public ActionResult Index(string strBusqueda) {
-            var definiciones = from d in db.vDefiniciones
-                               select d;
-            if (!String.IsNullOrEmpty(strBusqueda)) {
-                definiciones = definiciones.Where(s => s.Definicion.Contains(strBusqueda));
+            try
+            {
+                var definiciones = from d in db.vDefiniciones
+                                   select d;
+                if (!String.IsNullOrEmpty(strBusqueda))
+                {
+                    definiciones = definiciones.Where(s => s.Definicion.Contains(strBusqueda));
+                }
+                return View(definiciones.ToList());
             }
-            return View(definiciones.ToList());
+            catch (Exception)
+            {
+                return View("Error");
+            }
         }
 
         public ActionResult Details(int? id)
         {
-            if (id == null)
+            try
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                Definicione definicione = db.Definiciones.Find(id);
+                if (definicione == null)
+                {
+                    return HttpNotFound();
+                }
+                return View(definicione);
             }
-            Definicione definicione = db.Definiciones.Find(id);
-            if (definicione == null)
+            catch (Exception)
             {
-                return HttpNotFound();
+                return View("Error");
             }
-            return View(definicione);
         }
 
         [Authorize]
         // GET: Definiciones/Create
         public ActionResult Create()
         {
-            List<Tema> lista = db.Temas.ToList();
-            ViewBag.Temas = lista;
-            ViewBag.IDAutor = new SelectList(db.AspNetUsers, "Id", "Email");
-            return View();
+            try
+            {
+                List<Tema> lista = db.Temas.ToList();
+                ViewBag.Temas = lista;
+                ViewBag.IDAutor = new SelectList(db.AspNetUsers, "Id", "Email");
+                return View();
+            }
+            catch (Exception)
+            {
+                return View("Error");
+            }
         }
         // POST: Definiciones/Create
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
@@ -57,31 +79,37 @@ namespace WikiCEP_Project.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(Definicione definicione, List<int> lista)
         {
-            if (ModelState.IsValid)
+            try
             {
-                 foreach (var item in lista)
+                if (ModelState.IsValid)
                 {
-                    Tema tem = db.Temas.Find(item);
-                    definicione.Temas.Add(tem);
-                    
+                    foreach (var item in lista)
+                    {
+                        Tema tem = db.Temas.Find(item);
+                        definicione.Temas.Add(tem);
+
+                    }
+                    definicione.FechaCreacion = DateTime.Now;
+                    definicione.IDAutor = (from a in db.AspNetUsers
+                                           where a.Email == User.Identity.Name
+                                           select a.Id).Single();
+                    db.Definiciones.Add(definicione);
+                    db.SaveChanges();
+                    Session["IdDefinicion"] = definicione.IDDefinicion;
+                    return RedirectToAction("AgregarEjemplo");
                 }
-				definicione.FechaCreacion = DateTime.Now;
-				definicione.IDAutor = (from a in db.AspNetUsers
-									   where a.Email == User.Identity.Name
-									   select a.Id).Single();
-				db.Definiciones.Add(definicione);
-                db.SaveChanges();
-                return RedirectToAction("AgregarEjemplo", new { pIdDefinicion = definicione.IDDefinicion });
+
+                return View(definicione);
             }
-            return View(definicione);
+            catch (Exception)
+            {
+                return View("Error");
+            }
         }
 
-        public ActionResult AgregarEjemplo(int pIdDefinicion)
+        public ActionResult AgregarEjemplo()
          {
-           // Ejemplo ejemplo = new Ejemplo();  ???
             
-            //ViewBag.Temas = db.Temas.ToList();  ??????
-            ViewBag.IDDefinicion = pIdDefinicion;
             ViewBag.IDAutor = new SelectList(db.AspNetUsers, "Id", "Email");
             return View();
         }
@@ -91,25 +119,29 @@ namespace WikiCEP_Project.Controllers
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult AgregarEjemplo(Ejemplo ejemplo, int pIdDefinicion)
+        public ActionResult AgregarEjemplo(Ejemplo ejemplo)
         {
-            ViewBag.IdDefinicion = pIdDefinicion;
-            if (ModelState.IsValid)
+            try
             {
-                Definicione definicione = db.Definiciones.Find(pIdDefinicion);
-                ejemplo.IDAutor = definicione.IDAutor;
-                db.insertarEjemplo(ejemplo.Titulo, ejemplo.Texto, DateTime.Now, ejemplo.IDAutor, pIdDefinicion);
-                return RedirectToAction("AgregarEjemplo", new { pIdDefinicion = pIdDefinicion });
+                int pIdDefinicion = Convert.ToInt32(Session["IdDefinicion"]);
+                if (ModelState.IsValid)
+                {
+                    Definicione definicione = db.Definiciones.Find(pIdDefinicion);
+                    ejemplo.IDAutor = definicione.IDAutor;
+                    db.insertarEjemplo(ejemplo.Titulo, ejemplo.Texto, DateTime.Now, ejemplo.IDAutor, pIdDefinicion);
+                    return RedirectToAction("AgregarEjemplo");
+                }
+
+                return View();
             }
-            
-           
-            return View();
+            catch (Exception)
+            {
+                return View("Error");
+            }
         }
 
-        public ActionResult AgregarImagen(int pIdDefinicion)
+        public ActionResult AgregarImagen()
         {
-            Imagene imagen = new Imagene();
-            ViewBag.IdDefinicion = pIdDefinicion;
             ViewBag.IDAutor = new SelectList(db.AspNetUsers, "Id", "Email");
             return View();
         }
@@ -119,46 +151,65 @@ namespace WikiCEP_Project.Controllers
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult AgregarImagen(Imagene imagen, int pIdDefinicion)
+        public ActionResult AgregarImagen(Imagene imagen)
         {
-            ViewBag.IdDefinicion = pIdDefinicion;
-            if (ModelState.IsValid)
+            try
             {
-                Definicione definicione = db.Definiciones.Find(pIdDefinicion);
-                imagen.IDAutor = definicione.IDAutor;
-                db.insertarImagen(imagen.Titulo, DateTime.Now, imagen.IDAutor, imagen.Imagen, imagen.ImageMimeType, pIdDefinicion);
-                return RedirectToAction("AgregarImagen",new { pIdDefinicion = pIdDefinicion });
+                int pIdDefinicion = Convert.ToInt32(Session["IdDefinicion"]);
+                if (ModelState.IsValid)
+                {
+                    Definicione definicione = db.Definiciones.Find(pIdDefinicion);
+                    imagen.IDAutor = definicione.IDAutor;
+                    db.insertarImagen(imagen.Titulo, DateTime.Now, imagen.IDAutor, imagen.Imagen, imagen.ImageMimeType, pIdDefinicion);
+                    return RedirectToAction("AgregarImagen");
+                }
+
+                return View();
+            }
+            catch (Exception)
+            {
+                return View("Error");
             }
             
-            //ViewBag.IDAutor = new SelectList(db.AspNetUsers, "Id", "Email", definicione.IDAutor);
-            return View();
         }
 
 
-        public ActionResult agregarTutorial(int pIdDefinicion)
+        public ActionResult agregarTutorial()
         {
-            TutorialesYouTube Tutorial = new TutorialesYouTube();
-            ViewBag.Temas = db.Temas.ToList();
-            ViewBag.IDAutor = new SelectList(db.AspNetUsers, "Id", "Email");
-            return View();
+            try
+            {
+                ViewBag.Temas = db.Temas.ToList();
+                ViewBag.IDAutor = new SelectList(db.AspNetUsers, "Id", "Email");
+                return View();
+            }
+            catch (Exception)
+            {
+                return View("Error");
+            }
         }
         // POST: Definiciones/Create
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult agregarTutorial(TutorialesYouTube tutorial, int pIdDefinicion)
+        public ActionResult agregarTutorial(TutorialesYouTube tutorial)
         {
-            ViewBag.IdDefinicion = pIdDefinicion;
-            if (ModelState.IsValid)
+            try
             {
-                Definicione definicione = db.Definiciones.Find(pIdDefinicion);
-                db.insertarTutorial(tutorial.Titulo, tutorial.LinkYouTube, pIdDefinicion);
-                return RedirectToAction("agregarTutorial", new { pIdDefinicion = pIdDefinicion });
+                int pIdDefinicion = Convert.ToInt32(Session["IdDefinicion"]);
+                if (ModelState.IsValid)
+                {
+                    Definicione definicione = db.Definiciones.Find(pIdDefinicion);
+                    db.insertarTutorial(tutorial.Titulo, tutorial.LinkYouTube, pIdDefinicion);
+                    return RedirectToAction("agregarTutorial");
+                }
+
+                return View();
             }
-            
-            //ViewBag.IDAutor = new SelectList(db.AspNetUsers, "Id", "Email", definicione.IDAutor);
-            return View();
+            catch (Exception)
+            {
+                return View("Error");
+            }
         }
 
 
@@ -166,19 +217,26 @@ namespace WikiCEP_Project.Controllers
         // GET: Definiciones/Edit/5
         public ActionResult Edit(int? id)
         {
-            if (id == null)
+            try
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                Definicione definicione = db.Definiciones.Find(id);
+                if (definicione == null)
+                {
+                    return HttpNotFound();
+                }
+                List<Tema> lista = db.Temas.ToList();
+                ViewBag.Autores = lista;
+                ViewBag.IDAutor = new SelectList(db.AspNetUsers, "Id", "Email", definicione.IDAutor);
+                return View(definicione);
             }
-            Definicione definicione = db.Definiciones.Find(id);
-            if (definicione == null)
+            catch (Exception)
             {
-                return HttpNotFound();
+               return View("Error");
             }
-            List<Tema> lista = db.Temas.ToList();
-            ViewBag.Autores = lista;
-            ViewBag.IDAutor = new SelectList(db.AspNetUsers, "Id", "Email", definicione.IDAutor);
-            return View(definicione);
         }
         // POST: Definiciones/Edit/5
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
@@ -187,70 +245,98 @@ namespace WikiCEP_Project.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit(Definicione definicione, List<int> lista)
         {
-            if (ModelState.IsValid)
+            try
             {
-                definicione.FechaCreacion = DateTime.Now;
-                db.Entry(definicione).State = EntityState.Modified;
-                db.SaveChanges();
-                Definicione def = db.Definiciones.Include(a => a.Temas).ToList().Find(l => l.IDDefinicion == definicione.IDDefinicion);
-                def.Temas.Clear();
-                foreach (var item in lista)
-                {
-                    Tema tem = db.Temas.Find(item);
-                    definicione.Temas.Add(tem);
+                if (ModelState.IsValid)
+            {
+                    definicione.FechaCreacion = DateTime.Now;
+                    db.Entry(definicione).State = EntityState.Modified;
+                    db.SaveChanges();
+                    Definicione def = db.Definiciones.Include(a => a.Temas).ToList().Find(l => l.IDDefinicion == definicione.IDDefinicion);
+                    def.Temas.Clear();
+                    foreach (var item in lista)
+                    {
+                        Tema tem = db.Temas.Find(item);
+                        definicione.Temas.Add(tem);
+                    }
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
                 }
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
             ViewBag.IDAutor = new SelectList(db.AspNetUsers, "Id", "Email", definicione.IDAutor);
-            return View(definicione);
+                return View(definicione);
+            }
+
+            catch (Exception)
+            {
+                return View("Error");
+            }
         }
 
         [Authorize]
         // GET: Definiciones/Delete/5
         public ActionResult Delete(int? id)
         {
-            if (id == null)
+            try
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                Definicione definicione = db.Definiciones.Find(id);
+                if (definicione == null)
+                {
+                    return HttpNotFound();
+                }
+                return View(definicione);
             }
-            Definicione definicione = db.Definiciones.Find(id);
-            if (definicione == null)
+            catch (Exception)
             {
-                return HttpNotFound();
+                return View("Error");
             }
-            return View(definicione);
         }
         // POST: Definiciones/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Definicione definicione = db.Definiciones.Find(id);
-            db.Definiciones.Remove(definicione);
-            db.SaveChanges();
-            return RedirectToAction("Index");
-        }
+            try {
+                Definicione definicione = db.Definiciones.Find(id);
+                db.Definiciones.Remove(definicione);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            catch(Exception)
+            {
+                return View("Error");
+            }
+       }
 
 
         public ActionResult ExportExcel()
         {
-            GridView gv = new GridView();
-            gv.DataSource = db.Definiciones.ToList();
-            gv.DataBind();
-            Response.ClearContent();
-            Response.Buffer = true;
-            Response.AddHeader("content-disposition", "attachment; filename=Libro1.xls");
-            Response.ContentType = "application/ms-excel";
-            Response.Charset = "";
-            StringWriter sw = new StringWriter();
-            HtmlTextWriter htw = new HtmlTextWriter(sw);
-            gv.RenderControl(htw);
-            Response.Output.Write(sw.ToString());
-            Response.Flush();
-            Response.End();
+            try
+            {
+                GridView gv = new GridView();
+                gv.DataSource = db.Definiciones.ToList();
+                gv.DataBind();
+                Response.ClearContent();
+                Response.Buffer = true;
+                Response.AddHeader("content-disposition", "attachment; filename=Libro1.xls");
+                Response.ContentType = "application/ms-excel";
+                Response.Charset = "";
+                StringWriter sw = new StringWriter();
+                HtmlTextWriter htw = new HtmlTextWriter(sw);
+                gv.RenderControl(htw);
+                Response.Output.Write(sw.ToString());
+                Response.Flush();
+                Response.End();
 
-            return RedirectToAction("Index");
+                return RedirectToAction("Index");
+            }
+            catch (Exception)
+            {
+                return View("Error");
+            }
         }
 
         protected override void Dispose(bool disposing)

@@ -14,8 +14,17 @@ namespace WikiCEP_Project.Controllers
 
 		public ActionResult Index()
 		{
-			List<vDefinicionesReciente> definicionesRecientes = db.vDefinicionesRecientes.ToList();
-			CortarTextos(definicionesRecientes);
+           List<vDefinicionesReciente> definicionesRecientes = null;
+            try
+            {
+                definicionesRecientes = db.vDefinicionesRecientes.ToList();
+                CortarTextos(definicionesRecientes);
+            }
+            catch (Exception)
+            {
+
+                return View("Error");
+            } 
 			return View(definicionesRecientes);
 		}
 

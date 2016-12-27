@@ -111,26 +111,18 @@ namespace WikiCEP_Project.Controllers
             base.Dispose(disposing);
         }
 
-		// GET: A Partial View for displaying many photos as cards
-		[ChildActionOnly] //This attribute means the action cannot be accessed from the brower's address bar
-		public ActionResult _CargarImagenes(int numero = 0)
+		[ChildActionOnly]
+		public ActionResult CargarImagenes(int? idDefinicion)
 		{
 			//We want to display only the latest photos when a positive integer is supplied to the view.
 			//Otherwise we'll display them all
-			List<Imagene> imagenes;
+			var imagenes = from i in db.Imagenes select i;
 
-			if (numero == 0)
+			if (idDefinicion!=null)
 			{
-				imagenes = db.Imagenes.ToList();
+				imagenes = imagenes.Where(i => i.Definiciones.Any(d => d.IDDefinicion == idDefinicion));
 			}
-			else
-			{
-				imagenes = (from i in db.Imagenes
-							orderby i.FechaCreacion descending
-						  select i).Take(numero).ToList();
-			}
-
-			return PartialView("_CargarImagenes", imagenes);
+			return PartialView("_CargarImagenes", imagenes.ToList());
 		}
 
 		//This action gets the photo file for a given Photo ID

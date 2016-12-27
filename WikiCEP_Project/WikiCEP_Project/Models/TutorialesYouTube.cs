@@ -25,6 +25,7 @@ namespace WikiCEP_Project.Models
         [Required]
         public string Titulo { get; set; }
         [YouTubeValid]
+        [Required]
         public string LinkYouTube { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
@@ -35,7 +36,7 @@ namespace WikiCEP_Project.Models
     {
         public override bool IsValid(object value)
         {
-
+            
             string strURL = (string)value;
             bool blValido = strURL.Contains("youtube.com") && strURL.StartsWith("https://");
 			return blValido;

@@ -1,15 +1,12 @@
 ﻿@model WikiCEP_Project.Models.Ejemplo
 
 @{
-    ViewBag.Title = "Agregar Ejemplo";
+    ViewBag.Title = "Agregar un Ejemplo para la Definicion";
 }
 
 <h2>@ViewBag.Title</h2>
+<hr />
 <link href="~/Content/EstiloLogin.css" rel="stylesheet" />
-
-
-<h2>Agregar ejemplo para la definicion</h2>
-
 @using (Html.BeginForm()) 
 {
     @Html.AntiForgeryToken()

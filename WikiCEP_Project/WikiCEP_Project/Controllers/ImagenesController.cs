@@ -88,8 +88,10 @@ namespace WikiCEP_Project.Controllers
                     imagene.ImageMimeType = image.ContentType;
                     imagene.Imagen = new byte[image.ContentLength];
                     image.InputStream.Read(imagene.Imagen, 0, image.ContentLength);
-                    db.insertarImagen(imagene.Titulo, DateTime.Now, imagene.IDAutor, imagene.Imagen, imagene.ImageMimeType, pIdDefinicion);
-                    return RedirectToAction("Index");
+					imagene.Definiciones.Add(db.Definiciones.Find(pIdDefinicion));
+					db.Imagenes.Add(imagene);
+					db.SaveChanges();
+					return RedirectToAction("Index");
                 }
             } else {
                 try {

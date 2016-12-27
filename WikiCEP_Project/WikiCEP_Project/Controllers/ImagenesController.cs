@@ -162,22 +162,22 @@ namespace WikiCEP_Project.Controllers
         }
 
 		[ChildActionOnly]
-		public ActionResult CargarImagenes(int? idDefinicion)
-		{
-			try
-			{
-				var imagenes = from i in db.Imagenes select i;
-			}
-			catch(Exception)
-			{
-				return View("Error");
-			}
-			if (idDefinicion!=null)
-			{
-				imagenes = imagenes.Where(i => i.Definiciones.Any(d => d.IDDefinicion == idDefinicion));
-			}
-			return PartialView("_CargarImagenes", imagenes.ToList());
-		}
+		//public ActionResult CargarImagenes(int? idDefinicion)
+		//{
+		//	try
+		//	{
+		//		var imagenes = from i in db.Imagenes select i;
+		//	}
+		//	catch(Exception)
+		//	{
+		//		return View("Error");
+		//	}
+			//if (idDefinicion!=null)
+			//{
+			//	imagenes = imagenes.Where(i => i.Definiciones.Any(d => d.IDDefinicion == idDefinicion));
+			//}
+			//return PartialView("_CargarImagenes", imagenes.ToList());
+		//}
 
 		//This action gets the photo file for a given Photo ID
 		public FileContentResult GetImage(int idImagen)

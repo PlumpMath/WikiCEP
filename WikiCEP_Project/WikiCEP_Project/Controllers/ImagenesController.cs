@@ -80,8 +80,10 @@ namespace WikiCEP_Project.Controllers
             int pIdDefinicion = Convert.ToInt32(Session["pIdDefinicion"]);
             if (Convert.ToBoolean(Session["IdIsNotNull"])) {
                 if (ModelState.IsValid) {
-                    Definicione definicione = db.Definiciones.Find(pIdDefinicion);
-                    imagene.IDAutor = definicione.IDAutor;
+                    
+                    imagene.IDAutor = (from a in db.AspNetUsers
+                                       where a.Email == User.Identity.Name
+                                       select a.Id).Single();
                     imagene.FechaCreacion = DateTime.Today;
                     imagene.ImageMimeType = image.ContentType;
                     imagene.Imagen = new byte[image.ContentLength];
@@ -162,22 +164,23 @@ namespace WikiCEP_Project.Controllers
         }
 
 		[ChildActionOnly]
-		//public ActionResult CargarImagenes(int? idDefinicion)
-		//{
-		//	try
-		//	{
-		//		var imagenes = from i in db.Imagenes select i;
-		//	}
-		//	catch(Exception)
-		//	{
-		//		return View("Error");
-		//	}
-			//if (idDefinicion!=null)
-			//{
-			//	imagenes = imagenes.Where(i => i.Definiciones.Any(d => d.IDDefinicion == idDefinicion));
-			//}
-			//return PartialView("_CargarImagenes", imagenes.ToList());
-		//}
+		public ActionResult CargarImagenes(int? idDefinicion)
+		{
+			try
+			{
+				var imagenes = from i in db.Imagenes select i;
+				if (idDefinicion != null)
+				{
+					imagenes = imagenes.Where(i => i.Definiciones.Any(d => d.IDDefinicion == idDefinicion));
+				}
+				return PartialView("_CargarImagenes", imagenes.ToList());
+			}
+			catch(Exception)
+			{
+				return View("Error");
+			}
+		}
+
 
 		//This action gets the photo file for a given Photo ID
 		public FileContentResult GetImage(int idImagen)

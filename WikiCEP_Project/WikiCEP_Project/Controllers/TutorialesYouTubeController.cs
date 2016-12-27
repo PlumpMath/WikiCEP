@@ -18,22 +18,9 @@ namespace WikiCEP_Project.Controllers
         private WikiCEPDBEntities db = new WikiCEPDBEntities();
 
         // GET: TutorialesYouTube
-        public ActionResult Index(string strBusqueda)
+        public ActionResult Index()
         {
-            try
-            {
-                var tutoriales = from t in db.TutorialesYouTubes
-                                 select t;
-                if (!String.IsNullOrEmpty(strBusqueda))
-                {
-                    tutoriales = tutoriales.Where(t => t.Titulo.Contains(strBusqueda));
-                }
-                return View(tutoriales.ToList());
-            }
-            catch (Exception)
-            {
-                return View("Error");
-            }
+			return View();
         }
 
         // GET: TutorialesYouTube/Details/5
@@ -74,7 +61,7 @@ namespace WikiCEP_Project.Controllers
         {
             if (pIdDefinicion != null) {
                 if (ModelState.IsValid) {
-                    Definicione definicione = db.Definiciones.Find(pIdDefinicion);
+                    
                     db.insertarTutorial(tutorialesYouTube.Titulo, tutorialesYouTube.LinkYouTube, pIdDefinicion);
                     return RedirectToAction("Index");
                 }
@@ -217,6 +204,28 @@ namespace WikiCEP_Project.Controllers
             {
                 return View("Error");
             }
+		}
+
+		[ChildActionOnly]
+		public ActionResult CargarTutoriales(string strBusqueda, int? idDefinicion)
+		{
+			try
+			{
+				var tutoriales = from t in db.TutorialesYouTubes select t;
+				if (idDefinicion != null)
+				{
+					tutoriales = tutoriales.Where(t => t.Definiciones.Any(d => d.IDDefinicion == idDefinicion));
+				}
+				if (!String.IsNullOrEmpty(strBusqueda))
+				{
+					tutoriales = tutoriales.Where(t => t.Titulo.Contains(strBusqueda));
+				}
+				return PartialView("_CargarTutoriales", tutoriales.ToList());
+			}
+			catch (Exception)
+			{
+				return View("Error");
+			}
 		}
 	}
 }

@@ -83,9 +83,14 @@
                         <li>@Html.ActionLink("Nosotros", "About", "Home")</li>
                         <li>@Html.ActionLink("Contacto", "Contact", "Home")</li>
                         <li>@Html.ActionLink("Soporte en Línea", "Index", "Chat")</li>
+<<<<<<< HEAD
                         <li>@Html.ActionLink("Manual de Usuario", "GetManual", "ManualU")</li>
                    
            
+=======
+                        @if (User.IsInRole("Administrador"))
+                        { <li>@Html.ActionLink("Temas", "Index", "Temas")</li> }
+>>>>>>> 07001a4057f3a3614f34394663b17f0e4ce80b41
                     </ul>
                 </div>
             </div>
@@ -97,7 +102,6 @@
         </div>
             <hr />
             <footer>
-                >
                 <p>&copy; @DateTime.Now.Year - CEP 14</p>
                 <p>Sofrecom Argentina S.A</p>
                 <p>Reconquista 609, Piso 7</p>

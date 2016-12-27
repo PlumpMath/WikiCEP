@@ -21,40 +21,62 @@ namespace WikiCEP_Project.Controllers
         // GET: Ejemplos
         public ActionResult Index(string strBusqueda)
         {
-			var ejemplos = from e in db.vEjemplos
-							   select e;
-			if (!String.IsNullOrEmpty(strBusqueda))
-			{
-				ejemplos = ejemplos.Where(e => e.Titulo.Contains(strBusqueda));
-			}
-			return View(ejemplos.ToList());
+            try
+            {
+                var ejemplos = from e in db.vEjemplos
+                               select e;
+                if (!String.IsNullOrEmpty(strBusqueda))
+                {
+                    ejemplos = ejemplos.Where(e => e.Titulo.Contains(strBusqueda));
+                }
+                return View(ejemplos.ToList());
+            }
+            catch (Exception)
+            {
+                return View("Error");
+            }  
+			
 		}
 
         // GET: Ejemplos/Details/5
         public ActionResult Details(int? id)
         {
-            if (id == null)
+            try
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                Ejemplo ejemplo = db.Ejemplos.Find(id);
+                if (ejemplo == null)
+                {
+                    return HttpNotFound();
+                }
+                return View(ejemplo);
             }
-            Ejemplo ejemplo = db.Ejemplos.Find(id);
-            if (ejemplo == null)
+            catch (Exception)
             {
-                return HttpNotFound();
+                return View("Error");
             }
-            return View(ejemplo);
+            
         }
 
         [Authorize]
         // GET: Ejemplos/Create
         public ActionResult Create()
         {
-            ViewBag.IDAutor = new SelectList(db.AspNetUsers, "Id", "Email");
-            List<Tema> lista = db.Temas.ToList();
-            ViewBag.Autores = lista;
-
-
-            return View();
+            try
+            {
+                ViewBag.IDAutor = new SelectList(db.AspNetUsers, "Id", "Email");
+                List<Tema> lista = db.Temas.ToList();
+                ViewBag.Autores = lista;
+                return View();
+            }
+            catch (Exception)
+            {
+                return View("Error");
+            }
+           
         }
 
         // POST: Ejemplos/Create
@@ -64,36 +86,52 @@ namespace WikiCEP_Project.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(Ejemplo ejemplo)
         {
-            if (ModelState.IsValid)
+            try
             {
-                ejemplo.FechaCreacion = DateTime.Now;
-				ejemplo.IDAutor = (from a in db.AspNetUsers
-									   where a.Email == User.Identity.Name
-									   select a.Id).Single();
-				db.Ejemplos.Add(ejemplo);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
+                if (ModelState.IsValid)
+                {
+                    ejemplo.FechaCreacion = DateTime.Now;
+                    ejemplo.IDAutor = (from a in db.AspNetUsers
+                                       where a.Email == User.Identity.Name
+                                       select a.Id).Single();
+                    db.Ejemplos.Add(ejemplo);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
 
-            ViewBag.IDAutor = new SelectList(db.AspNetUsers, "Id", "Email", ejemplo.IDAutor);
-            return View(ejemplo);
+                ViewBag.IDAutor = new SelectList(db.AspNetUsers, "Id", "Email", ejemplo.IDAutor);
+                return View(ejemplo);
+            }
+            catch (Exception)
+            {
+                return View("Error");
+            }
+            
         }
 
         [Authorize]
         // GET: Ejemplos/Edit/5
         public ActionResult Edit(int? id)
         {
-            if (id == null)
+            try
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                Ejemplo ejemplo = db.Ejemplos.Find(id);
+                if (ejemplo == null)
+                {
+                    return HttpNotFound();
+                }
+                ViewBag.IDAutor = new SelectList(db.AspNetUsers, "Id", "Email", ejemplo.IDAutor);
+                return View(ejemplo);
             }
-            Ejemplo ejemplo = db.Ejemplos.Find(id);
-            if (ejemplo == null)
+            catch (Exception)
             {
-                return HttpNotFound();
+                return View("Error");
             }
-            ViewBag.IDAutor = new SelectList(db.AspNetUsers, "Id", "Email", ejemplo.IDAutor);
-            return View(ejemplo);
+           
         }
 
         // POST: Ejemplos/Edit/5
@@ -103,43 +141,66 @@ namespace WikiCEP_Project.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit(Ejemplo ejemplo)
         {
-            if (ModelState.IsValid)
+            try
             {
-                ejemplo.FechaCreacion = DateTime.Now;
-                db.Entry(ejemplo).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                if (ModelState.IsValid)
+                {
+                    ejemplo.FechaCreacion = DateTime.Now;
+                    db.Entry(ejemplo).State = EntityState.Modified;
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+                ViewBag.IDAutor = new SelectList(db.AspNetUsers, "Id", "Email", ejemplo.IDAutor);
+                return View(ejemplo);
             }
-            ViewBag.IDAutor = new SelectList(db.AspNetUsers, "Id", "Email", ejemplo.IDAutor);
-            return View(ejemplo);
+            catch (Exception)
+            {
+                return View("Error");
+            }
+           
         }
 
         [Authorize]
         // GET: Ejemplos/Delete/5
         public ActionResult Delete(int? id)
         {
-            if (id == null)
+            try
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                Ejemplo ejemplo = db.Ejemplos.Find(id);
+                if (ejemplo == null)
+                {
+                    return HttpNotFound();
+                }
+                return View(ejemplo);
             }
-            Ejemplo ejemplo = db.Ejemplos.Find(id);
-            if (ejemplo == null)
+            catch (Exception)
             {
-                return HttpNotFound();
+                return View("Error");
             }
-            return View(ejemplo);
+            
         }
 
         // POST: Ejemplos/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
-        {  
-            Ejemplo ejemplo = db.Ejemplos.Find(id);
- 
-            db.Ejemplos.Remove(ejemplo);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+        {
+            try
+            {
+                Ejemplo ejemplo = db.Ejemplos.Find(id);
+                db.Ejemplos.Remove(ejemplo);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            catch (Exception)
+            {
+                return View("Error");
+
+            }
         }
 
         protected override void Dispose(bool disposing)
@@ -153,21 +214,28 @@ namespace WikiCEP_Project.Controllers
 
 		public ActionResult ExportExcel()
 		{
-			GridView gv = new GridView();
-			gv.DataSource = db.Ejemplos.ToList();
-			gv.DataBind();
-			Response.ClearContent();
-			Response.Buffer = true;
-			Response.AddHeader("content-disposition", "attachment; filename=Ejemplos.xls");
-			Response.ContentType = "application/ms-excel";
-			Response.Charset = "";
-			StringWriter sw = new StringWriter();
-			HtmlTextWriter htw = new HtmlTextWriter(sw);
-			gv.RenderControl(htw);
-			Response.Output.Write(sw.ToString());
-			Response.Flush();
-			Response.End();
-			return RedirectToAction("Index");
-		}
+            try
+            {
+                GridView gv = new GridView();
+                gv.DataSource = db.Ejemplos.ToList();
+                gv.DataBind();
+                Response.ClearContent();
+                Response.Buffer = true;
+                Response.AddHeader("content-disposition", "attachment; filename=Ejemplos.xls");
+                Response.ContentType = "application/ms-excel";
+                Response.Charset = "";
+                StringWriter sw = new StringWriter();
+                HtmlTextWriter htw = new HtmlTextWriter(sw);
+                gv.RenderControl(htw);
+                Response.Output.Write(sw.ToString());
+                Response.Flush();
+                Response.End();
+                return RedirectToAction("Index");
+            }
+            catch (Exception)
+            {
+                return View("Error");
+            }
+        }
 	}
 }

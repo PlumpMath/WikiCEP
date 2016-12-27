@@ -151,7 +151,7 @@ namespace WikiCEP_Project.Controllers
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult AgregarImagen(Imagene imagen)
+        public ActionResult AgregarImagen(Imagene imagen, HttpPostedFileBase image)
         {
             try
             {
@@ -159,9 +159,17 @@ namespace WikiCEP_Project.Controllers
                 if (ModelState.IsValid)
                 {
                     Definicione definicione = db.Definiciones.Find(pIdDefinicion);
-                    imagen.IDAutor = definicione.IDAutor;
-                    db.insertarImagen(imagen.Titulo, DateTime.Now, imagen.IDAutor, imagen.Imagen, imagen.ImageMimeType, pIdDefinicion);
-                    return RedirectToAction("AgregarImagen");
+					imagen.IDAutor = (from a in db.AspNetUsers
+									   where a.Email == User.Identity.Name
+									   select a.Id).Single();
+					imagen.FechaCreacion = DateTime.Today;
+					imagen.ImageMimeType = image.ContentType;
+					imagen.Imagen = new byte[image.ContentLength];
+					image.InputStream.Read(imagen.Imagen, 0, image.ContentLength);
+					imagen.Definiciones.Add(db.Definiciones.Find(pIdDefinicion));
+					db.Imagenes.Add(imagen);
+					db.SaveChanges();
+					return RedirectToAction("AgregarImagen");
                 }
 
                 return View();

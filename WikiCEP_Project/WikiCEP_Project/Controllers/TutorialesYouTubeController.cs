@@ -60,7 +60,7 @@ namespace WikiCEP_Project.Controllers
 
         [Authorize]
         // GET: TutorialesYouTube/Create
-        public ActionResult Create()
+        public ActionResult Create(int? pIdDefinicion)
         {
             return View();
         }
@@ -70,24 +70,30 @@ namespace WikiCEP_Project.Controllers
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(TutorialesYouTube tutorialesYouTube)
+        public ActionResult Create(TutorialesYouTube tutorialesYouTube, int? pIdDefinicion)
         {
-            try
-            {
-                if (ModelState.IsValid)
-                {
-                    db.TutorialesYouTubes.Add(tutorialesYouTube);
-                    db.SaveChanges();
+            if (pIdDefinicion != null) {
+                if (ModelState.IsValid) {
+                    Definicione definicione = db.Definiciones.Find(pIdDefinicion);
+                    db.insertarTutorial(tutorialesYouTube.Titulo, tutorialesYouTube.LinkYouTube, pIdDefinicion);
                     return RedirectToAction("Index");
                 }
+            } else {
+                try {
+                    if (ModelState.IsValid) {
+                        db.TutorialesYouTubes.Add(tutorialesYouTube);
+                        db.SaveChanges();
+                        return RedirectToAction("Index");
+                    }
 
-                return View(tutorialesYouTube);
+                    return View(tutorialesYouTube);
+                } catch (Exception) {
+                    return View("Error");
+                }
             }
-            catch (Exception)
-            {
-                return View("Error");
-            }
+            return View("Index");
         }
+
         [Authorize]
         // GET: TutorialesYouTube/Edit/5
         public ActionResult Edit(int? id)

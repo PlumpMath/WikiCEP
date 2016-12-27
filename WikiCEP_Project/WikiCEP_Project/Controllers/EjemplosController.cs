@@ -63,7 +63,7 @@ namespace WikiCEP_Project.Controllers
 
         [Authorize]
         // GET: Ejemplos/Create
-        public ActionResult Create()
+        public ActionResult Create(int? pIdDefinicion)
         {
             try
             {
@@ -84,29 +84,34 @@ namespace WikiCEP_Project.Controllers
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(Ejemplo ejemplo)
+        public ActionResult Create(Ejemplo ejemplo, int? pIdDefinicion)
         {
-            try
-            {
-                if (ModelState.IsValid)
-                {
-                    ejemplo.FechaCreacion = DateTime.Now;
-                    ejemplo.IDAutor = (from a in db.AspNetUsers
-                                       where a.Email == User.Identity.Name
-                                       select a.Id).Single();
-                    db.Ejemplos.Add(ejemplo);
-                    db.SaveChanges();
+            if(pIdDefinicion != null) {
+                if (ModelState.IsValid) {
+                    Definicione definicione = db.Definiciones.Find(pIdDefinicion);
+                    ejemplo.IDAutor = definicione.IDAutor;
+                    db.insertarEjemplo(ejemplo.Titulo, ejemplo.Texto, DateTime.Now, ejemplo.IDAutor, pIdDefinicion);
                     return RedirectToAction("Index");
                 }
+            } else {
+                try {
+                    if (ModelState.IsValid) {
+                        ejemplo.FechaCreacion = DateTime.Now;
+                        ejemplo.IDAutor = (from a in db.AspNetUsers
+                                           where a.Email == User.Identity.Name
+                                           select a.Id).Single();
+                        db.Ejemplos.Add(ejemplo);
+                        db.SaveChanges();
+                        return RedirectToAction("Index");
+                    }
 
-                ViewBag.IDAutor = new SelectList(db.AspNetUsers, "Id", "Email", ejemplo.IDAutor);
-                return View(ejemplo);
+                    ViewBag.IDAutor = new SelectList(db.AspNetUsers, "Id", "Email", ejemplo.IDAutor);
+                    return View(ejemplo);
+                } catch (Exception) {
+                    return View("Error");
+                }
             }
-            catch (Exception)
-            {
-                return View("Error");
-            }
-            
+            return View("Error");
         }
 
         [Authorize]

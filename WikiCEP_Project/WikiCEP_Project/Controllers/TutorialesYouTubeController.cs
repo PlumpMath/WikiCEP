@@ -61,7 +61,7 @@ namespace WikiCEP_Project.Controllers
         {
             if (pIdDefinicion != null) {
                 if (ModelState.IsValid) {
-                    Definicione definicione = db.Definiciones.Find(pIdDefinicion);
+                    
                     db.insertarTutorial(tutorialesYouTube.Titulo, tutorialesYouTube.LinkYouTube, pIdDefinicion);
                     return RedirectToAction("Index");
                 }

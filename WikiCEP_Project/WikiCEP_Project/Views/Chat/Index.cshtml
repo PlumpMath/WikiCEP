@@ -4,8 +4,8 @@
 }
 
 <link href="~/Content/EstiloChat.css" rel="stylesheet" />
-<h2>Chat</h2>
-    
+
+
     <br />
     <br />
     <div class="chat_window">
@@ -14,12 +14,12 @@
             <div class="button close">
             </div><div class="button minimize">
             </div><div class="button maximize">
-            </div></div><div class="title">Chat</div></div>
-        <ul id="UL_1">
+            </div></div><div class="title"><span>Wiki</span><span class="logo c">C</span><span class="logo e">E</span><span class="logo p">P</span></div></div>
+        
+        <ul id="discussion"></ul>
+               
             
-                <ul id="discussion"></ul>
-            
-        </ul>
+        
         <div class="bottom_wrapper clearfix">
         <div class="message_input_wrapper">
             <input type="text" id="message" class="message_input" placeholder="Escribir..." /></div>
@@ -29,11 +29,11 @@
         <div class="message_template"><li class="message">
             <div class="avatar"></div>
             <div class="text_wrapper"><div class="text"></div></div></li></div>
-
+        
     @*<input type="text" id="message" />
     <input type="button" id="sendmessage" value="Enviar" />*@
-    @*<input type="hidden" id="displayname" />
-    <ul id="discussion"></ul>*@
+    @*<input type="hidden" id="displayname" />*@
+    @*<ul id="discussion"></ul>*@
 </div>
 
 @section scripts {

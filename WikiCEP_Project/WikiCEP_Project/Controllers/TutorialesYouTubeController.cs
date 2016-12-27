@@ -2,10 +2,13 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.UI;
+using System.Web.UI.WebControls;
 using WikiCEP_Project.Models;
 
 namespace WikiCEP_Project.Controllers
@@ -17,28 +20,42 @@ namespace WikiCEP_Project.Controllers
         // GET: TutorialesYouTube
         public ActionResult Index(string strBusqueda)
         {
-			var tutoriales = from t in db.TutorialesYouTubes
-							   select t;
-			if (!String.IsNullOrEmpty(strBusqueda))
-			{
-				tutoriales = tutoriales.Where(t => t.Titulo.Contains(strBusqueda));
-			}
-			return View(tutoriales.ToList());
-		}
+            try
+            {
+                var tutoriales = from t in db.TutorialesYouTubes
+                                 select t;
+                if (!String.IsNullOrEmpty(strBusqueda))
+                {
+                    tutoriales = tutoriales.Where(t => t.Titulo.Contains(strBusqueda));
+                }
+                return View(tutoriales.ToList());
+            }
+            catch (Exception)
+            {
+                return View("Error");
+            }
+        }
 
         // GET: TutorialesYouTube/Details/5
         public ActionResult Details(int? id)
         {
-            if (id == null)
+            try
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                TutorialesYouTube tutorialesYouTube = db.TutorialesYouTubes.Find(id);
+                if (tutorialesYouTube == null)
+                {
+                    return HttpNotFound();
+                }
+                return View(tutorialesYouTube);
             }
-            TutorialesYouTube tutorialesYouTube = db.TutorialesYouTubes.Find(id);
-            if (tutorialesYouTube == null)
+            catch (Exception)
             {
-                return HttpNotFound();
+                return View("Error");
             }
-            return View(tutorialesYouTube);
         }
 
         [Authorize]
@@ -55,29 +72,43 @@ namespace WikiCEP_Project.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(TutorialesYouTube tutorialesYouTube)
         {
-            if (ModelState.IsValid)
-            { 
-                db.TutorialesYouTubes.Add(tutorialesYouTube);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    db.TutorialesYouTubes.Add(tutorialesYouTube);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
 
-            return View(tutorialesYouTube);
+                return View(tutorialesYouTube);
+            }
+            catch (Exception)
+            {
+                return View("Error");
+            }
         }
         [Authorize]
         // GET: TutorialesYouTube/Edit/5
         public ActionResult Edit(int? id)
         {
-            if (id == null)
+            try
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                TutorialesYouTube tutorialesYouTube = db.TutorialesYouTubes.Find(id);
+                if (tutorialesYouTube == null)
+                {
+                    return HttpNotFound();
+                }
+                return View(tutorialesYouTube);
             }
-            TutorialesYouTube tutorialesYouTube = db.TutorialesYouTubes.Find(id);
-            if (tutorialesYouTube == null)
+            catch (Exception)
             {
-                return HttpNotFound();
+                return View("Error");
             }
-            return View(tutorialesYouTube);
         }
 
         // POST: TutorialesYouTube/Edit/5
@@ -87,28 +118,44 @@ namespace WikiCEP_Project.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "IDTutorial,Titulo,LinkYouTube")] TutorialesYouTube tutorialesYouTube)
         {
-            if (ModelState.IsValid)
+            try
             {
-                db.Entry(tutorialesYouTube).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                if (ModelState.IsValid)
+                {
+                    db.Entry(tutorialesYouTube).State = EntityState.Modified;
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+                return View(tutorialesYouTube);
             }
-            return View(tutorialesYouTube);
+            catch (Exception)
+            {
+               return View("Error");
+            }
         }
+
+
         [Authorize]
         // GET: TutorialesYouTube/Delete/5
         public ActionResult Delete(int? id)
         {
-            if (id == null)
+            try
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                TutorialesYouTube tutorialesYouTube = db.TutorialesYouTubes.Find(id);
+                if (tutorialesYouTube == null)
+                {
+                    return HttpNotFound();
+                }
+                return View(tutorialesYouTube);
             }
-            TutorialesYouTube tutorialesYouTube = db.TutorialesYouTubes.Find(id);
-            if (tutorialesYouTube == null)
+            catch (Exception)
             {
-                return HttpNotFound();
+                return View("Error");
             }
-            return View(tutorialesYouTube);
         }
 
         // POST: TutorialesYouTube/Delete/5
@@ -116,10 +163,18 @@ namespace WikiCEP_Project.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            TutorialesYouTube tutorialesYouTube = db.TutorialesYouTubes.Find(id);
-            db.TutorialesYouTubes.Remove(tutorialesYouTube);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            try
+            {
+                TutorialesYouTube tutorialesYouTube = db.TutorialesYouTubes.Find(id);
+                db.TutorialesYouTubes.Remove(tutorialesYouTube);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            catch (Exception)
+            {
+
+                return View("Error");
+            }
         }
 
 
@@ -131,5 +186,31 @@ namespace WikiCEP_Project.Controllers
             }
             base.Dispose(disposing);
         }
-    }
+
+		public ActionResult ExportExcel()
+		{
+            try
+            {
+                GridView gv = new GridView();
+                gv.DataSource = db.TutorialesYouTubes.ToList();
+                gv.DataBind();
+                Response.ClearContent();
+                Response.Buffer = true;
+                Response.AddHeader("content-disposition", "attachment; filename=Tutoriales.xls");
+                Response.ContentType = "application/ms-excel";
+                Response.Charset = "";
+                StringWriter sw = new StringWriter();
+                HtmlTextWriter htw = new HtmlTextWriter(sw);
+                gv.RenderControl(htw);
+                Response.Output.Write(sw.ToString());
+                Response.Flush();
+                Response.End();
+                return RedirectToAction("Index");
+            }
+            catch (Exception)
+            {
+                return View("Error");
+            }
+		}
+	}
 }

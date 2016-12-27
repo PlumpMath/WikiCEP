@@ -244,5 +244,27 @@ namespace WikiCEP_Project.Controllers
                 return View("Error");
             }
         }
+
+		[ChildActionOnly]
+		public ActionResult CargarEjemplos(string strBusqueda, int? idDefinicion)
+		{
+			try
+			{
+				var ejemplos = (from e in db.Ejemplos select e).Include(e => e.AspNetUser);
+				if (idDefinicion != null)
+				{
+					ejemplos = ejemplos.Where(e => e.Definiciones.Any(d => d.IDDefinicion == idDefinicion));
+				}
+				if (!String.IsNullOrEmpty(strBusqueda))
+				{
+					ejemplos = ejemplos.Where(e => e.Titulo.Contains(strBusqueda));
+				}
+				return PartialView("_CargarEjemplos", ejemplos.ToList());
+			}
+			catch (Exception)
+			{
+				return View("Error");
+			}
+		}
 	}
 }

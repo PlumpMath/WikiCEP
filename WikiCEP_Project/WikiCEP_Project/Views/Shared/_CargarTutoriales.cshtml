@@ -1,0 +1,53 @@
+﻿@model IEnumerable<WikiCEP_Project.Models.TutorialesYouTube>
+
+@{
+    WebGrid grid = new WebGrid(Model, rowsPerPage: 8);
+    WikiCEP_Project.Models.TutorialesYouTube tutorial = new WikiCEP_Project.Models.TutorialesYouTube();
+}
+
+@using (Html.BeginForm())
+{
+    <p>
+        Buscar por Titulo: @Html.TextBox("strBusqueda")
+        <input type="submit" value="Buscar" class="btn btn-default" />
+    </p>
+}
+<hr />
+
+@grid.GetHtml(
+    fillEmptyRows: false,
+    tableStyle: "webgrid-table",
+    headerStyle: "webgrid-header",
+    footerStyle: "webgrid-footer",
+    alternatingRowStyle: "webgrid-alternating-row",
+    rowStyle: "webgrid-row-style",
+    mode: WebGridPagerModes.All,
+    firstText: "<< Primera",
+    previousText: "< Anterior",
+    nextText: "Siguiente >",
+    lastText: "Última >>",
+
+columns: new[]
+{
+    grid.Column("Titulo",header:"Titulo", format: (item) =>item.GetSelectLink(item.Titulo)),
+    grid.Column("",
+          header: "Acciones",
+          format:
+        @<text>
+            @Html.ActionLink("Editar",   "Edit",   new { id=item.IDTutorial } )
+            @Html.ActionLink("Eliminar", "Delete", new { id=item.IDTutorial } )
+        </text>
+    )
+
+ })
+
+@if (grid.HasSelection)
+{
+    tutorial = (WikiCEP_Project.Models.TutorialesYouTube)grid.Rows[grid.SelectedIndex].Value;
+    <br />
+    <div>
+        <b>@tutorial.Titulo: </b> @Html.ActionLink("Detalles", "../TutorialesYouTube/Details", new { id = tutorial.IDTutorial }) |
+        <a href="@tutorial.LinkYouTube">Ir al Link</a>
+    </div>
+    <br />
+}

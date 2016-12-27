@@ -6,36 +6,44 @@
 <link href="~/Content/EstiloChat.css" rel="stylesheet" />
 
 
-    <br />
-    <br />
-    <div class="chat_window">
-        <div class="top_menu">
+   
+@*</div><div class="title"><span>Wiki</span><span class="logo c">C</span><span class="logo e">E</span><span class="logo p">P</span></div></div>*@
+        <div class="chat_window">
+    <div class="top_menu">
         <div class="buttons">
-            <a href=@Url.Action("Index","Home")>
-                <div class="button close"> </div></a>
+            <a href=@Url.Action("Index","Home")><div class="button close"></div></a>
 
-               
-</div><div class="title"><span>Wiki</span><span class="logo c">C</span><span class="logo e">E</span><span class="logo p">P</span></div></div>
-        
-        <ul id="discussion"></ul>
-               
-            
-        
-        <div class="bottom_wrapper clearfix">
+</div>
+        <div class="title"><span>Wiki</span><span class="logo c">C</span><span class="logo e">E</span><span class="logo p">P</span></div>
+    </div>
+           
+                <ul id="discussion"></ul>
+          
+           
+    <div class="bottom_wrapper clearfix">
         <div class="message_input_wrapper">
-            <input type="text" id="message" class="message_input" placeholder="Escribir..." /></div>
+            <input class="message_input" id="message" placeholder="Escribir..." />
+        </div>
         <div class="send_message">
-            <div class="icon"></div><div class="text" id="sendmessage">Enviar</></div></div>
-        <input type="hidden" id="displayname" /></div>
-        <div class="message_template"><li class="message">
-            <div class="avatar"></div>
-            <div class="text_wrapper"><div class="text"></div></div></li></div>
-        
+            <div class="icon"></div>
+            <div class="text" id="sendmessage">Enviar</div>
+            <input type="hidden" id="displayname" />
+            
+        </div>
+    </div>
+</div>
+<div class="message_template">
+    <li class="message">
+        <div class="avatar"></div><div class="text_wrapper">
+            <div class="text"></div>
+        </div>
+    </li>
+</div>
     @*<input type="text" id="message" />
     <input type="button" id="sendmessage" value="Enviar" />*@
     @*<input type="hidden" id="displayname" />*@
     @*<ul id="discussion"></ul>*@
-</div>
+
 
 @section scripts {
     <!--Script references. -->

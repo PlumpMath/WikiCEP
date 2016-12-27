@@ -27,16 +27,48 @@
     </dl>
     <dl>
         <dt>
+            Imágenes
+        </dt>
+        <dd>
+            <br />
+            @Html.ActionLink("Nueva Imagen para la Definicion", "../Imagenes/Create", new { idDefinicion = Model.IDDefinicion })
+            <br />
+            @Html.Action("CargarImagenes", "Imagenes", new { idDefinicion = Model.IDDefinicion })
+        </dd>
+    </dl>
+    <dl>
+        <dt>
+            Tutoriales de YouTube
+        </dt>
+        <dd>
+            <br />
+            @Html.ActionLink("Nuevo Tutorial para la Definicion", "../TutorialesYouTube/Create", new { idDefinicion = Model.IDDefinicion })
+            <br />
+            @Html.Action("CargarTutoriales", "TutorialesYouTube", new { idDefinicion = Model.IDDefinicion })
+        </dd>
+    </dl>
+    <dl>
+        <dt>
+            Ejemplos en Código
+        </dt>
+        <dd>
+            <br />
+            @Html.ActionLink("Nuevo Ejemplo para la Definicion", "../Ejemplos/Create", new { idDefinicion = Model.IDDefinicion })
+            <br />
+            @Html.Action("CargarEjemplos", "Ejemplos", new { idDefinicion = Model.IDDefinicion })
+        </dd>
+    </dl>
+    <hr />
+    <dl>
+        <dt>
             Temas
         </dt>
         <dd>
             @foreach (var tema in Model.Temas.ToList())
             {
-                <span class="label label-success">@tema.Descripcion</span>
-            }
+                <span class="label label-success">@tema.Descripcion</span>}
         </dd>
     </dl>
-    <hr />
 </div>
 <p>
     @Html.ActionLink("Editar", "Edit", new { id = Model.IDDefinicion }) |

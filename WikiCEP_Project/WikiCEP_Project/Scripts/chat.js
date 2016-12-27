@@ -46,12 +46,12 @@
                 return sendMessage(getMessageText());
             }
         });
-        sendMessage('Hello Philip! :)');
+        sendMessage();
         setTimeout(function () {
-            return sendMessage('Hi Sandy! How are you?');
+            return sendMessage();
         }, 1000);
         return setTimeout(function () {
-            return sendMessage('I\'m fine, thank you!');
+            return sendMessage();
         }, 2000);
     });
 }.call(this));

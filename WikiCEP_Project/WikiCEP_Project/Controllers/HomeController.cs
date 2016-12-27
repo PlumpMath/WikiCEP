@@ -37,8 +37,6 @@ namespace WikiCEP_Project.Controllers
 
 		public ActionResult Contact()
 		{
-			ViewBag.Message = "Contacto";
-
 			return View();
 		}
 

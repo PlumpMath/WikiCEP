@@ -10,5 +10,7 @@ namespace WikiCEP_Project.Hubs {
             Clients.All.addNewMessageToPage(name, message);
         }
 
+        
+
     }
 }

@@ -83,6 +83,8 @@
                         <li>@Html.ActionLink("Nosotros", "About", "Home")</li>
                         <li>@Html.ActionLink("Contacto", "Contact", "Home")</li>
                         <li>@Html.ActionLink("Soporte en Línea", "Index", "Chat")</li>
+                        @if (User.IsInRole("Administrador"))
+                        { <li>@Html.ActionLink("Temas", "Index", "Temas")</li> }
                     </ul>
                 </div>
             </div>

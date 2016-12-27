@@ -10,6 +10,7 @@ using WikiCEP_Project.Models;
 
 namespace WikiCEP_Project.Controllers
 {
+	[Authorize(Roles = "Administrador")]
     public class TemasController : Controller
     {
         private WikiCEPDBEntities db = new WikiCEPDBEntities();

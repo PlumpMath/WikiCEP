@@ -467,7 +467,6 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Ejemplos\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
     <Content Include="Views\Account\ConfirmEmail.cshtml" />
@@ -521,6 +520,7 @@
     <Content Include="Views\Definiciones\AgregarEjemplo.cshtml" />
     <Content Include="Views\Definiciones\AgregarImagen.cshtml" />
     <Content Include="Views\Definiciones\agregarTutorial.cshtml" />
+    <Content Include="Views\Home\Contact.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

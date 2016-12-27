@@ -71,17 +71,16 @@ namespace WikiCEP_Project.Controllers
 									   select a.Id).Single();
 				db.Definiciones.Add(definicione);
                 db.SaveChanges();
-                return RedirectToAction("AgregarEjemplo", new { pIdDefinicion = definicione.IDDefinicion });
+                Session["IdDefinicion"] = definicione.IDDefinicion;
+                return RedirectToAction("AgregarEjemplo");
             }
+            
             return View(definicione);
         }
 
-        public ActionResult AgregarEjemplo(int pIdDefinicion)
+        public ActionResult AgregarEjemplo()
          {
-           // Ejemplo ejemplo = new Ejemplo();  ???
             
-            //ViewBag.Temas = db.Temas.ToList();  ??????
-            ViewBag.IDDefinicion = pIdDefinicion;
             ViewBag.IDAutor = new SelectList(db.AspNetUsers, "Id", "Email");
             return View();
         }
@@ -91,25 +90,23 @@ namespace WikiCEP_Project.Controllers
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult AgregarEjemplo(Ejemplo ejemplo, int pIdDefinicion)
+        public ActionResult AgregarEjemplo(Ejemplo ejemplo)
         {
-            ViewBag.IdDefinicion = pIdDefinicion;
+            int pIdDefinicion = Convert.ToInt32(Session["IdDefinicion"]);
             if (ModelState.IsValid)
             {
                 Definicione definicione = db.Definiciones.Find(pIdDefinicion);
                 ejemplo.IDAutor = definicione.IDAutor;
                 db.insertarEjemplo(ejemplo.Titulo, ejemplo.Texto, DateTime.Now, ejemplo.IDAutor, pIdDefinicion);
-                return RedirectToAction("AgregarEjemplo", new { pIdDefinicion = pIdDefinicion });
+                return RedirectToAction("AgregarEjemplo");
             }
             
-           
             return View();
         }
 
-        public ActionResult AgregarImagen(int pIdDefinicion)
+        public ActionResult AgregarImagen()
         {
-            Imagene imagen = new Imagene();
-            ViewBag.IdDefinicion = pIdDefinicion;
+
             ViewBag.IDAutor = new SelectList(db.AspNetUsers, "Id", "Email");
             return View();
         }
@@ -119,25 +116,23 @@ namespace WikiCEP_Project.Controllers
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult AgregarImagen(Imagene imagen, int pIdDefinicion)
+        public ActionResult AgregarImagen(Imagene imagen)
         {
-            ViewBag.IdDefinicion = pIdDefinicion;
+            int pIdDefinicion = Convert.ToInt32(Session["IdDefinicion"]);
             if (ModelState.IsValid)
             {
                 Definicione definicione = db.Definiciones.Find(pIdDefinicion);
                 imagen.IDAutor = definicione.IDAutor;
                 db.insertarImagen(imagen.Titulo, DateTime.Now, imagen.IDAutor, imagen.Imagen, imagen.ImageMimeType, pIdDefinicion);
-                return RedirectToAction("AgregarImagen",new { pIdDefinicion = pIdDefinicion });
+                return RedirectToAction("AgregarImagen");
             }
-            
-            //ViewBag.IDAutor = new SelectList(db.AspNetUsers, "Id", "Email", definicione.IDAutor);
+
             return View();
         }
 
 
-        public ActionResult agregarTutorial(int pIdDefinicion)
+        public ActionResult agregarTutorial()
         {
-            TutorialesYouTube Tutorial = new TutorialesYouTube();
             ViewBag.Temas = db.Temas.ToList();
             ViewBag.IDAutor = new SelectList(db.AspNetUsers, "Id", "Email");
             return View();
@@ -147,17 +142,16 @@ namespace WikiCEP_Project.Controllers
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult agregarTutorial(TutorialesYouTube tutorial, int pIdDefinicion)
+        public ActionResult agregarTutorial(TutorialesYouTube tutorial)
         {
-            ViewBag.IdDefinicion = pIdDefinicion;
+            int pIdDefinicion = Convert.ToInt32(Session["IdDefinicion"]);
             if (ModelState.IsValid)
             {
                 Definicione definicione = db.Definiciones.Find(pIdDefinicion);
                 db.insertarTutorial(tutorial.Titulo, tutorial.LinkYouTube, pIdDefinicion);
-                return RedirectToAction("agregarTutorial", new { pIdDefinicion = pIdDefinicion });
+                return RedirectToAction("agregarTutorial");
             }
             
-            //ViewBag.IDAutor = new SelectList(db.AspNetUsers, "Id", "Email", definicione.IDAutor);
             return View();
         }
 

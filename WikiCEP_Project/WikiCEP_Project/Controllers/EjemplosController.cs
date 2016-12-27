@@ -88,8 +88,10 @@ namespace WikiCEP_Project.Controllers
         {
             if(pIdDefinicion != null) {
                 if (ModelState.IsValid) {
-                    Definicione definicione = db.Definiciones.Find(pIdDefinicion);
-                    ejemplo.IDAutor = definicione.IDAutor;
+                    
+                    ejemplo.IDAutor = (from a in db.AspNetUsers
+                                       where a.Email == User.Identity.Name
+                                       select a.Id).Single();
                     db.insertarEjemplo(ejemplo.Titulo, ejemplo.Texto, DateTime.Now, ejemplo.IDAutor, pIdDefinicion);
                     return RedirectToAction("Index");
                 }

@@ -80,8 +80,10 @@ namespace WikiCEP_Project.Controllers
             int pIdDefinicion = Convert.ToInt32(Session["pIdDefinicion"]);
             if (Convert.ToBoolean(Session["IdIsNotNull"])) {
                 if (ModelState.IsValid) {
-                    Definicione definicione = db.Definiciones.Find(pIdDefinicion);
-                    imagene.IDAutor = definicione.IDAutor;
+                    
+                    imagene.IDAutor = (from a in db.AspNetUsers
+                                       where a.Email == User.Identity.Name
+                                       select a.Id).Single();
                     imagene.FechaCreacion = DateTime.Today;
                     imagene.ImageMimeType = image.ContentType;
                     imagene.Imagen = new byte[image.ContentLength];

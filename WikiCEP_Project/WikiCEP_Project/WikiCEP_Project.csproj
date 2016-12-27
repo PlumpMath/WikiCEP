@@ -216,6 +216,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ImagenesController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\ManualUController.cs" />
     <Compile Include="Controllers\TemasController.cs" />
     <Compile Include="Controllers\TutorialesYouTubeController.cs" />
     <Compile Include="Global.asax.cs">
@@ -532,6 +533,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\ManualU\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

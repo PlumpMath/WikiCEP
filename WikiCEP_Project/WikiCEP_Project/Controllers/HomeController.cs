@@ -14,6 +14,7 @@ namespace WikiCEP_Project.Controllers
 
 		public ActionResult Index()
 		{
+            ViewBag.admin = "Disponible";
            List<vDefinicionesReciente> definicionesRecientes = null;
             try
             {

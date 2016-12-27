@@ -7,6 +7,7 @@
     <title>@ViewBag.Title - WikiCEP </title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+    <link href="~/Content/EstiloSoporte.css" rel="stylesheet" />
     <link rel="icon" href="~/Img/WikiCEP_Logo.ico">
     <link href="~/Content/EstiloGrid.css" rel="stylesheet" />
     <link href="~/Content/EstilosLayout.css" rel="stylesheet" />
@@ -82,6 +83,14 @@
                         <li>@Html.ActionLink("Nosotros", "About", "Home")</li>
                         <li>@Html.ActionLink("Contacto", "Contact", "Home")</li>
                         <li>@Html.ActionLink("Soporte en Línea", "Index", "Chat")</li>
+<<<<<<< HEAD
+                        <li>@Html.ActionLink("Manual de Usuario", "GetManual", "ManualU")</li>
+                   
+           
+=======
+                        @if (User.IsInRole("Administrador"))
+                        { <li>@Html.ActionLink("Temas", "Index", "Temas")</li> }
+>>>>>>> 07001a4057f3a3614f34394663b17f0e4ce80b41
                     </ul>
                 </div>
             </div>
@@ -91,14 +100,14 @@
         <div>
             @RenderBody()
         </div>
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - CEP 14</p>
-            <p>Sofrecom Argentina S.A</p>
-            <p>Reconquista 609, Piso 7</p>
-            <p>Ciudad Autonoma de Buenos Aires, Argentina</p>
-        </footer>
-    </div>
+            <hr />
+            <footer>
+                <p>&copy; @DateTime.Now.Year - CEP 14</p>
+                <p>Sofrecom Argentina S.A</p>
+                <p>Reconquista 609, Piso 7</p>
+                <p>Ciudad Autonoma de Buenos Aires, Argentina</p>
+            </footer>
+        </div>
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")

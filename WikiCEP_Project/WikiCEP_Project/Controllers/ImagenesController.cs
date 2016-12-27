@@ -60,8 +60,13 @@ namespace WikiCEP_Project.Controllers
 
 		[Authorize]
         // GET: Imagenes/Create
-        public ActionResult Create()
+        public ActionResult Create(int? pIdDefinicion)
         {
+            if(pIdDefinicion != null) {
+                Session["IdIsNotNull"] = true;
+                Session["pIdDefinicion"] = pIdDefinicion;
+            }
+            
             ViewBag.IDAutor = new SelectList(db.AspNetUsers, "Id", "Email");
             return View();
         }
@@ -71,31 +76,37 @@ namespace WikiCEP_Project.Controllers
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [Authorize]
-        public ActionResult Create(Imagene imagene, HttpPostedFileBase image)
-        {
-            try
-            {
-                if (ModelState.IsValid && image != null)
-                {
-                    imagene.FechaCreacion = DateTime.Today;
-                    imagene.IDAutor = (from a in db.AspNetUsers
-                                       where a.Email == User.Identity.Name
-                                       select a.Id).Single();
-                    imagene.ImageMimeType = image.ContentType;
-                    imagene.Imagen = new byte[image.ContentLength];
-                    image.InputStream.Read(imagene.Imagen, 0, image.ContentLength);
-                    db.Imagenes.Add(imagene);
-                    db.SaveChanges();
+        public ActionResult Create(Imagene imagene, HttpPostedFileBase image) {
+            int pIdDefinicion = Convert.ToInt32(Session["pIdDefinicion"]);
+            if (Convert.ToBoolean(Session["IdIsNotNull"])) {
+                if (ModelState.IsValid) {
+                    Definicione definicione = db.Definiciones.Find(pIdDefinicion);
+                    imagene.IDAutor = definicione.IDAutor;
+                    db.insertarImagen(imagene.Titulo, DateTime.Now, imagene.IDAutor, imagene.Imagen, imagene.ImageMimeType, pIdDefinicion);
                     return RedirectToAction("Index");
                 }
+            } else {
+                try {
+                    if (ModelState.IsValid && image != null) {
+                        imagene.FechaCreacion = DateTime.Today;
+                        imagene.IDAutor = (from a in db.AspNetUsers
+                                           where a.Email == User.Identity.Name
+                                           select a.Id).Single();
+                        imagene.ImageMimeType = image.ContentType;
+                        imagene.Imagen = new byte[image.ContentLength];
+                        image.InputStream.Read(imagene.Imagen, 0, image.ContentLength);
+                        db.Imagenes.Add(imagene);
+                        db.SaveChanges();
+                        return RedirectToAction("Index");
+                    }
 
-                return View(imagene);
+                    return View(imagene);
+                } catch (Exception) {
+                    return View("Error");
+                }
             }
-            catch (Exception)
-            {
-                return View("Error");
-            }
-		}
+            return View("Index");
+        }
 
         // GET: Imagenes/Delete/5
         public ActionResult Delete(int? id)

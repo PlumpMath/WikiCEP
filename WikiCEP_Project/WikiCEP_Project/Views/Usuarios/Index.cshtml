@@ -2,34 +2,39 @@
 
 @{
     ViewBag.Title = "Administracion de usuarios";
+    WebGrid grid = new WebGrid(Model, rowsPerPage: 8);
+    WikiCEP_Project.Models.v_RolesUsuarios definiciones = new WikiCEP_Project.Models.v_RolesUsuarios();
 }
 
 <h2>Lista de usuarios</h2>
 
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Usuario)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Rol)
-        </th>
-        <th></th>
-    </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Usuario)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Rol)
-        </td>
-        <td>
-            @Html.ActionLink("Editar", "Edit", new { id=item.IDUsuario }) |
-            @Html.ActionLink("Borrar", "Delete", new { id=item.IDUsuario })
-        </td>
-    </tr>
-}
+    @grid.GetHtml(
+    fillEmptyRows: false,
+    tableStyle: "webgrid-table",
+    headerStyle: "webgrid-header",
+    footerStyle: "webgrid-footer",
+    alternatingRowStyle: "webgrid-alternating-row",
+    rowStyle: "webgrid-row-style",
+    mode: WebGridPagerModes.All,
+    firstText: "<< Primera",
+    previousText: "< Anterior",
+    nextText: "Siguiente >",
+    lastText: "Última >>",
 
-</table>
+columns: new[]
+{
+    grid.Column("Usuario",header:"Usuario"),
+   
+    grid.Column("Rol",header:"Rol"),
+
+    grid.Column("",
+          header: "Acciones",
+          format:
+        @<text>
+            @Html.ActionLink("Editar",   "Edit",   new { id=item.IDUsuario } )
+            @Html.ActionLink("Eliminar", "Delete", new { id=item.IDUsuario } )
+        </text>
+    )
+
+ })

@@ -128,9 +128,9 @@ namespace WikiCEP_Project.Controllers
         }
 
 
-        [Authorize]
-        // GET: TutorialesYouTube/Delete/5
-        public ActionResult Delete(int? id)
+		[Authorize(Roles = "Administrador")]
+		// GET: TutorialesYouTube/Delete/5
+		public ActionResult Delete(int? id)
         {
             try
             {

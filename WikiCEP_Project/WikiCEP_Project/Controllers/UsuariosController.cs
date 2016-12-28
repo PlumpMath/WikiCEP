@@ -10,7 +10,8 @@ using WikiCEP_Project.Models;
 
 namespace WikiCEP_Project.Controllers
 {
-    public class UsuariosController : Controller
+	[Authorize(Roles = "Administrador")]
+	public class UsuariosController : Controller
     {
         private WikiCEPDBEntities db = new WikiCEPDBEntities();
 

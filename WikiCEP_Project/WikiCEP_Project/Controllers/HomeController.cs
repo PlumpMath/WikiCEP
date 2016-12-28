@@ -14,18 +14,21 @@ namespace WikiCEP_Project.Controllers
 
 		public ActionResult Index()
 		{
-            System.Web.HttpContext.Current.Application["Mensaje"] = "Soporte en Linea Disponible";
-            ViewBag.admin = "Disponible";
 			List<vDefinicionesReciente> definicionesRecientes = null;
             try
             {
+				bool isLogin = Convert.ToBoolean(System.Web.HttpContext.Current.Application["IsLogin"]);
+				if (isLogin && User.IsInRole("Administrador"))
+				{
+					System.Web.HttpContext.Current.Application["CantidadAdmins"] = Convert.ToInt32(System.Web.HttpContext.Current.Application["CantidadAdmins"]) + 1;
+					System.Web.HttpContext.Current.Application["IsLogin"] = false;
+                }
 				ServicioDefiniciones.ServicioDefiniciones servicioDefiniciones = new ServicioDefiniciones.ServicioDefiniciones();
 				List<ServicioDefiniciones.vDefinicionReciente> definiciones = servicioDefiniciones.DefinicionesRecientes().ToList();
                 definicionesRecientes = Castear(definiciones);
             }
             catch (Exception)
             {
-
                 return View("Error");
             } 
 			return View(definicionesRecientes);

@@ -153,9 +153,9 @@ namespace WikiCEP_Project.Controllers
            
         }
 
-        [Authorize]
-        // GET: Ejemplos/Delete/5
-        public ActionResult Delete(int? id)
+		[Authorize(Roles = "Administrador")]
+		// GET: Ejemplos/Delete/5
+		public ActionResult Delete(int? id)
         {
             try
             {

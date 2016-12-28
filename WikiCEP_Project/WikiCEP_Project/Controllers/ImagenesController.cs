@@ -116,8 +116,9 @@ namespace WikiCEP_Project.Controllers
             return View("Index");
         }
 
-        // GET: Imagenes/Delete/5
-        public ActionResult Delete(int? id)
+		[Authorize(Roles = "Administrador")]
+		// GET: Imagenes/Delete/5
+		public ActionResult Delete(int? id)
         {
             try
             {

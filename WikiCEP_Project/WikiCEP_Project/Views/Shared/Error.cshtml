@@ -9,7 +9,17 @@
 
 <div>
     <h2>
-        <span class="alert alert-danger" role="alert">Error Inesperado. Vuelva a Intentar mas Tarde.</span>
+        @if (Model == null)
+        {
+            <span class="alert alert-danger" role="alert">Error Inesperado. Vuelva a Intentar mas Tarde.</span>
+        }
+        else
+        {
+            <span class="alert alert-danger" role="alert">
+                <strong>Error en vista @Model.ControllerName/@Model.ActionName</strong>
+                <br />Detalle:@Model.Exception.Message
+            </span>
+        }
     </h2>
 </div>
 

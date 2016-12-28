@@ -7,9 +7,10 @@
 <div class="jumbotron" style="background-image: url('/Img/Sofrecom.png');background-color:#F2F2F2;padding-bottom:40px; background-repeat: no-repeat; background-attachment:fixed; text-align:right;">
     <h1>Bienvenidos a Wiki<span class="logo c">C</span><span class="logo e">E</span><span class="logo p">P</span></h1>   
         <marquee>
-            <h2>
-                @System.Web.HttpContext.Current.Application["Mensaje"]
-            </h2>
+            @if(Convert.ToInt32(System.Web.HttpContext.Current.Application["CantidadAdmins"])>0)
+            {
+                <h3>Soporte en línea disponible. Administradores activos: @System.Web.HttpContext.Current.Application["CantidadAdmins"]</h3>
+            }
         </marquee>
     <p class="lead"> El sitio donde podrás compartir información sobre diversas tecnologías.</p>
 </div>

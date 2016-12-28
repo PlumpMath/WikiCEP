@@ -282,9 +282,9 @@ namespace WikiCEP_Project.Controllers
             }
         }
 
-        [Authorize]
-        // GET: Definiciones/Delete/5
-        public ActionResult Delete(int? id)
+		[Authorize(Roles = "Administrador")]
+		// GET: Definiciones/Delete/5
+		public ActionResult Delete(int? id)
         {
             try
             {

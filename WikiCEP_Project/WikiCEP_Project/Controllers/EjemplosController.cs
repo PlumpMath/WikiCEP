@@ -21,21 +21,7 @@ namespace WikiCEP_Project.Controllers
         // GET: Ejemplos
         public ActionResult Index(string strBusqueda)
         {
-            try
-            {
-                var ejemplos = from e in db.vEjemplos
-                               select e;
-                if (!String.IsNullOrEmpty(strBusqueda))
-                {
-                    ejemplos = ejemplos.Where(e => e.Titulo.Contains(strBusqueda));
-                }
-                return View(ejemplos.ToList());
-            }
-            catch (Exception)
-            {
-                return View("Error");
-            }  
-			
+			return View();
 		}
 
         // GET: Ejemplos/Details/5
@@ -246,7 +232,7 @@ namespace WikiCEP_Project.Controllers
         }
 
 		[ChildActionOnly]
-		public ActionResult CargarEjemplos(string strBusqueda, int? idDefinicion)
+		public ActionResult CargarEjemplos(string strBusquedaEjemplo, int? idDefinicion)
 		{
 			try
 			{
@@ -255,9 +241,9 @@ namespace WikiCEP_Project.Controllers
 				{
 					ejemplos = ejemplos.Where(e => e.Definiciones.Any(d => d.IDDefinicion == idDefinicion));
 				}
-				if (!String.IsNullOrEmpty(strBusqueda))
+				if (!String.IsNullOrEmpty(strBusquedaEjemplo))
 				{
-					ejemplos = ejemplos.Where(e => e.Titulo.Contains(strBusqueda));
+					ejemplos = ejemplos.Where(e => e.Titulo.Contains(strBusquedaEjemplo));
 				}
 				return PartialView("_CargarEjemplos", ejemplos.ToList());
 			}

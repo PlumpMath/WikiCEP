@@ -19,18 +19,28 @@
             <div class="col-md-3" style="margin-top:7px">
                 <a href=@Url.Action("Index","Home")><h2 class="logo wiki com-md-3" href="home/index">Wiki<span class="logo c">C</span><span class="logo e">E</span><span class="logo p">P</span></h2></a>
             </div>
-            <div class="col-md-6" style="text-align:center">
+            
+            <div class="col-md-5" style="text-align:center">
                 @Html.Partial("_LoginPartial")
             </div>
-
+            @if (User.IsInRole("Administrador")) {
+                <div class="col-md-1" style="margin-top:16px">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Administrar<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li>@Html.ActionLink("Ver usuarios", "Index", "Usuarios")</li>
+                    </ul>
+                </div>
+            }
             <div class="col-md-3" style="text-align:center; margin-top:11px">
                 <div id="DIV_1">
-@using (Html.BeginForm("Index", "Definiciones", FormMethod.Post))
-{
-                    <input id="INPUT_2" @Html.TextBox("strBusqueda", "", new { placeholder = "Buscar definicion" })/>
-                    <button type="submit" id="BUTTON_3">
-                        ir
-                    </button>};
+                    @using (Html.BeginForm("Index", "Definiciones", FormMethod.Post))
+                    {
+                        <input id="INPUT_2" @Html.TextBox("strBusqueda", "", new { placeholder = "Buscar definicion" })/>
+                        <button type="submit" id="BUTTON_3">
+                            ir
+                        </button>
+                    };
+                    
                 </div>
                 
             </div>

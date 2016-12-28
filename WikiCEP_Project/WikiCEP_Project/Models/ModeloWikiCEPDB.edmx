@@ -107,7 +107,7 @@
             <PropertyRef Name="IDImagen" />
           </Key>
           <Property Name="IDImagen" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Titulo" Type="varchar" MaxLength="100" />
+          <Property Name="Titulo" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="FechaCreacion" Type="datetime" />
           <Property Name="IDAutor" Type="nvarchar" MaxLength="128" />
           <Property Name="Imagen" Type="varbinary(max)" />
@@ -143,6 +143,20 @@
           <Property Name="IDTutorial" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Titulo" Type="varchar" MaxLength="100" />
           <Property Name="LinkYouTube" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'WikiCEPDB.dbo.v_RolesUsuarios' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+        <EntityType Name="v_RolesUsuarios">
+          <Key>
+            <PropertyRef Name="IDUsuario" />
+            <PropertyRef Name="Usuario" />
+            <PropertyRef Name="Rol" />
+            <PropertyRef Name="RolId" />
+          </Key>
+          <Property Name="IDUsuario" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Usuario" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="Rol" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="RolId" Type="nvarchar" MaxLength="128" Nullable="false" />
         </EntityType>
         <!--Errores durante la generación:
 advertencia 6002: La tabla o vista 'WikiCEPDB.dbo.vDefiniciones' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
@@ -191,7 +205,9 @@ advertencia 6002: La tabla o vista 'WikiCEPDB.dbo.vEjemplos' no tiene definida n
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__Ejemplo_D__IDDef__5CD6CB2B">
-          <End Role="Definiciones" Type="Self.Definiciones" Multiplicity="1" />
+          <End Role="Definiciones" Type="Self.Definiciones" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Ejemplo_Definicion" Type="Self.Ejemplo_Definicion" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Definiciones">
@@ -203,7 +219,9 @@ advertencia 6002: La tabla o vista 'WikiCEPDB.dbo.vEjemplos' no tiene definida n
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__Ejemplo_D__IDEje__5BE2A6F2">
-          <End Role="Ejemplos" Type="Self.Ejemplos" Multiplicity="1" />
+          <End Role="Ejemplos" Type="Self.Ejemplos" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Ejemplo_Definicion" Type="Self.Ejemplo_Definicion" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Ejemplos">
@@ -214,7 +232,7 @@ advertencia 6002: La tabla o vista 'WikiCEPDB.dbo.vEjemplos' no tiene definida n
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Ejemplos__IDAuto__59063A47">
+        <Association Name="FK__Ejemplos__IDAuto__35BCFE0A">
           <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="0..1" />
           <End Role="Ejemplos" Type="Self.Ejemplos" Multiplicity="*" />
           <ReferentialConstraint>
@@ -227,7 +245,9 @@ advertencia 6002: La tabla o vista 'WikiCEPDB.dbo.vEjemplos' no tiene definida n
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__Imagen_De__IDDef__6383C8BA">
-          <End Role="Definiciones" Type="Self.Definiciones" Multiplicity="1" />
+          <End Role="Definiciones" Type="Self.Definiciones" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Imagen_Definicion" Type="Self.Imagen_Definicion" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Definiciones">
@@ -239,7 +259,9 @@ advertencia 6002: La tabla o vista 'WikiCEPDB.dbo.vEjemplos' no tiene definida n
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__Imagen_De__IDIma__628FA481">
-          <End Role="Imagenes" Type="Self.Imagenes" Multiplicity="1" />
+          <End Role="Imagenes" Type="Self.Imagenes" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Imagen_Definicion" Type="Self.Imagen_Definicion" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Imagenes">
@@ -263,7 +285,9 @@ advertencia 6002: La tabla o vista 'WikiCEPDB.dbo.vEjemplos' no tiene definida n
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__Tema_Defi__IDDef__5070F446">
-          <End Role="Definiciones" Type="Self.Definiciones" Multiplicity="1" />
+          <End Role="Definiciones" Type="Self.Definiciones" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Tema_Definicion" Type="Self.Tema_Definicion" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Definiciones">
@@ -275,7 +299,9 @@ advertencia 6002: La tabla o vista 'WikiCEPDB.dbo.vEjemplos' no tiene definida n
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__Tema_Defi__IDTem__4F7CD00D">
-          <End Role="Temas" Type="Self.Temas" Multiplicity="1" />
+          <End Role="Temas" Type="Self.Temas" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Tema_Definicion" Type="Self.Tema_Definicion" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Temas">
@@ -287,7 +313,9 @@ advertencia 6002: La tabla o vista 'WikiCEPDB.dbo.vEjemplos' no tiene definida n
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__Tutorial___IDDef__5629CD9C">
-          <End Role="Definiciones" Type="Self.Definiciones" Multiplicity="1" />
+          <End Role="Definiciones" Type="Self.Definiciones" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Tutorial_Definicion" Type="Self.Tutorial_Definicion" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Definiciones">
@@ -299,7 +327,9 @@ advertencia 6002: La tabla o vista 'WikiCEPDB.dbo.vEjemplos' no tiene definida n
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__Tutorial___IDTut__5535A963">
-          <End Role="TutorialesYouTube" Type="Self.TutorialesYouTube" Multiplicity="1" />
+          <End Role="TutorialesYouTube" Type="Self.TutorialesYouTube" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Tutorial_Definicion" Type="Self.Tutorial_Definicion" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="TutorialesYouTube">
@@ -402,6 +432,14 @@ advertencia 6002: La tabla o vista 'WikiCEPDB.dbo.vEjemplos' no tiene definida n
           <EntitySet Name="Temas" EntityType="Self.Temas" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Tutorial_Definicion" EntityType="Self.Tutorial_Definicion" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TutorialesYouTube" EntityType="Self.TutorialesYouTube" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="v_RolesUsuarios" EntityType="Self.v_RolesUsuarios" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [v_RolesUsuarios].[IDUsuario] AS [IDUsuario], 
+    [v_RolesUsuarios].[Usuario] AS [Usuario], 
+    [v_RolesUsuarios].[Rol] AS [Rol], 
+    [v_RolesUsuarios].[RolId] AS [RolId]
+    FROM [dbo].[v_RolesUsuarios] AS [v_RolesUsuarios]</DefiningQuery>
+          </EntitySet>
           <EntitySet Name="vDefiniciones" EntityType="Self.vDefiniciones" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [vDefiniciones].[IDDefinicion] AS [IDDefinicion], 
@@ -438,7 +476,7 @@ advertencia 6002: La tabla o vista 'WikiCEPDB.dbo.vEjemplos' no tiene definida n
             <End Role="Ejemplos" EntitySet="Ejemplos" />
             <End Role="Ejemplo_Definicion" EntitySet="Ejemplo_Definicion" />
           </AssociationSet>
-          <AssociationSet Name="FK__Ejemplos__IDAuto__59063A47" Association="Self.FK__Ejemplos__IDAuto__59063A47">
+          <AssociationSet Name="FK__Ejemplos__IDAuto__35BCFE0A" Association="Self.FK__Ejemplos__IDAuto__35BCFE0A">
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
             <End Role="Ejemplos" EntitySet="Ejemplos" />
           </AssociationSet>
@@ -739,6 +777,7 @@ advertencia 6002: La tabla o vista 'WikiCEPDB.dbo.vEjemplos' no tiene definida n
             <Parameter Name="IDDefinicion" Mode="In" Type="Int32" />
           </FunctionImport>
           <EntitySet Name="vEjemplos" EntityType="WikiCEPDBModel.vEjemplo" />
+          <EntitySet Name="v_RolesUsuarios" EntityType="WikiCEPDBModel.v_RolesUsuarios" />
         </EntityContainer>
         <EntityType Name="vDefinicione">
           <Key>
@@ -763,7 +802,7 @@ advertencia 6002: La tabla o vista 'WikiCEPDB.dbo.vEjemplos' no tiene definida n
             <PropertyRef Name="IDImagen" />
           </Key>
           <Property Name="IDImagen" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Titulo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Titulo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="FechaCreacion" Type="DateTime" Precision="3" />
           <Property Name="IDAutor" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
           <Property Name="Imagen" Type="Binary" MaxLength="Max" FixedLength="false" />
@@ -795,6 +834,18 @@ advertencia 6002: La tabla o vista 'WikiCEPDB.dbo.vEjemplos' no tiene definida n
           <Property Name="Titulo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="FechaCreacion" Type="DateTime" Precision="3" />
           <Property Name="Autor" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="v_RolesUsuarios">
+          <Key>
+            <PropertyRef Name="IDUsuario" />
+            <PropertyRef Name="Usuario" />
+            <PropertyRef Name="Rol" />
+            <PropertyRef Name="RolId" />
+          </Key>
+          <Property Name="IDUsuario" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Usuario" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="Rol" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="RolId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -978,6 +1029,16 @@ advertencia 6002: La tabla o vista 'WikiCEPDB.dbo.vEjemplos' no tiene definida n
                 <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
                 <ScalarProperty Name="Titulo" ColumnName="Titulo" />
                 <ScalarProperty Name="IDEjemplo" ColumnName="IDEjemplo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="v_RolesUsuarios">
+            <EntityTypeMapping TypeName="WikiCEPDBModel.v_RolesUsuarios">
+              <MappingFragment StoreEntitySet="v_RolesUsuarios">
+                <ScalarProperty Name="RolId" ColumnName="RolId" />
+                <ScalarProperty Name="Rol" ColumnName="Rol" />
+                <ScalarProperty Name="Usuario" ColumnName="Usuario" />
+                <ScalarProperty Name="IDUsuario" ColumnName="IDUsuario" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

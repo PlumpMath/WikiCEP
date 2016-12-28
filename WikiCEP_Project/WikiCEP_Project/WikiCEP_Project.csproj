@@ -219,6 +219,7 @@
     <Compile Include="Controllers\ManualUController.cs" />
     <Compile Include="Controllers\TemasController.cs" />
     <Compile Include="Controllers\TutorialesYouTubeController.cs" />
+    <Compile Include="Controllers\UsuariosController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -278,6 +279,9 @@
       <DependentUpon>ModeloWikiCEPDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\vEjemplo.cs">
+      <DependentUpon>ModeloWikiCEPDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\v_RolesUsuarios.cs">
       <DependentUpon>ModeloWikiCEPDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -547,6 +551,10 @@
     <Content Include="Web References\ServicioDefiniciones\vDefinicionReciente.datasource">
       <DependentUpon>Reference.map</DependentUpon>
     </Content>
+    <Content Include="Views\Usuarios\Create.cshtml" />
+    <Content Include="Views\Usuarios\Delete.cshtml" />
+    <Content Include="Views\Usuarios\Edit.cshtml" />
+    <Content Include="Views\Usuarios\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

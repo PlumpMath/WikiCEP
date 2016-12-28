@@ -1,0 +1,35 @@
+﻿@model IEnumerable<WikiCEP_Project.Models.v_RolesUsuarios>
+
+@{
+    ViewBag.Title = "Administracion de usuarios";
+}
+
+<h2>Lista de usuarios</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Usuario)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Rol)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Usuario)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Rol)
+        </td>
+        <td>
+            @Html.ActionLink("Editar", "Edit", new { id=item.IDUsuario }) |
+            @Html.ActionLink("Borrar", "Delete", new { id=item.IDUsuario })
+        </td>
+    </tr>
+}
+
+</table>

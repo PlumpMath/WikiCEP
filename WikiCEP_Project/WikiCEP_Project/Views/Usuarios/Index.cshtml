@@ -4,9 +4,13 @@
     ViewBag.Title = "Administracion de usuarios";
     WebGrid grid = new WebGrid(Model, rowsPerPage: 8);
     WikiCEP_Project.Models.v_RolesUsuarios definiciones = new WikiCEP_Project.Models.v_RolesUsuarios();
+
 }
 
-<h2>Lista de usuarios</h2>
+<h2>
+    @ViewBag.Title
+</h2>
+<hr />
 
 
     @grid.GetHtml(

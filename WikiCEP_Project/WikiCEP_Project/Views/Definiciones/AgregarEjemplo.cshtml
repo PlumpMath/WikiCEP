@@ -3,8 +3,10 @@
 @{
     ViewBag.Title = "Agregar un Ejemplo para la Definicion";
 }
-
-<h2>@ViewBag.Title</h2>
+<br />
+<div>
+    <h2>Paso 2: Agregar Ejemplos</h2>    @Html.ActionLink("Saltear", "AgregarImagen")
+</div>
 <hr />
 <link href="~/Content/EstiloLogin.css" rel="stylesheet" />
 @using (Html.BeginForm()) 
@@ -37,9 +39,7 @@
             </div>
         </div>
     </div>
-    <div>
-        @Html.ActionLink("Saltear", "AgregarImagen")
-    </div>
+    
 }
 
 

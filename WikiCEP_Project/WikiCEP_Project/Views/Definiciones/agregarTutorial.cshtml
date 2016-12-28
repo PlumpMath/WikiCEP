@@ -1,10 +1,11 @@
 ﻿@model WikiCEP_Project.Models.TutorialesYouTube
 
 @{
-    ViewBag.Title = "Agregar un Tutorial para la Definicion";
+    ViewBag.Title = "Agregar Tutoriales para la Definicion";
 }
-
-<h2>@ViewBag.Title</h2>
+<br />
+<h2>Paso 4: Agregar Tutoriales</h2>      @Html.ActionLink("Saltear", "Index")
+     
 <hr />
 <link href="~/Content/EstiloLogin.css" rel="stylesheet" />
 
@@ -33,9 +34,6 @@
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Agregar" class="btn btn-success" />
             </div>
-        </div>
-        <div>
-            @Html.ActionLink("Saltear", "Index")
         </div>
     </div>
 }

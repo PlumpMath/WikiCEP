@@ -130,6 +130,7 @@ namespace WikiCEP_Project.Controllers
                     ejemplo.IDAutor = definicione.IDAutor;
                     db.insertarEjemplo(ejemplo.Titulo, ejemplo.Texto, DateTime.Now, ejemplo.IDAutor, pIdDefinicion);
                     return RedirectToAction("AgregarEjemplo");
+                   
                 }
 
                 return View();

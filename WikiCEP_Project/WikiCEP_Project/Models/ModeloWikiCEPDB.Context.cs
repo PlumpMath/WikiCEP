@@ -40,6 +40,7 @@ namespace WikiCEP_Project.Models
         public virtual DbSet<vDefinicionesReciente> vDefinicionesRecientes { get; set; }
         public virtual DbSet<Imagene> Imagenes { get; set; }
         public virtual DbSet<vEjemplo> vEjemplos { get; set; }
+        public virtual DbSet<v_RolesUsuarios> v_RolesUsuarios { get; set; }
     
         public virtual int insertarEjemplo(string titulo, string texto, Nullable<System.DateTime> fechaCreacion, string iDAutor, Nullable<int> iDDefinicion)
         {

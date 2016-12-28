@@ -1,0 +1,27 @@
+﻿@model WikiCEP_Project.Models.AspNetUser
+
+@{
+    ViewBag.Title = "Borrar";
+}
+
+<h2>Borrar</h2>
+
+<h3>Esta seguro que quiere eliminar a este usuario?</h3>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dd>
+            @Html.DisplayFor(model => model.UserName)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Volver a la lista", "Index")
+        </div>
+    }
+</div>

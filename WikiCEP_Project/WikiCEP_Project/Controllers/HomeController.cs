@@ -15,11 +15,12 @@ namespace WikiCEP_Project.Controllers
 		public ActionResult Index()
 		{
             ViewBag.admin = "Disponible";
-           List<vDefinicionesReciente> definicionesRecientes = null;
+			List<vDefinicionesReciente> definicionesRecientes = null;
             try
             {
-                definicionesRecientes = db.vDefinicionesRecientes.ToList();
-                CortarTextos(definicionesRecientes);
+				ServicioDefiniciones.ServicioDefiniciones servicioDefiniciones = new ServicioDefiniciones.ServicioDefiniciones();
+				List<ServicioDefiniciones.vDefinicionReciente> definiciones = servicioDefiniciones.DefinicionesRecientes().ToList();
+                definicionesRecientes = Castear(definiciones);
             }
             catch (Exception)
             {
@@ -41,13 +42,20 @@ namespace WikiCEP_Project.Controllers
 			return View();
 		}
 
-		private void CortarTextos(List<vDefinicionesReciente> definiciones)
+		public List<vDefinicionesReciente> Castear(List<ServicioDefiniciones.vDefinicionReciente> definiciones)
 		{
-			foreach (vDefinicionesReciente definicion in definiciones)
+			List<vDefinicionesReciente> definicionesRecientes = new List<vDefinicionesReciente>();
+			foreach (ServicioDefiniciones.vDefinicionReciente definicion in definiciones)
 			{
-				if (definicion.Texto.Length > 100)
-					definicion.Texto = definicion.Texto.Substring(0, 100) + "...";
+				vDefinicionesReciente definicionReciente = new vDefinicionesReciente();
+				definicionReciente.IDDefinicion = definicion.IDDefinicion;
+				definicionReciente.Texto = definicion.Texto;
+				if (definicionReciente.Texto.Length > 100)
+					definicionReciente.Texto = definicionReciente.Texto.Substring(0, 100) + "...";
+				definicionReciente.Titulo = definicion.Titulo;
+				definicionesRecientes.Add(definicionReciente);
 			}
-		}
+			return definicionesRecientes;
+        }
 	}
 }

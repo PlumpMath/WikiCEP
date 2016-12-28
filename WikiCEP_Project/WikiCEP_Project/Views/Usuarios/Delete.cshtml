@@ -1,17 +1,27 @@
 ﻿@model WikiCEP_Project.Models.AspNetUser
 
 @{
-    ViewBag.Title = "Borrar";
+    ViewBag.Title = "Borrar Usuario";
 }
 
-<h2>Borrar</h2>
+<h2>
+    @ViewBag.Title
+</h2>
+<hr />
 
-<h3>Esta seguro que quiere eliminar a este usuario?</h3>
+<div class="alert alert-danger" role="alert">
+    <h3>
+        <strong>Atencion:</strong>¿Esta seguro que quiere eliminar este usuario?
+    </h3>
+</div>
+<hr />
+
 <div>
-    <hr />
     <dl class="dl-horizontal">
         <dd>
-            @Html.DisplayFor(model => model.UserName)
+            <h4>
+                @Html.DisplayFor(model => model.UserName)
+            </h4>
         </dd>
 
     </dl>
@@ -20,8 +30,13 @@
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Volver a la lista", "Index")
+            <input type="submit" value="Borrar" class="btn btn-default" /> <br />
         </div>
+        <hr />
     }
+</div>
+
+<div>
+    @Html.ActionLink("Volver a la Lista", "Index") |
+    @Html.ActionLink("Ir al Inicio", "Home", "Index") 
 </div>

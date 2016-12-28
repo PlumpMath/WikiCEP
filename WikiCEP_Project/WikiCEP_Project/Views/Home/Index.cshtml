@@ -5,19 +5,21 @@
 }
 <br />
 <div class="jumbotron" style="background-image: url('/Img/Sofrecom.png');background-color:#F2F2F2;padding-bottom:40px; background-repeat: no-repeat; background-attachment:fixed; text-align:right;">
-    <h1>Bienvenidos a Wiki<span class="logo c">C</span><span class="logo e">E</span><span class="logo p">P</span></h1>
-    @if (User.IsInRole("Administrador"))
-    {
+    <h1>Bienvenidos a Wiki<span class="logo c">C</span><span class="logo e">E</span><span class="logo p">P</span></h1>   
         <marquee>
             <h2>
                 @System.Web.HttpContext.Current.Application["Mensaje"]
             </h2>
         </marquee>
-    }
     <p class="lead"> El sitio donde podrás compartir información sobre diversas tecnologías.</p>
 </div>
 <br />
 <hr />
+<div style="text-align:center">
+    <h2>
+        Definiciones Recientes
+    </h2>
+</div>
 <br />
 <div class="row">
     @foreach (var definicion in Model)
@@ -41,7 +43,4 @@
         </div>
     }
 </div>
-<br />
-<br />
-<br />
-<br />
+

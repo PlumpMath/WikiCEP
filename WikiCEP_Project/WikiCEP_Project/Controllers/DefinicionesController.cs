@@ -96,6 +96,7 @@ namespace WikiCEP_Project.Controllers
                     db.Definiciones.Add(definicione);
                     db.SaveChanges();
                     Session["IdDefinicion"] = definicione.IDDefinicion;
+
                     return RedirectToAction("AgregarEjemplo");
                 }
 
@@ -130,6 +131,7 @@ namespace WikiCEP_Project.Controllers
                     ejemplo.IDAutor = definicione.IDAutor;
                     db.insertarEjemplo(ejemplo.Titulo, ejemplo.Texto, DateTime.Now, ejemplo.IDAutor, pIdDefinicion);
                     return RedirectToAction("AgregarEjemplo");
+                   
                 }
 
                 return View();

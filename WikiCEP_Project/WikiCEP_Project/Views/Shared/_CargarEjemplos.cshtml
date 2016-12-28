@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<WikiCEP_Project.Models.Ejemplo>
 
 @{
-    WebGrid grid = new WebGrid(Model, rowsPerPage: 8);
+    WebGrid grillaEjemplos = new WebGrid(Model, rowsPerPage: 8);
     WikiCEP_Project.Models.Ejemplo ejemplo = new WikiCEP_Project.Models.Ejemplo();
 }
 
@@ -14,7 +14,7 @@
 }
 <hr />
 
-@grid.GetHtml(
+@grillaEjemplos.GetHtml(
     fillEmptyRows: false,
     tableStyle: "webgrid-table",
     headerStyle: "webgrid-header",
@@ -29,11 +29,11 @@
 
 columns: new[]
 {
-    grid.Column("Titulo",header:"Titulo", format: (item) =>item.GetSelectLink(item.Titulo)),
-    grid.Column("FechaCreacion",header:"Fecha de Creacion",format: (item) => string.Format("{0:dd/MM/yyyy}",
+    grillaEjemplos.Column("Titulo",header:"Titulo", format: (item) =>item.GetSelectLink(item.Titulo)),
+    grillaEjemplos.Column("FechaCreacion",header:"Fecha de Creacion",format: (item) => string.Format("{0:dd/MM/yyyy}",
                                        item.FechaCreacion)),
-    grid.Column("Autor",header:"Autor", format: (item) => item.AspNetUser.Email),
-    grid.Column("",
+    grillaEjemplos.Column("Autor",header:"Autor", format: (item) => item.AspNetUser.Email),
+    grillaEjemplos.Column("",
           header: "Acciones",
           format:
         @<text>
@@ -44,9 +44,9 @@ columns: new[]
 
  })
 
-@if (grid.HasSelection)
+@if (grillaEjemplos.HasSelection && grillaEjemplos.Rows.Count != 0)
 {
-    ejemplo = (WikiCEP_Project.Models.Ejemplo)grid.Rows[grid.SelectedIndex].Value;
+    ejemplo = (WikiCEP_Project.Models.Ejemplo)grillaEjemplos.Rows[grillaEjemplos.SelectedIndex].Value;
     <br />
     <b>@ejemplo.Titulo: </b> @Html.ActionLink("Ver Mas", "../Ejemplos/Details", new { id = ejemplo.IDEjemplo }) <br />
 

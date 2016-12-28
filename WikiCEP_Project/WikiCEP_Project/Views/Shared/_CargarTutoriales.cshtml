@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<WikiCEP_Project.Models.TutorialesYouTube>
 
 @{
-    WebGrid grid = new WebGrid(Model, rowsPerPage: 8);
+    WebGrid grillaTutoriales = new WebGrid(Model, rowsPerPage: 8);
     WikiCEP_Project.Models.TutorialesYouTube tutorial = new WikiCEP_Project.Models.TutorialesYouTube();
 }
 
@@ -14,7 +14,7 @@
 }
 <hr />
 
-@grid.GetHtml(
+@grillaTutoriales.GetHtml(
     fillEmptyRows: false,
     tableStyle: "webgrid-table",
     headerStyle: "webgrid-header",
@@ -29,8 +29,8 @@
 
 columns: new[]
 {
-    grid.Column("Titulo",header:"Titulo", format: (item) =>item.GetSelectLink(item.Titulo)),
-    grid.Column("",
+    grillaTutoriales.Column("Titulo",header:"Titulo", format: (item) =>item.GetSelectLink(item.Titulo)),
+    grillaTutoriales.Column("",
           header: "Acciones",
           format:
         @<text>
@@ -41,9 +41,9 @@ columns: new[]
 
  })
 
-@if (grid.HasSelection)
+@if (grillaTutoriales.HasSelection && grillaTutoriales.Rows.Count!=0)
 {
-    tutorial = (WikiCEP_Project.Models.TutorialesYouTube)grid.Rows[grid.SelectedIndex].Value;
+    tutorial = (WikiCEP_Project.Models.TutorialesYouTube)grillaTutoriales.Rows[grillaTutoriales.SelectedIndex].Value;
     <br />
     <div>
         <b>@tutorial.Titulo: </b> @Html.ActionLink("Detalles", "../TutorialesYouTube/Details", new { id = tutorial.IDTutorial }) |

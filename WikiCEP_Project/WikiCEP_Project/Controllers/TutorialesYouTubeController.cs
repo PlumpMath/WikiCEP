@@ -207,7 +207,7 @@ namespace WikiCEP_Project.Controllers
 		}
 
 		[ChildActionOnly]
-		public ActionResult CargarTutoriales(string strBusqueda, int? idDefinicion)
+		public ActionResult CargarTutoriales(string strBusquedaTutorial, int? idDefinicion)
 		{
 			try
 			{
@@ -216,9 +216,9 @@ namespace WikiCEP_Project.Controllers
 				{
 					tutoriales = tutoriales.Where(t => t.Definiciones.Any(d => d.IDDefinicion == idDefinicion));
 				}
-				if (!String.IsNullOrEmpty(strBusqueda))
+				if (!String.IsNullOrEmpty(strBusquedaTutorial))
 				{
-					tutoriales = tutoriales.Where(t => t.Titulo.Contains(strBusqueda));
+					tutoriales = tutoriales.Where(t => t.Titulo.Contains(strBusquedaTutorial));
 				}
 				return PartialView("_CargarTutoriales", tutoriales.ToList());
 			}

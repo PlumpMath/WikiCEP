@@ -1,0 +1,17 @@
+DEFINICION: Base de Datos
+
+Se le llama base de datos a los bancos de información que contienen datos relativos a diversas temáticas y categorizados de distinta manera, pero que comparten entre sí algún tipo de vínculo o relación que busca ordenarlos y clasificarlos en conjunto.
+Una base de datos o banco de datos es un conjunto de datos pertenecientes a un mismo contexto y almacenados sistemáticamente para su posterior uso. En este sentido; una biblioteca puede considerarse una base de datos compuesta en su mayoría por documentos y textos impresos en papel e indexados para su consulta.
+Actualmente, y debido al desarrollo tecnológico de campos como la informática y la electrónica, la mayoría de las bases de datos están en formato digital, siendo este un componente electrónico, por tanto se ha desarrollado y se ofrece un amplio rango de soluciones al problema del almacenamiento de datos.
+
+EJEMPLO: Creacion de Tabla
+
+CREATE TABLE Persona
+(
+DNI INT PRIMARY KEY;
+Nombre VARCHAR(50);
+Apellido VARCHAR(50);
+);
+
+TUTORIAL: Instalación SQL Server
+https://www.youtube.com/watch?v=udpvZv_C7js

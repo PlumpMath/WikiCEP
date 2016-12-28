@@ -14,6 +14,7 @@ namespace WikiCEP_Project.Controllers
 
 		public ActionResult Index()
 		{
+            System.Web.HttpContext.Current.Application["Mensaje"] = "Soporte en Linea Disponible";
             ViewBag.admin = "Disponible";
 			List<vDefinicionesReciente> definicionesRecientes = null;
             try

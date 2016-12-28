@@ -1,20 +1,24 @@
 ﻿@model IEnumerable<WikiCEP_Project.Models.Tema>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Temas";
 }
 
-<h2>Index</h2>
+<h2>
+    @ViewBag.Title
+</h2>
 
+<hr />
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Crear Nuevo Tema", "Create")
 </p>
+<hr />
+
 <table class="table">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.Descripcion)
         </th>
-        <th></th>
     </tr>
 
 @foreach (var item in Model) {
@@ -23,11 +27,16 @@
             @Html.DisplayFor(modelItem => item.Descripcion)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.IDTema }) |
-            @Html.ActionLink("Details", "Details", new { id=item.IDTema }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.IDTema })
+            @Html.ActionLink("Editar", "Edit", new { id=item.IDTema }) |
+            @Html.ActionLink("Detalles", "Details", new { id=item.IDTema }) |
+            @Html.ActionLink("Borrar", "Delete", new { id = item.IDTema }) |
+                                  
         </td>
     </tr>
 }
-
 </table>
+
+<hr />
+<div>
+    @Html.ActionLink("Ir al Inicio", "Idex", "Home")    
+</div>

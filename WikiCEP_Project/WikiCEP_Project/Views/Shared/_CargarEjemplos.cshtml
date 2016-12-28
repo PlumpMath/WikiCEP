@@ -8,11 +8,10 @@
 @using (Html.BeginForm())
 {
     <p>
-        Buscar por Titulo: @Html.TextBox("strBusquedaEjemplo")
+        <strong>Buscar por Titulo:</strong> @Html.TextBox("strBusquedaEjemplo")
         <input type="submit" value="Buscar" class="btn btn-default" />
     </p>
 }
-<hr />
 
 @grillaEjemplos.GetHtml(
     fillEmptyRows: false,

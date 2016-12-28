@@ -115,22 +115,24 @@
         </div>
 
         <h4><strong>Realizar Cambios para:</strong> <span>@Html.DisplayFor(model => model.UserName)</span></h4>
-        <div class="form-group" style="text-align:center">
-            <h4>Roles:</h4>
-            
-            <select multiple="Multiple" style="width:100%" id="listaRoles" name="listaRoles">
+        <br />
+        <div class="form-group row">
+            <h4 class="col-md-2" style="text-align:right">Roles:</h4>
+
+            <select class="col-md-6" multiple="Multiple" style="width:100%" id="listaRoles" name="listaRoles">
                 @foreach (var r in (List<WikiCEP_Project.Models.AspNetRole>)ViewBag.Roles) {
                     var sel = (Model.AspNetRoles.Where(rol => rol.Id == r.Id).Count() > 0) ? "selected" : "";
                     <option value=@r.Id @sel>@r.Name</option>
                 }
             </select>
+        </div> 
             <br />
-        <div class="form-group">
+        <div class="form-group row">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Guardar Cambios" class="btn btn-default" />
             </div>
         </div>
-        </div>        
+               
     </div>
 }
 

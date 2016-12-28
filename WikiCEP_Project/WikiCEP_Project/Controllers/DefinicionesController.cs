@@ -96,6 +96,7 @@ namespace WikiCEP_Project.Controllers
                     db.Definiciones.Add(definicione);
                     db.SaveChanges();
                     Session["IdDefinicion"] = definicione.IDDefinicion;
+
                     return RedirectToAction("AgregarEjemplo");
                 }
 

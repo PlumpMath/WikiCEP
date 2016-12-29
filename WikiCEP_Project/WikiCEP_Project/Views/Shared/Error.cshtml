@@ -11,14 +11,18 @@
     <h2>
         @if (Model == null)
         {
-            <span class="alert alert-danger" role="alert">Error Inesperado. Vuelva a Intentar mas Tarde.</span>
+            <div class="alert alert-danger" role="alert">Error Inesperado. Vuelva a Intentar mas Tarde.</div>
         }
         else
         {
-            <span class="alert alert-danger" role="alert">
-                <strong>Error en vista @Model.ControllerName/@Model.ActionName</strong>
-                <br />Detalle:@Model.Exception.Message
-            </span>
+            <div class="alert alert-danger" role="alert">
+                <div>
+                    <strong>Error en vista @Model.ControllerName/@Model.ActionName</strong>
+                </div>
+                <div>
+                    <br />Detalle:@Model.Exception.Message
+                </div>
+            </div>
         }
     </h2>
 </div>

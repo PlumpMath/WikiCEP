@@ -27,10 +27,10 @@ namespace WikiCEP_Project.Controllers
 				List<ServicioDefiniciones.vDefinicionReciente> definiciones = servicioDefiniciones.DefinicionesRecientes().ToList();
                 definicionesRecientes = Castear(definiciones);
             }
-            catch (Exception)
-            {
-                return View("Error");
-            } 
+			catch (Exception ex)
+			{
+				return View("Error", new HandleErrorInfo(ex, "Home", "Index"));
+			} 
 			return View(definicionesRecientes);
 		}
 

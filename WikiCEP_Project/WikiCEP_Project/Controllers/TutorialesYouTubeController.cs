@@ -39,10 +39,10 @@ namespace WikiCEP_Project.Controllers
                 }
                 return View(tutorialesYouTube);
             }
-            catch (Exception)
-            {
-                return View("Error");
-            }
+			catch (Exception ex)
+			{
+				return View("Error", new HandleErrorInfo(ex, "TutorialesYouTube", "Details"));
+			}
         }
 
         [Authorize]
@@ -74,9 +74,11 @@ namespace WikiCEP_Project.Controllers
                     }
 
                     return View(tutorialesYouTube);
-                } catch (Exception) {
-                    return View("Error");
                 }
+				catch (Exception ex)
+				{
+					return View("Error", new HandleErrorInfo(ex, "TutorialesYouTube", "Create"));
+				}
             }
             return View("Index");
         }
@@ -98,10 +100,10 @@ namespace WikiCEP_Project.Controllers
                 }
                 return View(tutorialesYouTube);
             }
-            catch (Exception)
-            {
-                return View("Error");
-            }
+			catch (Exception ex)
+			{
+				return View("Error", new HandleErrorInfo(ex, "TutorialesYouTube", "Edit"));
+			}
         }
 
         // POST: TutorialesYouTube/Edit/5
@@ -121,10 +123,10 @@ namespace WikiCEP_Project.Controllers
                 }
                 return View(tutorialesYouTube);
             }
-            catch (Exception)
-            {
-               return View("Error");
-            }
+			catch (Exception ex)
+			{
+				return View("Error", new HandleErrorInfo(ex, "TutorialesYouTube", "Edit"));
+			}
         }
 
 
@@ -145,10 +147,10 @@ namespace WikiCEP_Project.Controllers
                 }
                 return View(tutorialesYouTube);
             }
-            catch (Exception)
-            {
-                return View("Error");
-            }
+			catch (Exception ex)
+			{
+				return View("Error", new HandleErrorInfo(ex, "TutorialesYouTube", "Delete"));
+			}
         }
 
         // POST: TutorialesYouTube/Delete/5
@@ -163,11 +165,10 @@ namespace WikiCEP_Project.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            catch (Exception)
-            {
-
-                return View("Error");
-            }
+			catch (Exception ex)
+			{
+				return View("Error", new HandleErrorInfo(ex, "TutorialesYouTube", "DeleteConfirmed"));
+			}
         }
 
 
@@ -200,10 +201,10 @@ namespace WikiCEP_Project.Controllers
                 Response.End();
                 return RedirectToAction("Index");
             }
-            catch (Exception)
-            {
-                return View("Error");
-            }
+			catch (Exception ex)
+			{
+				return View("Error", new HandleErrorInfo(ex, "TutorialesYouTube", "ExportExcel"));
+			}
 		}
 
 		[ChildActionOnly]
@@ -222,9 +223,9 @@ namespace WikiCEP_Project.Controllers
 				}
 				return PartialView("_CargarTutoriales", tutoriales.ToList());
 			}
-			catch (Exception)
+			catch (Exception ex)
 			{
-				return View("Error");
+				return View("Error", new HandleErrorInfo(ex, "TutorialesYouTube", "CargarTutoriales"));
 			}
 		}
 	}

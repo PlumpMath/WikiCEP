@@ -40,9 +40,9 @@ namespace WikiCEP_Project.Controllers
                 }
                 return View(ejemplo);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                return View("Error");
+                return View("Error",new HandleErrorInfo(ex,"Ejemplos","Details"));
             }
             
         }
@@ -58,10 +58,10 @@ namespace WikiCEP_Project.Controllers
                 ViewBag.Autores = lista;
                 return View();
             }
-            catch (Exception)
-            {
-                return View("Error");
-            }
+			catch (Exception ex)
+			{
+				return View("Error", new HandleErrorInfo(ex, "Ejemplos", "Create"));
+			}
            
         }
 
@@ -95,9 +95,11 @@ namespace WikiCEP_Project.Controllers
 
                     ViewBag.IDAutor = new SelectList(db.AspNetUsers, "Id", "Email", ejemplo.IDAutor);
                     return View(ejemplo);
-                } catch (Exception) {
-                    return View("Error");
                 }
+				catch (Exception ex)
+				{
+					return View("Error", new HandleErrorInfo(ex, "Ejemplos", "Create"));
+				}
             }
             return View("Error");
         }
@@ -120,10 +122,10 @@ namespace WikiCEP_Project.Controllers
                 ViewBag.IDAutor = new SelectList(db.AspNetUsers, "Id", "Email", ejemplo.IDAutor);
                 return View(ejemplo);
             }
-            catch (Exception)
-            {
-                return View("Error");
-            }
+			catch (Exception ex)
+			{
+				return View("Error", new HandleErrorInfo(ex, "Ejemplos", "Edit"));
+			}
            
         }
 
@@ -146,10 +148,10 @@ namespace WikiCEP_Project.Controllers
                 ViewBag.IDAutor = new SelectList(db.AspNetUsers, "Id", "Email", ejemplo.IDAutor);
                 return View(ejemplo);
             }
-            catch (Exception)
-            {
-                return View("Error");
-            }
+			catch (Exception ex)
+			{
+				return View("Error", new HandleErrorInfo(ex, "Ejemplos", "Edit"));
+			}
            
         }
 
@@ -170,10 +172,10 @@ namespace WikiCEP_Project.Controllers
                 }
                 return View(ejemplo);
             }
-            catch (Exception)
-            {
-                return View("Error");
-            }
+			catch (Exception ex)
+			{
+				return View("Error", new HandleErrorInfo(ex, "Ejemplos", "Delete"));
+			}
             
         }
 
@@ -189,11 +191,11 @@ namespace WikiCEP_Project.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            catch (Exception)
-            {
-                return View("Error");
+			catch (Exception ex)
+			{
+				return View("Error", new HandleErrorInfo(ex, "Ejemplos", "DeleteConfirmed"));
 
-            }
+			}
         }
 
         protected override void Dispose(bool disposing)
@@ -225,10 +227,10 @@ namespace WikiCEP_Project.Controllers
                 Response.End();
                 return RedirectToAction("Index");
             }
-            catch (Exception)
-            {
-                return View("Error");
-            }
+			catch (Exception ex)
+			{
+				return View("Error", new HandleErrorInfo(ex, "Ejemplos", "ExportExcel"));
+			}
         }
 
 		[ChildActionOnly]
@@ -247,9 +249,9 @@ namespace WikiCEP_Project.Controllers
 				}
 				return PartialView("_CargarEjemplos", ejemplos.ToList());
 			}
-			catch (Exception)
+			catch (Exception ex)
 			{
-				return View("Error");
+				return View("Error", new HandleErrorInfo(ex, "Ejemplos", "CargarEjemplos"));
 			}
 		}
 	}

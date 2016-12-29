@@ -30,10 +30,10 @@ namespace WikiCEP_Project.Controllers
                 }
 
             }
-            catch (Exception)
-            {
-                return View("Error");
-            }
+			catch (Exception ex)
+			{
+				return View("Error", new HandleErrorInfo(ex, "Imagenes", "Index"));
+			}
         }
 
         // GET: Imagenes/Details/5
@@ -52,10 +52,10 @@ namespace WikiCEP_Project.Controllers
                 }
                 return View(imagene);
             }
-            catch (Exception)
-            {
-                return View("Error");
-            }
+			catch (Exception ex)
+			{
+				return View("Error", new HandleErrorInfo(ex, "Imagenes", "Details"));
+			}
         }
 
 		[Authorize]
@@ -109,9 +109,11 @@ namespace WikiCEP_Project.Controllers
                     }
 
                     return View(imagene);
-                } catch (Exception) {
-                    return View("Error");
                 }
+				catch (Exception ex)
+				{
+					return View("Error", new HandleErrorInfo(ex, "Imagenes", "Create"));
+				}
             }
             return View("Index");
         }
@@ -133,10 +135,10 @@ namespace WikiCEP_Project.Controllers
                 }
                 return View(imagene);
             }
-            catch (Exception)
-            {
-                return View("Error");
-            }
+			catch (Exception ex)
+			{
+				return View("Error", new HandleErrorInfo(ex, "Imagenes", "Delete"));
+			}
         }
 
         // POST: Imagenes/Delete/5
@@ -151,10 +153,10 @@ namespace WikiCEP_Project.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            catch (Exception)
-           {
-                return View("Error");
-            }
+			catch (Exception ex)
+			{
+				return View("Error", new HandleErrorInfo(ex, "Imagenes", "DeleteConfirmed"));
+			}
         }
 
         protected override void Dispose(bool disposing)
@@ -178,9 +180,9 @@ namespace WikiCEP_Project.Controllers
 				}
 				return PartialView("_CargarImagenes", imagenes.ToList());
 			}
-			catch(Exception)
+			catch (Exception ex)
 			{
-				return View("Error");
+				return View("Error", new HandleErrorInfo(ex, "Imagenes", "CargarImagenes"));
 			}
 		}
 

@@ -29,10 +29,10 @@ namespace WikiCEP_Project.Controllers
                 }
                 return View(definiciones.ToList());
             }
-            catch (Exception)
-            {
-                return View("Error");
-            }
+			catch (Exception ex)
+			{
+				return View("Error", new HandleErrorInfo(ex, "Definiciones", "Index"));
+			}
         }
 
         public ActionResult Details(int? id)
@@ -50,10 +50,10 @@ namespace WikiCEP_Project.Controllers
                 }
                 return View(definicione);
             }
-            catch (Exception)
-            {
-                return View("Error");
-            }
+			catch (Exception ex)
+			{
+				return View("Error", new HandleErrorInfo(ex, "Definiciones", "Details"));
+			}
         }
 
         [Authorize]
@@ -67,10 +67,10 @@ namespace WikiCEP_Project.Controllers
                 ViewBag.IDAutor = new SelectList(db.AspNetUsers, "Id", "Email");
                 return View();
             }
-            catch (Exception)
-            {
-                return View("Error");
-            }
+			catch (Exception ex)
+			{
+				return View("Error", new HandleErrorInfo(ex, "Definiciones", "Create"));
+			}
         }
         // POST: Definiciones/Create
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
@@ -102,10 +102,10 @@ namespace WikiCEP_Project.Controllers
 
                 return View(definicione);
             }
-            catch (Exception)
-            {
-                return View("Error");
-            }
+			catch (Exception ex)
+			{
+				return View("Error", new HandleErrorInfo(ex, "Definiciones", "Create"));
+			}
         }
 
         public ActionResult AgregarEjemplo()
@@ -136,10 +136,10 @@ namespace WikiCEP_Project.Controllers
 
                 return View();
             }
-            catch (Exception)
-            {
-                return View("Error");
-            }
+			catch (Exception ex)
+			{
+				return View("Error", new HandleErrorInfo(ex, "Definiciones", "AgregarEjemplo"));
+			}
         }
 
         public ActionResult AgregarImagen()
@@ -176,10 +176,10 @@ namespace WikiCEP_Project.Controllers
 
                 return View();
             }
-            catch (Exception)
-            {
-                return View("Error");
-            }
+			catch (Exception ex)
+			{
+				return View("Error", new HandleErrorInfo(ex, "Definiciones", "AgregarImagen"));
+			}
             
         }
 
@@ -192,10 +192,10 @@ namespace WikiCEP_Project.Controllers
                 ViewBag.IDAutor = new SelectList(db.AspNetUsers, "Id", "Email");
                 return View();
             }
-            catch (Exception)
-            {
-                return View("Error");
-            }
+			catch (Exception ex)
+			{
+				return View("Error", new HandleErrorInfo(ex, "Definiciones", "agregarTutorial"));
+			}
         }
         // POST: Definiciones/Create
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
@@ -216,10 +216,10 @@ namespace WikiCEP_Project.Controllers
 
                 return View();
             }
-            catch (Exception)
-            {
-                return View("Error");
-            }
+			catch (Exception ex)
+			{
+				return View("Error", new HandleErrorInfo(ex, "Definiciones", "agregarTutorial"));
+			}
         }
 
 
@@ -243,10 +243,10 @@ namespace WikiCEP_Project.Controllers
                 ViewBag.IDAutor = new SelectList(db.AspNetUsers, "Id", "Email", definicione.IDAutor);
                 return View(definicione);
             }
-            catch (Exception)
-            {
-               return View("Error");
-            }
+			catch (Exception ex)
+			{
+				return View("Error", new HandleErrorInfo(ex, "Definiciones", "Edit"));
+			}
         }
         // POST: Definiciones/Edit/5
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
@@ -276,10 +276,10 @@ namespace WikiCEP_Project.Controllers
                 return View(definicione);
             }
 
-            catch (Exception)
-            {
-                return View("Error");
-            }
+			catch (Exception ex)
+			{
+				return View("Error", new HandleErrorInfo(ex, "Definiciones", "Edit"));
+			}
         }
 
 		[Authorize(Roles = "Administrador")]
@@ -299,10 +299,10 @@ namespace WikiCEP_Project.Controllers
                 }
                 return View(definicione);
             }
-            catch (Exception)
-            {
-                return View("Error");
-            }
+			catch (Exception ex)
+			{
+				return View("Error", new HandleErrorInfo(ex, "Definiciones", "Delete"));
+			}
         }
         // POST: Definiciones/Delete/5
         [HttpPost, ActionName("Delete")]
@@ -315,10 +315,10 @@ namespace WikiCEP_Project.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            catch(Exception)
-            {
-                return View("Error");
-            }
+			catch (Exception ex)
+			{
+				return View("Error", new HandleErrorInfo(ex, "Definiciones", "DeleteConfirmed"));
+			}
        }
 
 
@@ -343,10 +343,10 @@ namespace WikiCEP_Project.Controllers
 
                 return RedirectToAction("Index");
             }
-            catch (Exception)
-            {
-                return View("Error");
-            }
+			catch (Exception ex)
+			{
+				return View("Error", new HandleErrorInfo(ex, "Definiciones", "ExportExcel"));
+			}
         }
 
         protected override void Dispose(bool disposing)

@@ -234,7 +234,7 @@ namespace WikiCEP_Project.Controllers
         [AllowAnonymous]
         public ActionResult ResetPassword(string code)
         {
-            return code == null ? View("Error") : View();
+            return code == null ? View("Error", new HandleErrorInfo(new Exception("Contraseña no válida"),"Account","ResetPassword")) : View();
         }
 
         //

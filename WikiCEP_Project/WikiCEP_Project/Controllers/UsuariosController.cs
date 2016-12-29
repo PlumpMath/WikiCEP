@@ -25,9 +25,11 @@ namespace WikiCEP_Project.Controllers
                     usuarios = usuarios.Where(s => s.Usuario.Contains(strBusqueda));
                 }
                 return View(usuarios.ToList());
-            } catch (Exception) {
-                return View("Error");
             }
+			catch (Exception ex)
+			{
+				return View("Error", new HandleErrorInfo(ex, "Usuarios", "Index"));
+			}
         }
 
         // GET: Usuarios/Create
@@ -96,9 +98,11 @@ namespace WikiCEP_Project.Controllers
                 }
              
                 return View(aspNetUser);
-            } catch (Exception) {
-                return View("Error");
             }
+			catch (Exception ex)
+			{
+				return View("Error", new HandleErrorInfo(ex, "Usuarios", "Edit"));
+			}
         }
 
         // GET: Usuarios/Delete/5
